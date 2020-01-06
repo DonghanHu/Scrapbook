@@ -10,6 +10,10 @@ import Cocoa
 
 struct variables {
     static var defaultFolderPathString = ""
+    
+    //the path of the latest taken screenshot
+    static var latesScreenShotPathString = ""
+    
 }
 
 @NSApplicationMain

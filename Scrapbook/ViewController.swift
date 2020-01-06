@@ -30,7 +30,9 @@ class ViewController: NSViewController {
     }
 
     @IBAction func CaptureScreenshot(_ sender: Any) {
+        self.view.window?.close()
         screenCaptureHandler.selectScreenCapture()
+
     }
     @IBAction func QuitFunc(_ sender: Any) {
         exit(0)

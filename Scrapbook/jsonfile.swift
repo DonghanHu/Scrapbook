@@ -8,6 +8,8 @@
 
 import Foundation
 class jsonRelated: NSObject {
+    
+    
     func createjson(filepath: URL) -> URL{
         let documentsDirectoryPath = filepath
         let jsonFilePath = documentsDirectoryPath.appendingPathComponent("Scrapbook.json")
@@ -18,7 +20,7 @@ class jsonRelated: NSObject {
             if created {
                 print("json file path:", jsonFilePath)
                 print("Json file created ")
-//                WriteInitialData(Filepath: (jsonFilePath.absoluteString))
+                WriteInitialData(Filepath: (jsonFilePath.absoluteString))
                 
             } else {
                 print("Couldn't create json file for some reason")
@@ -31,48 +33,39 @@ class jsonRelated: NSObject {
     }
     
         func WriteInitialData(Filepath : String){
-            let date = Date()
-            let calendar = Calendar.current
-            let day = calendar.component(.day, from: date)
-            let month = calendar.component(.month, from: date)
-            let year = calendar.component(.year, from: date)
-            let hour = calendar.component(.hour, from: date)
-            let current = String(year) + "-" + String(month) + "-" + String(day) + "-" + String(hour)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = DateFormatter.Style.medium
-            dateFormatter.timeStyle = DateFormatter.Style.medium
-            let tempdate = Calendar.current.date(byAdding: .hour, value: 0, to: Date())
-            var dateString = dateFormatter.string(from: tempdate!)
-            let final = dateFormatter.date(from: dateString)
-            dateFormatter.dateFormat = "yyyy-M-d-HH:mm:ss"
-            let date24 = dateFormatter.string(from: final!)
-            
+//            let date = Date()
+//            let calendar = Calendar.current
+//            let day = calendar.component(.day, from: date)
+//            let month = calendar.component(.month, from: date)
+//            let year = calendar.component(.year, from: date)
+//            let hour = calendar.component(.hour, from: date)
+//            let current = String(year) + "-" + String(month) + "-" + String(day) + "-" + String(hour)
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateStyle = DateFormatter.Style.medium
+//            dateFormatter.timeStyle = DateFormatter.Style.medium
+//            let tempdate = Calendar.current.date(byAdding: .hour, value: 0, to: Date())
+//            var dateString = dateFormatter.string(from: tempdate!)
+//            let final = dateFormatter.date(from: dateString)
+//            dateFormatter.dateFormat = "yyyy-M-d-HH:mm:ss"
+//            let date24 = dateFormatter.string(from: final!)
             var ArrayOfDictionary = [Dictionary<String, Any>]()
             let dictionary : [String : Any] =
                 [
                     "Introduction" : "Hello, world"
             ]
-            let NameofSession = Filepath.replacingOccurrences(of: "/test.json", with: "")
-    //        let SessionNameOfDictionary : [String : Any] = [
-    //            "name of session" : NameofSession
-    //        ]
-                
+//            let NameofSession = Filepath.replacingOccurrences(of: "/test.json", with: "")
             ArrayOfDictionary.append(dictionary)
             var temp : [String : Any] =
                 [
-                    "name of session"   : NameofSession,
-                    "StartTime"         : date24,
-                    "Information"       : ArrayOfDictionary,
-                    "EndTime"           : date24
+                    "NameOfFile"      : "Data collecting, editing and saving",
+                    "BasicInformation"       : ArrayOfDictionary
             ]
             
             let jsonData = try! JSONSerialization.data(withJSONObject: temp, options: JSONSerialization.WritingOptions.prettyPrinted)
-    //        let jsonDataName = try! JSONSerialization.data(withJSONObject: SessionNameOfDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
             if FileManager.default.fileExists(atPath: Filepath){
                 var err:NSError?
                 if let fileHandle = FileHandle(forWritingAtPath: Filepath){
                     fileHandle.write(jsonData)
-                    //fileHandle.write(jsonDataName)
                     fileHandle.closeFile()
                 }
                 else {

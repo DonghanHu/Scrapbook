@@ -13,6 +13,8 @@ class Screencapture : NSObject {
     
     
     var timerDetectMouseClickAction : Timer = Timer()
+    let softeareClassifyHandler = softwareClassify()
+    
     
     func selectScreenCapture(){
              
@@ -34,12 +36,33 @@ class Screencapture : NSObject {
         task.arguments = arguments
         task.launch() // asynchronous call.
         // time interval has been set as 0.2 second temporally
-        self.timerDetectMouseClickAction = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(mouseClick), userInfo: nil, repeats: true)
+        
+        // self.timerDetectMouseClickAction = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(mouseClick), userInfo: nil, repeats: true)
+        
+        // 2020-01-06 17:49:18.482325-0500
+        // screencapture[33094:10098239] [default]
+        // captureRect = (2799.0, 384.0, 338.0, 275.0)
+        while task.isRunning {
+//            if (task.scriptingProperties) != nil {
+//
+//                print("task attribute keys:", task.scriptingProperties)
+//            }
+            // let tempDic = [String:Any]()
+            
+            if !(task.scriptingProperties!.isEmpty){
+                print("script", task.scriptingProperties)
+            }
+            
+        }
+
         task.waitUntilExit()
+        
+        // mouseLocation()
+        
         print("the process of takeing screenshot is finished, and the images has been saved locally.")
+        softeareClassifyHandler.frontmostApplication()
         
-        
-        timerDetectMouseClickAction.invalidate()
+        // timerDetectMouseClickAction.invalidate()
 //        print("timer detecting mouse action has been stopped.")
         
         //pause for 0.5 second
@@ -58,8 +81,15 @@ class Screencapture : NSObject {
         if bool == 1 {
             let xMouseCoordination = NSEvent.mouseLocation.x
             let yMouseCoordination = NSEvent.mouseLocation.y
-                    }
-        print(bool)
+                        
+            print("mouse location of starting: ", xMouseCoordination, yMouseCoordination)
+        }
+    }
+    
+    func mouseLocation(){
+        let xMouseCoordination = NSEvent.mouseLocation.x
+        let yMouseCoordination = NSEvent.mouseLocation.y
+        print("mouse locatin of ending: ", xMouseCoordination, yMouseCoordination)
     }
     
 }

@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-class softeareClassify : NSObject {
+class softwareClassify : NSObject {
     
     func currentMousePosition (){
         let xMoustLoaction = Int(NSEvent.mouseLocation.x)
@@ -18,7 +18,11 @@ class softeareClassify : NSObject {
         
     }
     
-    
+    func frontmostApplication(){
+        let frontMostApplicationName = NSWorkspace.shared.frontmostApplication?.localizedName?.description
+        print("current front most application is:", frontMostApplicationName!)
+        
+    }
     
     
 }

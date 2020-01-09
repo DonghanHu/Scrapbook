@@ -49,6 +49,7 @@ class jsonRelated: NSObject {
 //            dateFormatter.dateFormat = "yyyy-M-d-HH:mm:ss"
 //            let date24 = dateFormatter.string(from: final!)
             var ArrayOfDictionary = [Dictionary<String, Any>]()
+            let recordingCount = 0
             let dictionary : [String : Any] =
                 [
                     "Introduction" : "Hello, world"
@@ -57,8 +58,9 @@ class jsonRelated: NSObject {
             ArrayOfDictionary.append(dictionary)
             var temp : [String : Any] =
                 [
-                    "NameOfFile"      : "Data collecting, editing and saving",
-                    "BasicInformation"       : ArrayOfDictionary
+                    "NameOfFile"                : "Data collecting, editing and saving",
+                    "NumberOfRecording"         : recordingCount,
+                    "BasicInformation"          : ArrayOfDictionary
             ]
             
             let jsonData = try! JSONSerialization.data(withJSONObject: temp, options: JSONSerialization.WritingOptions.prettyPrinted)

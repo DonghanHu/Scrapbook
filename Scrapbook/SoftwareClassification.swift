@@ -55,19 +55,49 @@ class softwareClassify : NSObject {
         
         let softwareNameList = infoList.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }
         
-        print("kcgWindowName is not nil", softwareNameList.count)
-        print(softwareNameList)
+        print("kcgWindowName is not nil and the number of the opening software is: ", softwareNameList.count)
+        //print(softwareNameList)
         
         for simpleSoftware in softwareNameList {
+            print("one simple software window's information:", simpleSoftware)
+            print("\n")
             let applicationName = simpleSoftware["kCGWindowOwnerName"] as! String
             let applicationBounds = simpleSoftware["kCGWindowBounds"]
+
+            /*
+            {
+             Height = 900;
+             Width = 1440;
+             X = 0;
+             Y = 0;
+             }
+            */
+            let boundDictionaryFormat = applicationBounds as! NSDictionary
+            print("bounds in dictionary format", boundDictionaryFormat)
+            // dictionary.count == 4
+            for (key, vaule) in boundDictionaryFormat {
+                print(key, vaule)
+                if (key as! String) == "X" {
+                    print(boundDictionaryFormat.value(forKey: "X") as! Int)
+                }
+                //print(boundDictionaryFormat.value(forKey: "X") as! Int)
+                
+                // get the bound information separately
+                
+                /*
+                 X 1440
+                 Height 1080
+                 Y 0
+                 Width 1920
+                 */
+            }
             /*
             kCGWindowBounds contains the start point of the applciation (x, y)
             and the height and width
              
             */
             //print(applicationName)
-            //print(applicationBounds)
+            // print(applicationBounds)
             applicationNameStack.append(applicationName)
         }
         print(applicationNameStack)

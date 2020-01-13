@@ -14,10 +14,13 @@ class ViewController: NSViewController {
     @IBOutlet weak var CaputerButton: NSButtonCell!
     
     var screenCaptureHandler = Screencapture()
+    var softwareClassificationHandler = softwareClassify()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // softwareClassificationHandler.openingApplication()
+        softwareClassificationHandler.screenAboveWindowListPrint()
 
         
         // Do any additional setup after loading the view.

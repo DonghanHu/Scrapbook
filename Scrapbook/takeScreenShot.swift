@@ -17,7 +17,6 @@ class Screencapture : NSObject {
     
     
     func selectScreenCapture(){
-             
         
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -34,28 +33,41 @@ class Screencapture : NSObject {
         
         print("save path", variables.latesScreenShotPathString)
         task.arguments = arguments
+        
+        let outpipe = Pipe()
+        task.standardOutput = outpipe
+
+        
         task.launch() // asynchronous call.
+        
+        
         // time interval has been set as 0.2 second temporally
         
         // self.timerDetectMouseClickAction = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(mouseClick), userInfo: nil, repeats: true)
-        
+//        let outpipe = Pipe()
+//        task.standardOutput = outpipe
         // 2020-01-06 17:49:18.482325-0500
         // screencapture[33094:10098239] [default]
         // captureRect = (2799.0, 384.0, 338.0, 275.0)
-        while task.isRunning {
-//            if (task.scriptingProperties) != nil {
-//
-//                print("task attribute keys:", task.scriptingProperties)
-//            }
-            // let tempDic = [String:Any]()
-            
-            if !(task.scriptingProperties!.isEmpty){
-                print("script", task.scriptingProperties)
-            }
-            
-        }
 
+//        while task.isRunning {
+//
+//            if !(task.scriptingProperties!.isEmpty){
+//                print("script", task.scriptingProperties)
+//            }
+//
+//        }
+        let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
+        let output1 = String(data: outdata, encoding: .utf8)
+
+
+        
         task.waitUntilExit()
+        
+
+        
+        
+        print("output", output1)
         
         // mouseLocation()
         

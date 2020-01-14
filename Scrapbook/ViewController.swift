@@ -16,6 +16,7 @@ class ViewController: NSViewController {
     var screenCaptureHandler = Screencapture()
     var softwareClassificationHandler = softwareClassify()
     
+    @IBOutlet weak var CaptureMethodTwoButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,17 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
+    @IBAction func CaptureScreenShotMethodTwo(_ sender: Any) {
+        
+        self.view.window?.close()
+         screenCaptureHandler.screenCaptureFramework()
+        // screenCaptureHandler.screenCaptureSwiftCodeMethod(folderName: "nil")
+    }
+    
     @IBAction func CaptureScreenshot(_ sender: Any) {
         self.view.window?.close()
         screenCaptureHandler.selectScreenCapture()
+        
 
     }
     @IBAction func QuitFunc(_ sender: Any) {

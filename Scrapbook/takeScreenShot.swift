@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import ScreenCapture
 
 class Screencapture : NSObject {
     
@@ -16,6 +17,72 @@ class Screencapture : NSObject {
     let softeareClassifyHandler = softwareClassify()
     
     
+    // using packet to take screenshot from the github
+    func screenCaptureFramework(){
+        
+//        let regionUrl = ScreenCapture.captureRegion("/path/to/save/to.png")
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
+        let dateString = dateFormatter.string(from: date)
+        variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
+        
+        let regionUrl = ScreenCapture.captureRegion(variables.latesScreenShotPathString)
+        
+        
+    }
+    
+    
+    // using swift code to take screenshot
+    // this take the screenshot of the whole screen
+    
+    func screenCaptureSwiftCodeMethod(folderName: String){
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
+        let dateString = dateFormatter.string(from: date)
+        variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
+        
+        var displayCount: UInt32 = 0;
+        var result = CGGetActiveDisplayList(0, nil, &displayCount)
+        if (result != CGError.success) {
+            print("error: \(result)")
+            return
+        }
+        let allocated = Int(displayCount)
+        let activeDisplays = UnsafeMutablePointer<CGDirectDisplayID>.allocate(capacity: allocated)
+        result = CGGetActiveDisplayList(displayCount, activeDisplays, &displayCount)
+
+        if (result != CGError.success) {
+            print("error: \(result)")
+            return
+        }
+        
+        for i in 1...displayCount {
+            // let unixTimestamp = CreateTimeStamp()
+            
+            let fileUrl = URL(fileURLWithPath: variables.latesScreenShotPathString)
+            
+            // let fileUrl = URL(fileURLWithPath: folderName + "\(unixTimestamp)" + "_" + "\(i)" + ".jpg", isDirectory: true)
+            let screenShot:CGImage = CGDisplayCreateImage(activeDisplays[Int(i-1)])!
+            let bitmapRep = NSBitmapImageRep(cgImage: screenShot)
+            let jpegData = bitmapRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:])!
+            do {
+                try jpegData.write(to: fileUrl, options: .atomic)
+            }
+            catch {print("error: \(error)")}
+        }
+    }
+    // function to create time stamp, now it is not used
+    func CreateTimeStamp() -> Int32
+    {
+        return Int32(Date().timeIntervalSince1970)
+    }
+    
+    
+    // my method of taking screenshot by using terminate line code
+    // /usr/sbin/screencapture
     func selectScreenCapture(){
         
         let date = Date()
@@ -36,9 +103,16 @@ class Screencapture : NSObject {
         
         let outpipe = Pipe()
         task.standardOutput = outpipe
+        task.standardError = outpipe
 
         
-        task.launch() // asynchronous call.
+        
+        //task.launch() // asynchronous call.
+        do {
+          try task.run()
+        } catch {}
+
+        
         
         
         // time interval has been set as 0.2 second temporally
@@ -46,6 +120,7 @@ class Screencapture : NSObject {
         // self.timerDetectMouseClickAction = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(mouseClick), userInfo: nil, repeats: true)
 //        let outpipe = Pipe()
 //        task.standardOutput = outpipe
+        
         // 2020-01-06 17:49:18.482325-0500
         // screencapture[33094:10098239] [default]
         // captureRect = (2799.0, 384.0, 338.0, 275.0)
@@ -57,17 +132,22 @@ class Screencapture : NSObject {
 //            }
 //
 //        }
+        
         let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
-        let output1 = String(data: outdata, encoding: .utf8)
+        let output = String(data: outdata, encoding: .utf8)
+        
+        // output is String format
+        // let outputDictionary = output as NSDictionary
+        // print ("output dictionary format", outputDictionary)
 
-
+        // print("output", output)
+        
         
         task.waitUntilExit()
         
-
         
         
-        print("output", output1)
+        // print("output", output1)
         
         // mouseLocation()
         

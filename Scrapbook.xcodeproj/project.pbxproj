@@ -19,6 +19,30 @@
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EAAEE3A123CE6F7100A49238 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 047C40AB1C1A294700D6B267;
+			remoteInfo = ScreenCapture;
+		};
+		EAAEE3A323CE6F7100A49238 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 047C40CB1C1A2AFA00D6B267;
+			remoteInfo = Example;
+		};
+		EAAEE3A623CE6FB300A49238 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 047C40AA1C1A294700D6B267;
+			remoteInfo = ScreenCapture;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = screenshotEditWindow.swift; sourceTree = "<group>"; };
 		EA60B60823C3D19300061A33 /* screenshotEditWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = screenshotEditWindow.xib; sourceTree = "<group>"; };
@@ -30,6 +54,7 @@
 		EA7FCA1823B52CC800CEB2E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA7FCA1A23B52CC800CEB2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7FCA1B23B52CC800CEB2E8 /* Scrapbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scrapbook.entitlements; sourceTree = "<group>"; };
+		EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScreenCapture.xcodeproj; path = "../../../Downloads/swift-screencapture-master/ScreenCapture.xcodeproj"; sourceTree = "<group>"; };
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
 		EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareClassification.swift; sourceTree = "<group>"; };
@@ -49,6 +74,7 @@
 		EA7FCA0223B52CC600CEB2E8 = {
 			isa = PBXGroup;
 			children = (
+				EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */,
 				EA7FCA0D23B52CC600CEB2E8 /* Scrapbook */,
 				EA7FCA0C23B52CC600CEB2E8 /* Products */,
 			);
@@ -81,6 +107,15 @@
 			path = Scrapbook;
 			sourceTree = "<group>";
 		};
+		EAAEE39D23CE6F7100A49238 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EAAEE3A223CE6F7100A49238 /* ScreenCapture.framework */,
+				EAAEE3A423CE6F7100A49238 /* Example.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,6 +130,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EAAEE3A723CE6FB300A49238 /* PBXTargetDependency */,
 			);
 			name = Scrapbook;
 			productName = Scrapbook;
@@ -127,12 +163,35 @@
 			mainGroup = EA7FCA0223B52CC600CEB2E8;
 			productRefGroup = EA7FCA0C23B52CC600CEB2E8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EAAEE39D23CE6F7100A49238 /* Products */;
+					ProjectRef = EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EA7FCA0A23B52CC600CEB2E8 /* Scrapbook */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EAAEE3A223CE6F7100A49238 /* ScreenCapture.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ScreenCapture.framework;
+			remoteRef = EAAEE3A123CE6F7100A49238 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EAAEE3A423CE6F7100A49238 /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = EAAEE3A323CE6F7100A49238 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA7FCA0923B52CC600CEB2E8 /* Resources */ = {
@@ -163,6 +222,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EAAEE3A723CE6FB300A49238 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ScreenCapture;
+			targetProxy = EAAEE3A623CE6FB300A49238 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA7FCA1723B52CC800CEB2E8 /* Main.storyboard */ = {

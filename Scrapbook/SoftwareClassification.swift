@@ -59,6 +59,8 @@ class softwareClassify : NSObject {
         
         let softwareNameList = infoList.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }
         
+        var emptyRect = 0
+        
         print("kcgWindowName is not nil and the number of the opening software is: ", softwareNameList.count)
         print("software name list: ", softwareNameList)
         
@@ -150,7 +152,7 @@ class softwareClassify : NSObject {
             // areaOfScreenshot is the area of the screenshot
             let areaOfScreenshot = (screenShotInformation.secondCoordinationOfX - screenShotInformation.firstCoordinationOfX) * (screenShotInformation.secondCoordinationOfY - screenShotInformation.firstCoordinationOfY)
             print("area of screenshot is: ", areaOfScreenshot)
-            var emptyRect = 0
+            
             
             // first case: screenshot area is completely in one opening application
             // application's layer is counted from the front to the back (behind)
@@ -169,7 +171,7 @@ class softwareClassify : NSObject {
             }
             
             // screenshot across multiple applications
-            if ( (screenShotInformation.firstCoordinationOfX >= firstX) && (screenShotInformation.firstCoordinationOfY >= firstY) && ((screenShotInformation.secondCoordinationOfX >= secondX) || (screenShotInformation.secondCoordinationOfY >= secondY)) ){
+            else if ( (screenShotInformation.firstCoordinationOfX >= firstX) && (screenShotInformation.firstCoordinationOfY >= firstY) && ((screenShotInformation.secondCoordinationOfX >= secondX) || (screenShotInformation.secondCoordinationOfY >= secondY)) ){
                 // in this case, top left corner in application one, while the bottom right corner is not
                 // add application name into the stack
                 print("top left corner is in this application: ", applicationName)
@@ -179,10 +181,14 @@ class softwareClassify : NSObject {
                 
                 emptyRect = emptyRect + areaOfRectInFirstApplication
                 print("in top left corner if judgement loop, the current rect is:", emptyRect)
-                
+                print(Double(Double(emptyRect) / Double(areaOfScreenshot)))
                 if Double(Double(emptyRect) / Double(areaOfScreenshot)) >= Double(0.8) && !(applicationNameStack.contains(applicationName)){
                     applicationNameStack.append(applicationName)
                     break
+                }
+                
+                if Double(Double(emptyRect) / Double(areaOfScreenshot)) >= Double(0.15) && !(applicationNameStack.contains(applicationName)){
+                    applicationNameStack.append(applicationName)
                 }
 //                if applicationNameStack.contains(applicationName){
 //                    // do nothing
@@ -192,7 +198,7 @@ class softwareClassify : NSObject {
 //                }
             }
             
-            if ( (screenShotInformation.secondCoordinationOfX <= secondX) && (screenShotInformation.secondCoordinationOfY <= secondY) && ((screenShotInformation.firstCoordinationOfX <= firstX) || (screenShotInformation.firstCoordinationOfY <= firstY)) ) {
+            else if ( (screenShotInformation.secondCoordinationOfX <= secondX) && (screenShotInformation.secondCoordinationOfY <= secondY) && ((screenShotInformation.firstCoordinationOfX <= firstX) || (screenShotInformation.firstCoordinationOfY <= firstY)) ) {
                 
                 print("bottom right corner is in this application: ", applicationName)
                 
@@ -203,11 +209,16 @@ class softwareClassify : NSObject {
                 print("in bottom right corner if judgement loop, the current rect is:", emptyRect)
                 
                 print("emptyRect / areaOfScreenshot is: ", Double(Double(emptyRect) / Double(areaOfScreenshot)))
-                
-                if Double(Double(emptyRect) / Double(areaOfScreenshot)) >= Double(0.8) && !(applicationNameStack.contains(applicationName)){
+                print(Double(Double(emptyRect) / Double(areaOfScreenshot)))
+                if (Double(Double(emptyRect) / Double(areaOfScreenshot)) >= Double(0.8)) && !(applicationNameStack.contains(applicationName)){
                     applicationNameStack.append(applicationName)
                     break
                 }
+                
+                if Double(Double(emptyRect) / Double(areaOfScreenshot)) >= Double(0.15) && !(applicationNameStack.contains(applicationName)){
+                    applicationNameStack.append(applicationName)
+                }
+                
                 // in this case, the bottom right corner is in application two, while top left corner is not
                 // add application name into the stack
 //                if applicationNameStack.contains(applicationName){

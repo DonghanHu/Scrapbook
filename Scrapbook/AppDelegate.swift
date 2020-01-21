@@ -9,11 +9,18 @@
 import Cocoa
 
 struct variables {
-    static var defaultFolderPathString = ""
+    static var defaultFolderPathString          = ""
     
     //the path of the latest taken screenshot
-    static var latesScreenShotPathString = ""
+    static var latesScreenShotPathString        = ""
     
+}
+
+struct screenShotInformation {
+    static var firstCoordinationOfX     : Int!
+    static var firstCoordinationOfY     : Int!
+    static var secondCoordinationOfX    : Int!
+    static var secondCoordinationOfY    : Int!
 }
 
 @NSApplicationMain
@@ -32,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print(variables.defaultFolderPathString)
         defaultFolder(folderPath: folderPath)
         jsonFileHandler.createjson(filepath: URL(string: variables.defaultFolderPathString)!)
-        statusItem.button?.title = "C"
+        statusItem.button?.title = "S"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
     }

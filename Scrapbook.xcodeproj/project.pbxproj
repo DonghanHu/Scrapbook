@@ -17,6 +17,7 @@
 		EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2623BA9D53008ACCAE /* jsonfile.swift */; };
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
+		EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
 		EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareClassification.swift; sourceTree = "<group>"; };
+		EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAppleScript.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */,
 				EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */,
 				EA60B60823C3D19300061A33 /* screenshotEditWindow.xib */,
+				EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */,
 				EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */,
 				EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */,
+				EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */,
 				EA7FCA0F23B52CC600CEB2E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

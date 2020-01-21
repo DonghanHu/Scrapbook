@@ -21,7 +21,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // softwareClassificationHandler.openingApplication()
-        softwareClassificationHandler.screenAboveWindowListPrint()
+        // softwareClassificationHandler.screenAboveWindowListPrint()
 
         
         // Do any additional setup after loading the view.

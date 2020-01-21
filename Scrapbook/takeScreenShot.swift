@@ -61,7 +61,10 @@ class Screencapture : NSObject {
     
     
     var timerDetectMouseClickAction : Timer = Timer()
-    let softeareClassifyHandler = softwareClassify()
+    
+    var softeareClassificationHandler = softwareClassify()
+    
+    var takeScreenshotSuccess = false
     
     // using packet to take screenshot from the github
     func screenCaptureFramework(){
@@ -186,88 +189,126 @@ class Screencapture : NSObject {
         // let outputDictionary = output as NSDictionary
         // print ("output dictionary format", outputDictionary)
 
-        let temp = output as! String
+        let temp = ( output as! String )
         // print("output", output!)
         print ("temp", temp)
         
-        print("first index of (", temp.indexDistance(of: "("))
-        print("first index of )", temp.indexDistance(of: ")"))
+        if temp.contains("captureRect"){
+            
+
         
-        let startPositionInt = temp.indexDistance(of: "(")! + 1
-        // method one without ")"
-        let endPositionInt = temp.indexDistance(of: ")")!
-        // method two with ")"
-        // let endPositionInt = temp.indexDistance(of: ")")! + 1
-        let totalLength = temp.count
-        let endPoint = 0 - ( totalLength - endPositionInt )
+            // get the index fo ( and )
+            // print("first index of (", temp.indexDistance(of: "(")!)
+            // print("first index of )", temp.indexDistance(of: ")")!)
+            
+            let startPositionInt = temp.indexDistance(of: "(")! + 1
+            // method one without ")"
+            let endPositionInt = temp.indexDistance(of: ")")!
+            // method two with ")"
+            // let endPositionInt = temp.indexDistance(of: ")")! + 1
+            let totalLength = temp.count
+            let endPoint = 0 - ( totalLength - endPositionInt )
+            
+            let startingPoint = temp.index(temp.startIndex, offsetBy: startPositionInt)
+            let endingPoint = temp.index(temp.endIndex, offsetBy: endPoint)
+            
+            let range = startingPoint..<endingPoint
+            let recTangleString = temp[range]
+            print("final sub string: ", temp[range])
+            // now I get a string contains coordination of the screenshot
+            // method 1: 2874.0, 254.0, 773.0, 580.0
+            // method 2: 3022.0, 186.0, 751.0, 556.0)
+            // print("start index:", output?.index(of: "captureRect")!)
+            // print("end index:", output?.endIndex(of: ")")!)
+            
+            // (12, 12) -> (701, 51) ======= (1452.0, 12.0) -> (701.0, 51.0)
+            // 1452 because it is on a additional screen
+            // so it is the upper left coordination and bottom right coordination
+            
+            // get the first coordination of X
+            let firstCommaPosition = recTangleString.indexDistance(of: ",")!
+            let firstCommaIndex = recTangleString.index(recTangleString.startIndex, offsetBy: firstCommaPosition)
+            let firstCoordinationX = String(recTangleString[..<firstCommaIndex])
+            let firstCoordinationXInt = (firstCoordinationX as NSString).integerValue
+            print("first x: ", firstCoordinationXInt)
+            
+            let secondEndPooint = 0 - (recTangleString.count - firstCommaPosition) + 2
+            let secondPartEndIndex = recTangleString.index(recTangleString.endIndex, offsetBy: secondEndPooint)
+            let secondPartOfRectangleInformation = recTangleString[secondPartEndIndex...]
+            print("second part string: ", secondPartOfRectangleInformation)
+            
+            // get the first coordination of Y
+            let secondCommaPosition = secondPartOfRectangleInformation.indexDistance(of: ",")!
+            let secondCommaIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.startIndex, offsetBy: secondCommaPosition)
+            let firstCoordinationY = String(secondPartOfRectangleInformation[..<secondCommaIndex])
+            let firstCoordinationYInt = (firstCoordinationY as NSString).integerValue
+            print("first y: ", firstCoordinationYInt)
+            
+            let thirdEndPoint = 0 - ( secondPartOfRectangleInformation.count - secondCommaPosition ) + 2
+            let thirdPartEndIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.endIndex, offsetBy: thirdEndPoint)
+            let thirdPartOfRectangleInformation = secondPartOfRectangleInformation[thirdPartEndIndex...]
+            print("third part string: ", thirdPartOfRectangleInformation)
+            
+            // get the second coordination of X
+            let thirdCommaPosition = thirdPartOfRectangleInformation.indexDistance(of: ",")!
+            let thirdCommaIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.startIndex, offsetBy: thirdCommaPosition)
+            let secondCoordinationX = String(thirdPartOfRectangleInformation[..<thirdCommaIndex])
+            let secondCoordinationXInt = (secondCoordinationX as NSString).integerValue
+            print("second X: ", secondCoordinationXInt)
+            
+            let forthEndPoint = 0 - ( thirdPartOfRectangleInformation.count - secondCommaPosition) + 2
+            let forthPartEndIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.endIndex, offsetBy: forthEndPoint)
+            let forthPartOfRectangleInformation = thirdPartOfRectangleInformation[forthPartEndIndex...]
+            print("forth part string: ", forthPartOfRectangleInformation)
+            
+            // get the second coordination of Y
+            let forthCommaPosition = forthPartOfRectangleInformation.indexDistance(of: ".")!
+            let forthCommaIndex = forthPartOfRectangleInformation.index(forthPartOfRectangleInformation.startIndex, offsetBy: forthCommaPosition)
+            let secondCoordinationY = String(forthPartOfRectangleInformation[..<forthCommaIndex])
+            let secondCoordinationYInt = (secondCoordinationY as NSString).integerValue
+            print("second Y: ", secondCoordinationYInt)
+            
+            // get for coordination of the screenshot
+            // (firstCoordinationXInt, firstCoordinationYInt) -> (secondCoordinationXInt, secondCoordinationYInt)
+            
+            // code here, check taking a screenshot is from left to right
+    //        if secondCoordinationXInt < firstCoordinationXInt {
+    //            screenShotInformation.firstCoordinationOfX = secondCoordinationXInt
+    //            screenShotInformation.secondCoordinationOfX = firstCoordinationXInt
+    //        }
+    //
+    //        if secondCoordinationYInt < firstCoordinationYInt {
+    //            screenShotInformation.firstCoordinationOfY = secondCoordinationYInt
+    //            screenShotInformation.secondCoordinationOfY = firstCoordinationYInt
+    //        }
+    //
+            screenShotInformation.firstCoordinationOfX = firstCoordinationXInt
+            screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
+            screenShotInformation.secondCoordinationOfX = firstCoordinationXInt + secondCoordinationXInt
+            screenShotInformation.secondCoordinationOfY = firstCoordinationYInt + secondCoordinationYInt
         
-        let startingPoint = temp.index(temp.startIndex, offsetBy: startPositionInt)
-        let endingPoint = temp.index(temp.endIndex, offsetBy: endPoint)
+            takeScreenshotSuccess = true
+            
+        }
         
-        let range = startingPoint..<endingPoint
-        let recTangleString = temp[range]
-        print("final sub string: ", temp[range])
-        // now I get a string contains coordination of the screenshot
-        // method 1: 2874.0, 254.0, 773.0, 580.0
-        // method 2: 3022.0, 186.0, 751.0, 556.0)
-        // print("start index:", output?.index(of: "captureRect")!)
-        // print("end index:", output?.endIndex(of: ")")!)
-        
-        // (12, 12) -> (701, 51) ======= (1452.0, 12.0) -> (701.0, 51.0)
-        // 1452 because it is on a additional screen
-        // so it is the upper left coordination and bottom right coordination
-        
-        // get the first coordination of X
-        let firstCommaPosition = recTangleString.indexDistance(of: ",")!
-        let firstCommaIndex = recTangleString.index(recTangleString.startIndex, offsetBy: firstCommaPosition)
-        let firstCoordinationX = String(recTangleString[..<firstCommaIndex])
-        let firstCoordinationXInt = (firstCoordinationX as NSString).integerValue
-        print("first x: ", firstCoordinationXInt)
-        
-        let secondEndPooint = 0 - (recTangleString.count - firstCommaPosition) + 2
-        let secondPartEndIndex = recTangleString.index(recTangleString.endIndex, offsetBy: secondEndPooint)
-        let secondPartOfRectangleInformation = recTangleString[secondPartEndIndex...]
-        print("second part string: ", secondPartOfRectangleInformation)
-        
-        // get the first coordination of Y
-        let secondCommaPosition = secondPartOfRectangleInformation.indexDistance(of: ",")!
-        let secondCommaIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.startIndex, offsetBy: secondCommaPosition)
-        let firstCoordinationY = String(secondPartOfRectangleInformation[..<secondCommaIndex])
-        let firstCoordinationYInt = (firstCoordinationY as NSString).integerValue
-        print("first y: ", firstCoordinationYInt)
-        
-        let thirdEndPoint = 0 - ( secondPartOfRectangleInformation.count - secondCommaPosition ) + 2
-        let thirdPartEndIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.endIndex, offsetBy: thirdEndPoint)
-        let thirdPartOfRectangleInformation = secondPartOfRectangleInformation[thirdPartEndIndex...]
-        print("third part string: ", thirdPartOfRectangleInformation)
-        
-        // get the second coordination of X
-        let thirdCommaPosition = thirdPartOfRectangleInformation.indexDistance(of: ",")!
-        let thirdCommaIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.startIndex, offsetBy: thirdCommaPosition)
-        let secondCoordinationX = String(thirdPartOfRectangleInformation[..<thirdCommaIndex])
-        let secondCoordinationXInt = (secondCoordinationX as NSString).integerValue
-        print("second X: ", secondCoordinationXInt)
-        
-        let forthEndPoint = 0 - ( thirdPartOfRectangleInformation.count - secondCommaPosition) + 2
-        let forthPartEndIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.endIndex, offsetBy: forthEndPoint)
-        let forthPartOfRectangleInformation = thirdPartOfRectangleInformation[forthPartEndIndex...]
-        print("forth part string: ", forthPartOfRectangleInformation)
-        
-        // get the second coordination of Y
-        let forthCommaPosition = forthPartOfRectangleInformation.indexDistance(of: ".")!
-        let forthCommaIndex = forthPartOfRectangleInformation.index(forthPartOfRectangleInformation.startIndex, offsetBy: forthCommaPosition)
-        let secondCoordinationY = String(forthPartOfRectangleInformation[..<forthCommaIndex])
-        let secondCoordinationYInt = (secondCoordinationY as NSString).integerValue
-        print("second Y: ", secondCoordinationYInt)
-        
-        // get for coordination of the screenshot
-        // (firstCoordinationXInt, firstCoordinationYInt) -> (secondCoordinationXInt, secondCoordinationYInt)
-        
-        
-        
-        
+        // softeareClassificationHandler.screenAboveWindowListPrint()
         
         task.waitUntilExit()
+        
+        if (takeScreenshotSuccess){
+            softeareClassificationHandler.screenAboveWindowListPrint()
+            print("the process of takeing screenshot is finished, and the images has been saved locally.")
+            let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
+            let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)
+            let subWindowController = NSWindowController(window: subWindow)
+            subWindowController.showWindow(nil)
+        }
+            
+            
+        else {
+            print("the action of taking a screenshot failed. please repeat your action.")
+        }
+        
         
         
         
@@ -275,8 +316,8 @@ class Screencapture : NSObject {
         
         // mouseLocation()
         
-        print("the process of takeing screenshot is finished, and the images has been saved locally.")
-        softeareClassifyHandler.frontmostApplication()
+        
+        // softeareClassifyHandler.frontmostApplication()
         
         // timerDetectMouseClickAction.invalidate()
 //        print("timer detecting mouse action has been stopped.")
@@ -284,10 +325,7 @@ class Screencapture : NSObject {
         //pause for 0.5 second
         //sleep(UInt32(0.5))
         
-        let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
-        let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)
-        let subWindowController = NSWindowController(window: subWindow)
-        subWindowController.showWindow(nil)
+
 
         
     }
@@ -306,6 +344,10 @@ class Screencapture : NSObject {
         let xMouseCoordination = NSEvent.mouseLocation.x
         let yMouseCoordination = NSEvent.mouseLocation.y
         print("mouse locatin of ending: ", xMouseCoordination, yMouseCoordination)
+    }
+    
+    func switchTwoValue(valueOne : Int, valueTwo : Int){
+        
     }
     
 }

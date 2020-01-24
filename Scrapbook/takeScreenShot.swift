@@ -270,8 +270,6 @@ class Screencapture : NSObject {
             
             // get for coordination of the screenshot
             // (firstCoordinationXInt, firstCoordinationYInt) -> (secondCoordinationXInt, secondCoordinationYInt)
-            
-            // code here, check taking a screenshot is from left to right
     //        if secondCoordinationXInt < firstCoordinationXInt {
     //            screenShotInformation.firstCoordinationOfX = secondCoordinationXInt
     //            screenShotInformation.secondCoordinationOfX = firstCoordinationXInt

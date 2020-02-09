@@ -18,6 +18,8 @@
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
 		EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */; };
+		EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */; };
+		EAEA0BA223EF830F005B483E /* applescript.csv in Resources */ = {isa = PBXBuildFile; fileRef = EAEA0BA123EF830F005B483E /* applescript.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
 		EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareClassification.swift; sourceTree = "<group>"; };
 		EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAppleScript.swift; sourceTree = "<group>"; };
+		EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readcsvFile.swift; sourceTree = "<group>"; };
+		EAEA0BA123EF830F005B483E /* applescript.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescript.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */,
 				EA60B60823C3D19300061A33 /* screenshotEditWindow.xib */,
 				EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */,
+				EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */,
+				EAEA0BA123EF830F005B483E /* applescript.csv */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAEA0BA223EF830F005B483E /* applescript.csv in Resources */,
 				EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */,
 				EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
@@ -218,6 +225,7 @@
 				EA60B60923C3D19300061A33 /* screenshotEditWindow.swift in Sources */,
 				EA7FCA1123B52CC600CEB2E8 /* ViewController.swift in Sources */,
 				EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */,
+				EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */,
 				EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */,
 				EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */,
 				EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */,

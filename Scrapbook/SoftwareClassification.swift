@@ -213,13 +213,13 @@ class softwareClassify : NSObject {
             tempSecondY = newSecondY
             
             print("valid Area: ", validArea)
-            if (Double(validArea) / Double(areaOfScreenshot)) > 0.1 {
+            if (Double(validArea) / Double(areaOfScreenshot)) > 0 {
                 print("valid / total area is: ", (Double(validArea) / Double(areaOfScreenshot)))
                 applicationNameStack.append(applicationName)
             }
             totoalRectArea = totoalRectArea + validArea
             print("totalRectArea is: ", totoalRectArea)
-            if (Double(totoalRectArea) / Double(areaOfScreenshot)) >= 0.8 {
+            if (Double(totoalRectArea) / Double(areaOfScreenshot)) >= 1 {
                 print("app total / total area is: ", (Double(totoalRectArea) / Double(areaOfScreenshot)))
                 break
             }

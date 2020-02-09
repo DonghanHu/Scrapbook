@@ -31,6 +31,7 @@ class appleScript : NSObject{
             let fileNameInPreview = PreviewFileName()
             let filePathInPreview = PreviewFilePath()
             let category = "Productivity"
+            
         }
         
         else if categoryNumber == "2" {

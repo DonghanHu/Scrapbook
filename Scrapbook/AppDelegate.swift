@@ -14,6 +14,11 @@ struct variables {
     //the path of the latest taken screenshot
     static var latesScreenShotPathString        = ""
     
+    
+    // [[string]] save all applescript
+    static var applescriptStingArray = [[""]]
+    static var softwareNameArray = [String]()
+    
 }
 
 struct screenShotInformation {
@@ -28,6 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     let jsonFileHandler = jsonRelated()
+    let csvFileReadHandler = applescriptFileLoad()
+    
     
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
@@ -42,6 +49,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.title = "S"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
+        
+        
+        
+        csvFileReadHandler.readCSV()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

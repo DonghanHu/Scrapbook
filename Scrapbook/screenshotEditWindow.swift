@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Foundation
 
 class screenshotEditWindow: NSViewController {
     @IBOutlet weak var imageCellDisplay: NSImageCell!

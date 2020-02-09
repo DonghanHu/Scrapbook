@@ -64,6 +64,8 @@ class Screencapture : NSObject {
     
     var softeareClassificationHandler = softwareClassify()
     
+    var applescriptHandler = appleScript()
+    
     var takeScreenshotSuccess = false
     
     // using packet to take screenshot from the github
@@ -294,7 +296,10 @@ class Screencapture : NSObject {
         task.waitUntilExit()
         
         if (takeScreenshotSuccess){
-            softeareClassificationHandler.screenAboveWindowListPrint()
+            let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
+            let applicationNameStackLength = applicationNameStack.count
+            applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
+            
             print("the process of takeing screenshot is finished, and the images has been saved locally.")
             let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
             let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)

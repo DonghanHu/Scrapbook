@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Foundation
 
 struct variables {
     static var defaultFolderPathString          = ""
@@ -50,9 +51,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
         
-        
-        
+        // let task = Process()
+        // task.launchPath = "/usr/bin/osascript"
+        // task.arguments = ["/applescript/Xcode1.scpt"]
+//        task.launchPath = "Xcode1.scpt"
+//        task.launch()
+        print("xcode test,", XcodeFileName(softwarename: "Xcode"))
         csvFileReadHandler.readCSV()
+    }
+    
+    func XcodeFileName(softwarename : String) -> (String){
+        let first = "tell application \"Xcode\" \n set fileName to name of window 1 \n end tell"
+        var error: NSDictionary?
+        print("first is, ", first)
+        let scriptObject = NSAppleScript(source: first)
+        let output: NSAppleEventDescriptor = scriptObject!.executeAndReturnError(&error)
+        if (error != nil) {
+            print("error: \(String(describing: error))")
+        }
+        if output.stringValue == nil{
+            let empty = "empty"
+            return empty
+        }
+        else { return (output.stringValue?.description)!}
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

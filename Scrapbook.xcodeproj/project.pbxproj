@@ -14,6 +14,7 @@
 		EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA7FCA1223B52CC600CEB2E8 /* Scrapbook.xcdatamodeld */; };
 		EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7FCA1523B52CC800CEB2E8 /* Assets.xcassets */; };
 		EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7FCA1723B52CC800CEB2E8 /* Main.storyboard */; };
+		EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */ = {isa = PBXBuildFile; fileRef = EA7FE6FC23F0C000005EAACC /* Xcode1.scpt */; };
 		EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2623BA9D53008ACCAE /* jsonfile.swift */; };
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
@@ -57,6 +58,7 @@
 		EA7FCA1823B52CC800CEB2E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA7FCA1A23B52CC800CEB2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7FCA1B23B52CC800CEB2E8 /* Scrapbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scrapbook.entitlements; sourceTree = "<group>"; };
+		EA7FE6FC23F0C000005EAACC /* Xcode1.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = Xcode1.scpt; sourceTree = "<group>"; };
 		EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScreenCapture.xcodeproj; path = "../../../Downloads/swift-screencapture-master/ScreenCapture.xcodeproj"; sourceTree = "<group>"; };
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		EA7FCA0223B52CC600CEB2E8 = {
 			isa = PBXGroup;
 			children = (
+				EA7FE6FB23F0BFD3005EAACC /* applescript */,
 				EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */,
 				EA7FCA0D23B52CC600CEB2E8 /* Scrapbook */,
 				EA7FCA0C23B52CC600CEB2E8 /* Products */,
@@ -114,6 +117,14 @@
 				EAEA0BA123EF830F005B483E /* applescript.csv */,
 			);
 			path = Scrapbook;
+			sourceTree = "<group>";
+		};
+		EA7FE6FB23F0BFD3005EAACC /* applescript */ = {
+			isa = PBXGroup;
+			children = (
+				EA7FE6FC23F0C000005EAACC /* Xcode1.scpt */,
+			);
+			path = applescript;
 			sourceTree = "<group>";
 		};
 		EAAEE39D23CE6F7100A49238 /* Products */ = {
@@ -209,6 +220,7 @@
 			files = (
 				EAEA0BA223EF830F005B483E /* applescript.csv in Resources */,
 				EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */,
+				EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */,
 				EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
 			);
@@ -375,6 +387,7 @@
 				CODE_SIGN_ENTITLEMENTS = Scrapbook/Scrapbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Scrapbook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,6 +406,7 @@
 				CODE_SIGN_ENTITLEMENTS = Scrapbook/Scrapbook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = Scrapbook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

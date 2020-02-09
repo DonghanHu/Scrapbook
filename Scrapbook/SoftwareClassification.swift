@@ -45,7 +45,7 @@ class softwareClassify : NSObject {
                    
         }
     }
-    func screenAboveWindowListPrint() {
+    func screenAboveWindowListPrint() -> Array<String>{
         //let options = CGWindowListOption(arrayLiteral: .excludeDesktopElements, .optionOnScreenOnly)
         let temp = CGWindowListCopyWindowInfo(.optionOnScreenAboveWindow, CGWindowID(0))
         // let temp1 = CGWindowListCopyWindowInfo(.optionOnScreenBelowWindow, CGWindowID(0))
@@ -468,6 +468,7 @@ class softwareClassify : NSObject {
         
         
         print("application name list stack: ", applicationNameStack)
+        return applicationNameStack
 
 //        let softwareNameList1 = infoList1.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }
 //

@@ -468,6 +468,7 @@ class softwareClassify : NSObject {
         
         
         print("application name list stack: ", applicationNameStack)
+        variables.recordedApplicationNameStack = applicationNameStack
         variables.numberofRecordedApplication = applicationNameStack.count
         return applicationNameStack
 

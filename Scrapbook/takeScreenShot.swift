@@ -148,7 +148,7 @@ class Screencapture : NSObject {
         arguments.append(variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg")
         
         variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
-        
+        variables.latestScreenShotTime = dateString
         print("save path", variables.latesScreenShotPathString)
         task.arguments = arguments
         

@@ -14,15 +14,22 @@ struct variables {
     
     //the path of the latest taken screenshot
     static var latesScreenShotPathString        = ""
+    static var latestScreenShotTime             = ""
+    
+    // json file path
+    static var jsonFilePathURL                  = URL(string: "https://www.apple.com")
+    static var jsonFilePathString               = ""
     
     
     // [[string]] save all applescript
     static var applescriptStingArray = [[""]]
     static var softwareNameArray = [String]()
     static var numberofRecordedApplication = 0
+    static var recordedApplicationNameStack = [""]
     static var metaDataDictionary : [String : [String]] = [:]
     
 }
+
 
 struct screenShotInformation {
     static var firstCoordinationOfX     : Int!

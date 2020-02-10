@@ -56,7 +56,6 @@ class appleScript : NSObject{
             }
             
             
-            
         // end of for loop for applicationNameStack
         }
         

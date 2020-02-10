@@ -9,8 +9,19 @@
         <customObject id="-2" userLabel="File's Owner" customClass="screenshotEditWindow" customModule="Scrapbook" customModuleProvider="target">
             <connections>
                 <outlet property="applicationFirstFactor" destination="xMv-0G-4xF" id="GgL-4G-7HW"/>
+                <outlet property="applicationFirstFactorTextbox" destination="xMv-0G-4xF" id="3qr-O4-3Oh"/>
                 <outlet property="applicationName" destination="qeM-0e-tNW" id="QgV-og-lCf"/>
+                <outlet property="applicationNameTextbox" destination="qeM-0e-tNW" id="0sz-bJ-44c"/>
                 <outlet property="applicationSecondFactor" destination="xoB-2Z-4Cn" id="M1v-Tt-phy"/>
+                <outlet property="applicationSecondFactorTextBox" destination="xoB-2Z-4Cn" id="HjE-Rt-SuR"/>
+                <outlet property="buttonEight" destination="PuX-tH-Xi7" id="zcu-7B-tSo"/>
+                <outlet property="buttonFive" destination="wIg-NJ-msp" id="LkN-uy-gos"/>
+                <outlet property="buttonFour" destination="MXG-rX-NxF" id="SpV-jF-hKl"/>
+                <outlet property="buttonOne" destination="Fll-a7-P6D" id="MdO-CU-vc4"/>
+                <outlet property="buttonSeven" destination="Du3-hv-0h5" id="H4m-4Y-NT2"/>
+                <outlet property="buttonSix" destination="GsJ-kQ-dq7" id="des-xg-6kW"/>
+                <outlet property="buttonThree" destination="l6G-7u-w56" id="OI8-Hd-8HX"/>
+                <outlet property="buttonTwo" destination="A3c-FI-Pxs" id="GNB-nu-MKe"/>
                 <outlet property="checkboxEight" destination="0jg-yE-3fD" id="EW4-ud-aMB"/>
                 <outlet property="checkboxFive" destination="r5a-FI-UiN" id="GeO-Fb-3f6"/>
                 <outlet property="checkboxFour" destination="EEH-mh-BWj" id="S0o-HD-pMh"/>
@@ -51,6 +62,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="deleteButtonAction:" target="-2" id="m8g-uw-5bF"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ack-RA-AfP">
                     <rect key="frame" x="522" y="13" width="81" height="32"/>
@@ -59,62 +73,86 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="saveButtonAction:" target="-2" id="UlL-Qa-I7D"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPZ-X3-AQi">
-                    <rect key="frame" x="466" y="394" width="133" height="18"/>
+                    <rect key="frame" x="466" y="394" width="62" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a5T-h8-jG5">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxOneAction:" target="-2" id="CDz-RW-NRh"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2vv-SN-t1X">
-                    <rect key="frame" x="466" y="320" width="133" height="14"/>
+                    <rect key="frame" x="466" y="320" width="62" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8kW-0X-zLk">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxThreeAction:" target="-2" id="mtV-6S-s21"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEH-mh-BWj">
-                    <rect key="frame" x="466" y="286" width="133" height="14"/>
+                    <rect key="frame" x="466" y="286" width="62" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oi3-4M-X1c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxFourAction:" target="-2" id="qn0-Zu-1NA"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r5a-FI-UiN">
-                    <rect key="frame" x="466" y="246" width="133" height="18"/>
+                    <rect key="frame" x="466" y="246" width="61" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="73H-iO-OXa">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkBoxFiveAction:" target="-2" id="F23-qJ-mkl"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEg-vG-Py5">
-                    <rect key="frame" x="466" y="204" width="133" height="14"/>
+                    <rect key="frame" x="466" y="204" width="61" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="G2t-V8-rKZ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxSixAction:" target="-2" id="6NI-sD-t2I"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIY-kU-O7m">
-                    <rect key="frame" x="466" y="158" width="133" height="14"/>
+                    <rect key="frame" x="466" y="158" width="62" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="SeR-TI-svg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxSevenAction:" target="-2" id="vck-cv-fn9"/>
+                    </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0jg-yE-3fD">
-                    <rect key="frame" x="466" y="113" width="133" height="18"/>
+                    <rect key="frame" x="466" y="113" width="62" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="W6G-Az-SiF">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxEightAction:" target="-2" id="uAj-PK-3Q8"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qeM-0e-tNW">
                     <rect key="frame" x="603" y="364" width="147" height="47"/>
@@ -144,12 +182,103 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAe-Lh-KQQ">
-                    <rect key="frame" x="466" y="356" width="133" height="14"/>
+                    <rect key="frame" x="466" y="356" width="61" height="14"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tIC-nT-sIg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="checkboxTwoAction:" target="-2" id="JNt-hv-oqR"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3c-FI-Pxs">
+                    <rect key="frame" x="528" y="351" width="81" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="k3A-so-FkC">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonTwoAction:" target="-2" id="zjC-fi-8wT"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fll-a7-P6D">
+                    <rect key="frame" x="522" y="385" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7sE-dh-8z3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonOneAction:" target="-2" id="h32-FB-ezS"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6G-7u-w56">
+                    <rect key="frame" x="528" y="315" width="81" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6rW-jj-snu">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonThreeAction:" target="-2" id="0UA-Q8-knP"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXG-rX-NxF">
+                    <rect key="frame" x="522" y="270" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i0f-VJ-OS3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonFourAction:" target="-2" id="Gh0-C7-yJL"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wIg-NJ-msp">
+                    <rect key="frame" x="523" y="234" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iyv-7s-p81">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonFiveAction:" target="-2" id="ml6-Hl-dWe"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GsJ-kQ-dq7">
+                    <rect key="frame" x="522" y="195" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Zk-t2-9fO">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonSixAction:" target="-2" id="caT-Ol-LEy"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Du3-hv-0h5">
+                    <rect key="frame" x="522" y="147" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="is1-AH-tbz">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonSevenAction:" target="-2" id="cqJ-cr-QPU"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PuX-tH-Xi7">
+                    <rect key="frame" x="522" y="104" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EAc-ce-EbL">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonEightAction:" target="-2" id="7iY-x3-aHz"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="288.5" y="238"/>

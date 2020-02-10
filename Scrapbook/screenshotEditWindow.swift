@@ -27,19 +27,45 @@ class screenshotEditWindow: NSViewController {
     @IBOutlet weak var checkboxSix: NSButton!
     @IBOutlet weak var checkboxSeven: NSButton!
     @IBOutlet weak var checkboxEight: NSButton!
+    // button name list
+    @IBOutlet weak var buttonOne: NSButton!
+    @IBOutlet weak var buttonTwo: NSButton!
+    @IBOutlet weak var buttonThree: NSButton!
+    @IBOutlet weak var buttonFour: NSButton!
+    @IBOutlet weak var buttonFive: NSButton!
+    @IBOutlet weak var buttonSix: NSButton!
+    @IBOutlet weak var buttonSeven: NSButton!
+    @IBOutlet weak var buttonEight: NSButton!
     
+    // text box for displaying information
+    @IBOutlet weak var applicationNameTextbox: NSTextField!
+    
+    @IBOutlet weak var applicationFirstFactorTextbox: NSTextField!
+    @IBOutlet weak var applicationSecondFactorTextBox: NSTextField!
     
     var checkboxStack = [NSButton]()
+    var buttonStack = [NSButton]()
     
     
     override func viewWillAppear(){
         
         super.viewWillAppear()
         self.view.window?.title = "eidt window"
+        applicationName.stringValue = "click button to display"
+        applicationFirstFactorTextbox.stringValue = "click button to display"
+        applicationSecondFactorTextBox.stringValue = "click button to display"
         checkboxStackGenerate()
+        buttonStackGenerate()
         checkBoxAllHidden()
+        buttonAllHidden()
         for i in 0..<variables.numberofRecordedApplication{
             let temp = checkboxStack[i]
+            temp.title = variables.recordedApplicationNameStack[i]
+            temp.isHidden = false
+        }
+        for j in 0..<variables.numberofRecordedApplication{
+            let temp = buttonStack[j]
+            temp.title = variables.recordedApplicationNameStack[j]
             temp.isHidden = false
         }
         
@@ -76,6 +102,31 @@ class screenshotEditWindow: NSViewController {
         checkboxStack.append(checkboxSeven)
         checkboxStack.append(checkboxEight)
     }
+    // func all button are hidden at first
+    func buttonAllHidden(){
+        buttonOne.isHidden = true
+        buttonTwo.isHidden = true
+        buttonThree.isHidden = true
+        buttonFour.isHidden = true
+        buttonFive.isHidden = true
+        buttonSix.isHidden = true
+        buttonSeven.isHidden = true
+        buttonEight.isHidden = true
+        
+    }
+    
+    // func put button names in the stack
+    func buttonStackGenerate(){
+        buttonStack.append(buttonOne)
+        buttonStack.append(buttonTwo)
+        buttonStack.append(buttonThree)
+        buttonStack.append(buttonFour)
+        buttonStack.append(buttonFive)
+        buttonStack.append(buttonSix)
+        buttonStack.append(buttonSeven)
+        buttonStack.append(buttonEight)
+        
+    }
     
     func displayLatestScreenshot() {
         imageCellDisplay.imageScaling = .scaleProportionallyUpOrDown
@@ -94,4 +145,234 @@ class screenshotEditWindow: NSViewController {
         imageCellDisplay.image = currentScreenshot
         
     }
+    @IBAction func buttonOneAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[0]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+        }
+        else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+        
+        
+    }
+    @IBAction func buttonTwoAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[1]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+           let temp = variables.metaDataDictionary[keyValue]
+           applicationFirstFactor.stringValue = temp![0]
+           applicationSecondFactor.stringValue = temp![1]
+        }
+         else {
+           applicationFirstFactorTextbox.stringValue = "No recording"
+           applicationSecondFactorTextBox.stringValue = "No recording"
+       }
+    }
+    @IBAction func buttonThreeAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[2]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+    }
+    @IBAction func buttonFourAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[3]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+    }
+    @IBAction func buttonFiveAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[4]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+
+    }
+    @IBAction func buttonSixAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[5]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+
+    }
+    @IBAction func buttonSevenAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[6]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+
+    }
+    @IBAction func buttonEightAction(_ sender: Any) {
+        let keyValue = variables.recordedApplicationNameStack[7]
+        applicationName.stringValue = keyValue
+        if variables.softwareNameArray.contains(keyValue){
+            let temp = variables.metaDataDictionary[keyValue]
+            applicationFirstFactor.stringValue = temp![0]
+            applicationSecondFactor.stringValue = temp![1]
+         }
+          else {
+            applicationFirstFactorTextbox.stringValue = "No recording"
+            applicationSecondFactorTextBox.stringValue = "No recording"
+        }
+    }
+    
+    // functions for the checkbox actions
+    @IBAction func checkboxOneAction(_ sender: Any) {
+    }
+    @IBAction func checkboxTwoAction(_ sender: Any) {
+    }
+    @IBAction func checkboxThreeAction(_ sender: Any) {
+    }
+    @IBAction func checkboxFourAction(_ sender: Any) {
+    }
+    @IBAction func checkBoxFiveAction(_ sender: Any) {
+    }
+    @IBAction func checkboxSixAction(_ sender: Any) {
+    }
+    @IBAction func checkboxSevenAction(_ sender: Any) {
+    }
+    @IBAction func checkboxEightAction(_ sender: Any) {
+    }
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
+        var tempStringArray = [String]()
+        tempStringArray.append(variables.latesScreenShotPathString)
+        tempStringArray.append(variables.latestScreenShotTime)
+        variables.metaDataDictionary["screenshotPath"] = tempStringArray
+        print(variables.metaDataDictionary)
+        // writeMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
+        writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
+//        if let file = FileHandle(forWritingAtPath : jpath.absoluteString) {
+//            file.write(jsonData)
+//            file.closeFile()
+//        }
+        
+        // self.view.window?.windowController?.close()
+        self.view.window?.close()
+    }
+    
+    
+    func writeMetaDataIntoJsonFile (metaData : Dictionary<String, [String]>) {
+        let jsonData = try! JSONSerialization.data(withJSONObject: metaData, options: JSONSerialization.WritingOptions.prettyPrinted)
+        if FileManager.default.fileExists(atPath: variables.jsonFilePathString){
+            var err:NSError?
+            if let fileHandle = FileHandle(forWritingAtPath: variables.jsonFilePathString){
+                fileHandle.write(jsonData)
+                fileHandle.closeFile()
+            }
+            else {
+                print("Can't open fileHandle \(String(describing: err))")
+            }
+        }
+    }
+    
+    func writeAndReadMetaDataIntoJsonFile (metaData : Dictionary<String,[String]>){
+        do {
+                let jsonData = try! JSONSerialization.data(withJSONObject: metaData, options: JSONSerialization.WritingOptions.prettyPrinted)
+                let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+                // here "decoded" is of type `Any`, decoded from JSON data
+                // you can now cast it with the right type
+                // let current_path = "file://" + jpath.absoluteString
+                //url is the json file
+                // let url = URL(string: current_path as String)
+                let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+                var fileSize : UInt64
+                do {
+                    let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+                    fileSize = attr[FileAttributeKey.size] as! UInt64
+                    if fileSize == 0{
+                        print("json file is empty")
+                        try jsonData.write(to: url, options : .atomic)
+                    }
+                    else{
+                        let rawData : NSData = try! NSData(contentsOf: url)
+                        do{
+                            let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                            let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                            var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                            jsonarray.append(metaData)
+                            jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                            let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                            if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                                file.write(jsonData)
+                                file.closeFile()
+                            }
+                            
+                        }catch {print(error)}
+
+                    }
+                } catch {
+                    print("preview Error: \(error)")
+                }
+            }
+            catch{
+                print(Error.self)
+            }
+    }
+    
+    
+    @IBAction func deleteButtonAction(_ sender: Any) {
+        let filePathString = variables.latesScreenShotPathString
+        let fileURL = URL(fileURLWithPath: filePathString)
+        
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print("delete screenshot error:", error)
+        }
+        
+        self.view.window?.windowController?.close()
+    }
+    
+    // func for pupup a alert window for saving and deleting
+    func dialogOKCancel(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
+    
+    // end of the class
 }

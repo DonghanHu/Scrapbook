@@ -59,7 +59,7 @@ class appleScript : NSObject{
         // end of for loop for applicationNameStack
         }
         
-        print("this is the dictionary of metadata", variables.metaDataDictionary)
+        // print("this is the dictionary of metadata", variables.metaDataDictionary)
     }
     func returnApplicationName(softwareName: String) -> String{
         return softwareName

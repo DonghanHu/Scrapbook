@@ -278,15 +278,25 @@ class screenshotEditWindow: NSViewController {
         tempStringArray.append(variables.latesScreenShotPathString)
         tempStringArray.append(variables.latestScreenShotTime)
         variables.metaDataDictionary["screenshotPath"] = tempStringArray
-        print(variables.metaDataDictionary)
+        // print(variables.metaDataDictionary)
         // writeMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
-        writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
+        
 //        if let file = FileHandle(forWritingAtPath : jpath.absoluteString) {
 //            file.write(jsonData)
 //            file.closeFile()
 //        }
         
+        for index in 0..<8{
+            if checkboxStack[index].state == .off{
+                variables.metaDataDictionary.removeValue(forKey: buttonStack[index].title)
+            }
+        }
+        variables.metaDataDictionary["Text"] = [textEditField.stringValue]
+        variables.metaDataDictionary["PhotoTime"] = [variables.latestScreenShotTime]
         // self.view.window?.windowController?.close()
+        print("final meta data dictionary", variables.metaDataDictionary)
+        writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
+        dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
         self.view.window?.close()
     }
     
@@ -359,12 +369,13 @@ class screenshotEditWindow: NSViewController {
         } catch {
             print("delete screenshot error:", error)
         }
-        
-        self.view.window?.windowController?.close()
+        dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+        self.view.window?.close()
+        // self.view.window?.windowController?.close()
     }
     
     // func for pupup a alert window for saving and deleting
-    func dialogOKCancel(question: String, text: String) -> Bool {
+    func dialogOK(question: String, text: String) -> Bool {
         let alert = NSAlert()
         alert.messageText = question
         alert.informativeText = text

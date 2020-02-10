@@ -16,7 +16,7 @@ class applescriptFileLoad : NSObject {
         var contents = try! String(contentsOfFile: filepath, encoding: .utf8)
         contents = cleanRows(file: contents)
         let csvRows = csv(data: contents)
-        print(csvRows[12][1])
+        // print(csvRows[12][1])
         for i in 0..<csvRows.count{
             // print(i)
             // print(csvRows[i][0])
@@ -25,7 +25,7 @@ class applescriptFileLoad : NSObject {
 
         variables.applescriptStingArray = csvRows
 
-        print(variables.softwareNameArray)
+        // print(variables.softwareNameArray)
 //        print(csvRows.count)
         // 0, 1 and 2
         // 0 is the name of the application

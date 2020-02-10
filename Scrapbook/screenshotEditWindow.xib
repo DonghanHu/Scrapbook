@@ -8,6 +8,17 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="screenshotEditWindow" customModule="Scrapbook" customModuleProvider="target">
             <connections>
+                <outlet property="applicationFirstFactor" destination="xMv-0G-4xF" id="GgL-4G-7HW"/>
+                <outlet property="applicationName" destination="qeM-0e-tNW" id="QgV-og-lCf"/>
+                <outlet property="applicationSecondFactor" destination="xoB-2Z-4Cn" id="M1v-Tt-phy"/>
+                <outlet property="checkboxEight" destination="0jg-yE-3fD" id="EW4-ud-aMB"/>
+                <outlet property="checkboxFive" destination="r5a-FI-UiN" id="GeO-Fb-3f6"/>
+                <outlet property="checkboxFour" destination="EEH-mh-BWj" id="S0o-HD-pMh"/>
+                <outlet property="checkboxOne" destination="CPZ-X3-AQi" id="ycx-OA-YKs"/>
+                <outlet property="checkboxSeven" destination="PIY-kU-O7m" id="y69-xr-P6E"/>
+                <outlet property="checkboxSix" destination="KEg-vG-Py5" id="L6u-YC-eOJ"/>
+                <outlet property="checkboxThree" destination="2vv-SN-t1X" id="nuh-8k-McH"/>
+                <outlet property="checkboxTwo" destination="jAe-Lh-KQQ" id="mNV-Qn-9jW"/>
                 <outlet property="imageCellDisplay" destination="tYH-Lb-EtN" id="ePd-hJ-yR7"/>
                 <outlet property="textEditField" destination="Jr4-qQ-Zn6" id="xoT-qD-xo8"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -53,14 +64,6 @@
                     <rect key="frame" x="466" y="394" width="133" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a5T-h8-jG5">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAe-Lh-KQQ">
-                    <rect key="frame" x="466" y="361" width="133" height="14"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tIC-nT-sIg">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -132,7 +135,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoB-2Z-4Cn">
-                    <rect key="frame" x="603" y="86" width="149" height="103"/>
+                    <rect key="frame" x="603" y="106" width="149" height="103"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Glf-Ki-JNv">
                         <font key="font" metaFont="system"/>
@@ -140,6 +143,14 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAe-Lh-KQQ">
+                    <rect key="frame" x="466" y="356" width="133" height="14"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tIC-nT-sIg">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <point key="canvasLocation" x="288.5" y="238"/>
         </customView>

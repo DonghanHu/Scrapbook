@@ -19,6 +19,8 @@ struct variables {
     // [[string]] save all applescript
     static var applescriptStingArray = [[""]]
     static var softwareNameArray = [String]()
+    static var numberofRecordedApplication = 0
+    static var metaDataDictionary : [String : [String]] = [:]
     
 }
 
@@ -56,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // task.arguments = ["/applescript/Xcode1.scpt"]
 //        task.launchPath = "Xcode1.scpt"
 //        task.launch()
-        print("xcode test,", XcodeFileName(softwarename: "Xcode"))
+        // print("xcode test,", XcodeFileName(softwarename: "Xcode"))
         csvFileReadHandler.readCSV()
     }
     

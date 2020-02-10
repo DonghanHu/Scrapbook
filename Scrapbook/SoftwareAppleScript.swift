@@ -25,8 +25,11 @@ class appleScript : NSObject{
                                                   "TextEdit"                : "7"
        ]
     
+   //  var metaDataDictionary : [String : [String]] = [:]
+    
     
     func applicationMetaData(applicationNameStack : [String]) {
+        
         let length = applicationNameStack.count
         for i in 0..<length {
             if variables.softwareNameArray.contains(applicationNameStack[i]){
@@ -38,6 +41,10 @@ class appleScript : NSObject{
                         print("applicationName", applicationName)
                         print("first factor result", applicationFirstResult)
                         print("second factor result", applicationSecondResult)
+                        var valueArray = [String]()
+                        valueArray.append(applicationFirstResult)
+                        valueArray.append(applicationSecondResult)
+                        variables.metaDataDictionary[applicationName] = valueArray
                     }
                     
                     
@@ -52,6 +59,8 @@ class appleScript : NSObject{
             
         // end of for loop for applicationNameStack
         }
+        
+        print("this is the dictionary of metadata", variables.metaDataDictionary)
     }
     func returnApplicationName(softwareName: String) -> String{
         return softwareName
@@ -107,7 +116,7 @@ class appleScript : NSObject{
         var error: NSDictionary?
         let scriptObject = NSAppleScript(source: applescript)
         let output: NSAppleEventDescriptor = scriptObject!.executeAndReturnError(&error)
-        print("output", output)
+        // print("output", output)
         if (error != nil) {
             print("error: \(String(describing: error))")
         }

@@ -726,6 +726,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="overviewWindowButtonAction:" target="XfG-lQ-9wD" id="LpD-w4-aUv"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akX-M8-TGG">
                                 <rect key="frame" x="174" y="160" width="112" height="32"/>

@@ -29,7 +29,10 @@ struct variables {
     static var metaDataDictionary : [String : [String]] = [:]
     
 }
-
+struct overviewWindowVariables {
+    static var windowOpenOrClose            = false
+    static var subOverviewWindowController : NSWindowController? = nil
+}
 
 struct screenShotInformation {
     static var firstCoordinationOfX     : Int!

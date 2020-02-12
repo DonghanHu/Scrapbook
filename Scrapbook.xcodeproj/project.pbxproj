@@ -15,10 +15,11 @@
 		EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA7FCA1523B52CC800CEB2E8 /* Assets.xcassets */; };
 		EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7FCA1723B52CC800CEB2E8 /* Main.storyboard */; };
 		EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */ = {isa = PBXBuildFile; fileRef = EA7FE6FC23F0C000005EAACC /* Xcode1.scpt */; };
-		EA7FE70023F2091F005EAACC /* OverviewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FE6FE23F2091F005EAACC /* OverviewWindow.swift */; };
-		EA7FE70123F2091F005EAACC /* OverviewWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7FE6FF23F2091F005EAACC /* OverviewWindow.xib */; };
-		EA7FE70423F20BA1005EAACC /* OverviewSecond.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FE70223F20BA1005EAACC /* OverviewSecond.swift */; };
-		EA7FE70523F20BA1005EAACC /* OverviewSecond.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7FE70323F20BA1005EAACC /* OverviewSecond.xib */; };
+		EA97E92A23F33ED000CB0E6E /* overviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97E92923F33ED000CB0E6E /* overviewController.swift */; };
+		EA97E95123F379A300CB0E6E /* ColViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97E94F23F379A300CB0E6E /* ColViewItem.swift */; };
+		EA97E95223F379A300CB0E6E /* ColViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E95023F379A300CB0E6E /* ColViewItem.xib */; };
+		EA97E95423F37AE900CB0E6E /* collectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97E95323F37AE900CB0E6E /* collectionViewController.swift */; };
+		EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA97E95523F3873300CB0E6E /* SKTT1.jpg */; };
 		EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2623BA9D53008ACCAE /* jsonfile.swift */; };
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
@@ -63,10 +64,11 @@
 		EA7FCA1A23B52CC800CEB2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7FCA1B23B52CC800CEB2E8 /* Scrapbook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Scrapbook.entitlements; sourceTree = "<group>"; };
 		EA7FE6FC23F0C000005EAACC /* Xcode1.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = Xcode1.scpt; sourceTree = "<group>"; };
-		EA7FE6FE23F2091F005EAACC /* OverviewWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewWindow.swift; sourceTree = "<group>"; };
-		EA7FE6FF23F2091F005EAACC /* OverviewWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewWindow.xib; sourceTree = "<group>"; };
-		EA7FE70223F20BA1005EAACC /* OverviewSecond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewSecond.swift; sourceTree = "<group>"; };
-		EA7FE70323F20BA1005EAACC /* OverviewSecond.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewSecond.xib; sourceTree = "<group>"; };
+		EA97E92923F33ED000CB0E6E /* overviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overviewController.swift; sourceTree = "<group>"; };
+		EA97E94F23F379A300CB0E6E /* ColViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColViewItem.swift; sourceTree = "<group>"; };
+		EA97E95023F379A300CB0E6E /* ColViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColViewItem.xib; sourceTree = "<group>"; };
+		EA97E95323F37AE900CB0E6E /* collectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionViewController.swift; sourceTree = "<group>"; };
+		EA97E95523F3873300CB0E6E /* SKTT1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SKTT1.jpg; sourceTree = "<group>"; };
 		EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScreenCapture.xcodeproj; path = "../../../Downloads/swift-screencapture-master/ScreenCapture.xcodeproj"; sourceTree = "<group>"; };
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				EA7FCA1B23B52CC800CEB2E8 /* Scrapbook.entitlements */,
 				EA7FCA1223B52CC600CEB2E8 /* Scrapbook.xcdatamodeld */,
 				EAD90F2623BA9D53008ACCAE /* jsonfile.swift */,
+				EA97E95523F3873300CB0E6E /* SKTT1.jpg */,
 				EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */,
 				EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */,
 				EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */,
@@ -123,10 +126,10 @@
 				EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */,
 				EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */,
 				EAEA0BA123EF830F005B483E /* applescript.csv */,
-				EA7FE6FE23F2091F005EAACC /* OverviewWindow.swift */,
-				EA7FE6FF23F2091F005EAACC /* OverviewWindow.xib */,
-				EA7FE70223F20BA1005EAACC /* OverviewSecond.swift */,
-				EA7FE70323F20BA1005EAACC /* OverviewSecond.xib */,
+				EA97E92923F33ED000CB0E6E /* overviewController.swift */,
+				EA97E94F23F379A300CB0E6E /* ColViewItem.swift */,
+				EA97E95023F379A300CB0E6E /* ColViewItem.xib */,
+				EA97E95323F37AE900CB0E6E /* collectionViewController.swift */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -230,12 +233,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA97E95223F379A300CB0E6E /* ColViewItem.xib in Resources */,
 				EAEA0BA223EF830F005B483E /* applescript.csv in Resources */,
 				EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */,
-				EA7FE70123F2091F005EAACC /* OverviewWindow.xib in Resources */,
 				EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */,
 				EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */,
-				EA7FE70523F20BA1005EAACC /* OverviewSecond.xib in Resources */,
+				EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,14 +253,15 @@
 				EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */,
 				EA60B60923C3D19300061A33 /* screenshotEditWindow.swift in Sources */,
 				EA7FCA1123B52CC600CEB2E8 /* ViewController.swift in Sources */,
-				EA7FE70423F20BA1005EAACC /* OverviewSecond.swift in Sources */,
 				EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */,
 				EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */,
+				EA97E92A23F33ED000CB0E6E /* overviewController.swift in Sources */,
 				EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */,
-				EA7FE70023F2091F005EAACC /* OverviewWindow.swift in Sources */,
 				EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */,
+				EA97E95423F37AE900CB0E6E /* collectionViewController.swift in Sources */,
 				EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */,
 				EA7FCA0F23B52CC600CEB2E8 /* AppDelegate.swift in Sources */,
+				EA97E95123F379A300CB0E6E /* ColViewItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

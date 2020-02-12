@@ -292,7 +292,7 @@ class screenshotEditWindow: NSViewController {
             }
         }
         variables.metaDataDictionary["Text"] = [textEditField.stringValue]
-        variables.metaDataDictionary["PhotoTime"] = [variables.latestScreenShotTime, variables.latestScreenShotTime]
+        variables.metaDataDictionary["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString]
         // self.view.window?.windowController?.close()
         print("final meta data dictionary", variables.metaDataDictionary)
         writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)

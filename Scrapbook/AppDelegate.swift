@@ -34,12 +34,30 @@ struct overviewWindowVariables {
     static var subOverviewWindowController : NSWindowController? = nil
 }
 
+struct overviewWiondowMainStoryBoard {
+    static var windowOpenOrClose            = false
+    static var subOverviewWindowController : NSWindowController? = nil
+}
+
 struct screenShotInformation {
     static var firstCoordinationOfX     : Int!
     static var firstCoordinationOfY     : Int!
     static var secondCoordinationOfX    : Int!
     static var secondCoordinationOfY    : Int!
 }
+
+struct diaryInformationCollection {
+    static var photoNameList = [[""]]
+    static var photoNameFirstInformation = [""]
+    static var photoNameSecondInformation = [""]
+}
+
+struct photonumber {
+    static var photonumberCounting  = 0
+    static var photoPathList        = [String]()
+    static var inputRelatedMessage  = [""]
+}
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

@@ -27,7 +27,8 @@ struct variables {
     static var numberofRecordedApplication = 0
     static var recordedApplicationNameStack = [""]
     static var metaDataDictionary : [String : [String]] = [:]
-    
+    static var metaDataDictionaryNewFormat : [String : Any] = [:]
+    	ite
 }
 struct overviewWindowVariables {
     static var windowOpenOrClose            = false

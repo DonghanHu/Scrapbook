@@ -17,16 +17,23 @@ class ColViewItem: NSCollectionViewItem {
     
     @IBOutlet weak var screenshotImage: NSImageView!
     
+    @IBOutlet weak var imageButton: NSButton!
     @IBOutlet weak var inputTextField: NSTextField!
     override func viewDidLoad() {
         print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
         super.viewDidLoad()
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
         screenshotImage.image = nsImage
+        imageButton.image = nsImage
         print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)
         inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         // screenshotImage.image = NSImage(named: "SKTT1.jpg")
         // Do view setup here.
+    }
+
+    @IBAction func imageButtonClickAction(_ sender: Any) {
+    
+        print("button clicked", inputTextField.stringValue)
     }
     
 }

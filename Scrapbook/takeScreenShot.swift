@@ -299,7 +299,6 @@ class Screencapture : NSObject {
             let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
             let applicationNameStackLength = applicationNameStack.count
             applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
-            
             print("the process of takeing screenshot is finished, and the images has been saved locally.")
             let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
             let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)

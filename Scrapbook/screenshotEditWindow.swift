@@ -152,6 +152,14 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            //here is new method for alternating
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
         }
         else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -167,6 +175,15 @@ class screenshotEditWindow: NSViewController {
            let temp = variables.metaDataDictionary[keyValue]
            applicationFirstFactor.stringValue = temp![0]
            applicationSecondFactor.stringValue = temp![1]
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
         }
          else {
            applicationFirstFactorTextbox.stringValue = "No recording"
@@ -180,6 +197,15 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -193,6 +219,13 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -206,6 +239,16 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
+            
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -220,6 +263,16 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -234,6 +287,16 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
+            
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -248,6 +311,16 @@ class screenshotEditWindow: NSViewController {
             let temp = variables.metaDataDictionary[keyValue]
             applicationFirstFactor.stringValue = temp![0]
             applicationSecondFactor.stringValue = temp![1]
+            
+            //
+            let tem = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            // applicationFirstFactor.stringValue = temp![keyValue][0]
+            // applicationFirstFactor.stringValue = temp![keyValue][1]
+            // print("test new data structure value 0:", tem[keyValue]![0])
+            // print("test new data structure value 1:", tem[keyValue]![1])
+            //
+            
+            
          }
           else {
             applicationFirstFactorTextbox.stringValue = "No recording"
@@ -278,9 +351,6 @@ class screenshotEditWindow: NSViewController {
         tempStringArray.append(variables.latesScreenShotPathString)
         tempStringArray.append(variables.latestScreenShotTime)
         variables.metaDataDictionary["screenshotPath"] = tempStringArray
-        // print(variables.metaDataDictionary)
-        // writeMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
-        
 //        if let file = FileHandle(forWritingAtPath : jpath.absoluteString) {
 //            file.write(jsonData)
 //            file.closeFile()
@@ -289,14 +359,35 @@ class screenshotEditWindow: NSViewController {
         for index in 0..<8{
             if checkboxStack[index].state == .off{
                 variables.metaDataDictionary.removeValue(forKey: buttonStack[index].title)
+                
+                //
+                var temp = variables.metaDataDictionaryTestOne["Applications"] as! [String: [String]]
+                let name = buttonStack[index].title
+                temp.removeValue(forKey: buttonStack[index].title)
+                temp.removeValue(forKey: name)
+                print("temp", temp)
+                variables.metaDataDictionaryTestOne["Applications"] = temp
+                //
+                
             }
         }
         variables.metaDataDictionary["Text"] = [textEditField.stringValue]
         variables.metaDataDictionary["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString]
         // self.view.window?.windowController?.close()
         print("final meta data dictionary", variables.metaDataDictionary)
-        writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
+        // code here
+        // writeAndReadMetaDataIntoJsonFile(metaData: variables.metaDataDictionary)
         dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+        
+        //
+        variables.metaDataDictionaryTestOne["Text"] = [textEditField.stringValue]
+        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString]
+        //
+        
+        // code here
+        writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+        print("final new data structre:", variables.metaDataDictionaryTestOne)
+        
         self.view.window?.close()
     }
     
@@ -315,15 +406,52 @@ class screenshotEditWindow: NSViewController {
         }
     }
     
+    func writeAndReadMetaDataInformaionIntoJsonFileTest (metaData : Dictionary<String, Any>){
+        do {
+                let jsonData = try! JSONSerialization.data(withJSONObject: metaData, options: JSONSerialization.WritingOptions.prettyPrinted)
+                // here "decoded" is of type `Any`, decoded from JSON data
+                // you can now cast it with the right type
+                let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+                var fileSize : UInt64
+                do {
+                    let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+                    fileSize = attr[FileAttributeKey.size] as! UInt64
+                    if fileSize == 0{
+                        print("json file is empty")
+                        try jsonData.write(to: url, options : .atomic)
+                    }
+                    else{
+                        let rawData : NSData = try! NSData(contentsOf: url)
+                        do{
+                            let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                            let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                            var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                            jsonarray.append(metaData)
+                            jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                            let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                            if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                                file.write(jsonData)
+                                file.closeFile()
+                            }
+                            
+                        }catch {print(error)}
+
+                    }
+                } catch {
+                    print("preview Error: \(error)")
+                }
+            }
+            catch{
+                print(Error.self)
+        }
+    }
+    
     func writeAndReadMetaDataIntoJsonFile (metaData : Dictionary<String,[String]>){
         do {
                 let jsonData = try! JSONSerialization.data(withJSONObject: metaData, options: JSONSerialization.WritingOptions.prettyPrinted)
                 let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
                 // here "decoded" is of type `Any`, decoded from JSON data
                 // you can now cast it with the right type
-                // let current_path = "file://" + jpath.absoluteString
-                //url is the json file
-                // let url = URL(string: current_path as String)
                 let url =  URL(fileURLWithPath: variables.jsonFilePathString)
                 var fileSize : UInt64
                 do {

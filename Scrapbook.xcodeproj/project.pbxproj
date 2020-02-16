@@ -20,9 +20,13 @@
 		EA97E95223F379A300CB0E6E /* ColViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E95023F379A300CB0E6E /* ColViewItem.xib */; };
 		EA97E95423F37AE900CB0E6E /* collectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97E95323F37AE900CB0E6E /* collectionViewController.swift */; };
 		EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA97E95523F3873300CB0E6E /* SKTT1.jpg */; };
+		EA9FD1E723F9F71A0089870A /* applescriptNameCategory.csv in Resources */ = {isa = PBXBuildFile; fileRef = EA9FD1E523F9F71A0089870A /* applescriptNameCategory.csv */; };
+		EA9FD1E923F9F7450089870A /* applescriptCategoryCode.csv in Resources */ = {isa = PBXBuildFile; fileRef = EA9FD1E823F9F7450089870A /* applescriptCategoryCode.csv */; };
 		EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2623BA9D53008ACCAE /* jsonfile.swift */; };
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
+		EADFF44C23F600D6003C9CEB /* detailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADFF44A23F600D6003C9CEB /* detailedView.swift */; };
+		EADFF44D23F600D6003C9CEB /* detailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADFF44B23F600D6003C9CEB /* detailedView.xib */; };
 		EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */; };
 		EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */; };
 		EAEA0BA223EF830F005B483E /* applescript.csv in Resources */ = {isa = PBXBuildFile; fileRef = EAEA0BA123EF830F005B483E /* applescript.csv */; };
@@ -69,10 +73,14 @@
 		EA97E95023F379A300CB0E6E /* ColViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColViewItem.xib; sourceTree = "<group>"; };
 		EA97E95323F37AE900CB0E6E /* collectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionViewController.swift; sourceTree = "<group>"; };
 		EA97E95523F3873300CB0E6E /* SKTT1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SKTT1.jpg; sourceTree = "<group>"; };
+		EA9FD1E523F9F71A0089870A /* applescriptNameCategory.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescriptNameCategory.csv; sourceTree = "<group>"; };
+		EA9FD1E823F9F7450089870A /* applescriptCategoryCode.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescriptCategoryCode.csv; sourceTree = "<group>"; };
 		EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScreenCapture.xcodeproj; path = "../../../Downloads/swift-screencapture-master/ScreenCapture.xcodeproj"; sourceTree = "<group>"; };
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
 		EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareClassification.swift; sourceTree = "<group>"; };
+		EADFF44A23F600D6003C9CEB /* detailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailedView.swift; sourceTree = "<group>"; };
+		EADFF44B23F600D6003C9CEB /* detailedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = detailedView.xib; sourceTree = "<group>"; };
 		EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAppleScript.swift; sourceTree = "<group>"; };
 		EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readcsvFile.swift; sourceTree = "<group>"; };
 		EAEA0BA123EF830F005B483E /* applescript.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescript.csv; sourceTree = "<group>"; };
@@ -126,10 +134,14 @@
 				EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */,
 				EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */,
 				EAEA0BA123EF830F005B483E /* applescript.csv */,
+				EA9FD1E823F9F7450089870A /* applescriptCategoryCode.csv */,
+				EA9FD1E523F9F71A0089870A /* applescriptNameCategory.csv */,
 				EA97E92923F33ED000CB0E6E /* overviewController.swift */,
 				EA97E94F23F379A300CB0E6E /* ColViewItem.swift */,
 				EA97E95023F379A300CB0E6E /* ColViewItem.xib */,
 				EA97E95323F37AE900CB0E6E /* collectionViewController.swift */,
+				EADFF44A23F600D6003C9CEB /* detailedView.swift */,
+				EADFF44B23F600D6003C9CEB /* detailedView.xib */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -233,13 +245,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADFF44D23F600D6003C9CEB /* detailedView.xib in Resources */,
 				EA97E95223F379A300CB0E6E /* ColViewItem.xib in Resources */,
 				EAEA0BA223EF830F005B483E /* applescript.csv in Resources */,
 				EA7FCA1623B52CC800CEB2E8 /* Assets.xcassets in Resources */,
 				EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */,
+				EA9FD1E723F9F71A0089870A /* applescriptNameCategory.csv in Resources */,
 				EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */,
 				EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
+				EA9FD1E923F9F7450089870A /* applescriptCategoryCode.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +268,7 @@
 				EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */,
 				EA60B60923C3D19300061A33 /* screenshotEditWindow.swift in Sources */,
 				EA7FCA1123B52CC600CEB2E8 /* ViewController.swift in Sources */,
+				EADFF44C23F600D6003C9CEB /* detailedView.swift in Sources */,
 				EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */,
 				EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */,
 				EA97E92A23F33ED000CB0E6E /* overviewController.swift in Sources */,

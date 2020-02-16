@@ -27,8 +27,13 @@ struct variables {
     static var numberofRecordedApplication = 0
     static var recordedApplicationNameStack = [""]
     static var metaDataDictionary : [String : [String]] = [:]
-    static var metaDataDictionaryNewFormat : [String : Any] = [:]
-    	ite
+    static var metaDataDictionaryTestOne : [String : Any] = ["Text"             :   String(),
+                                                             "PhotoTime"        :   [String](),
+                                                             "screenshotPath"   :   [String](),
+                                                             "Applications"     :   [String:[String]]()
+    ]
+    static var metaDataIdctionaryTestDic : [String : [String]] = [:]
+    
 }
 struct overviewWindowVariables {
     static var windowOpenOrClose            = false
@@ -59,6 +64,11 @@ struct photonumber {
     static var inputRelatedMessage  = [""]
 }
 
+struct detailedViewControllerVariables {
+    static var numberofRecordedApplication = 0
+    static var recordedApplicationNameStack = [""]
+    static var recordedApplicationInformation = [String:[String]]()
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

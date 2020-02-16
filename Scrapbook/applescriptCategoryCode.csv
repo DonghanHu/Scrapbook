@@ -1,0 +1,5 @@
+Browser,"tell application \",\" \n open location \",\" \n end tell"
+Productivity,"tell application \",\" \n open \",\" \n end tell"
+Acrobat Reader,"tell application \",\" \n activate \n open \",\" \n end tell"
+Finder,,,
+Others,"tell application \",\" to activate \n end tell",

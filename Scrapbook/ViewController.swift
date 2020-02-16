@@ -91,10 +91,9 @@ class ViewController: NSViewController {
                 let jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
                 // print("jsonarray", jsonarray)
                 let length = jsonarray.count
-                print("jsonarry length", length)
+                // print("jsonarry length", jsonarray)
                 print("message count:", photonumber.inputRelatedMessage.count)
-                // if (diaryInformationCollection.photoNameList.count == length){
-                if (photonumber.inputRelatedMessage.count == length){
+                if (photonumber.inputRelatedMessage.count == length || length == 1){
                     print("nothing happen")
                 }
                 else {
@@ -117,7 +116,7 @@ class ViewController: NSViewController {
         } catch {
             print("preview Error: \(error)")
         }
-        print("photo name list is: ", photoNameList)
+        // print("photo name list is: ", photoNameList)
         print("text information is:", photonumber.inputRelatedMessage)
 //        diaryInformationCollection.photoNameList = photoNameList
     }
@@ -125,13 +124,25 @@ class ViewController: NSViewController {
     func divideIntoTwoArray(stringArray: [[String]]){
         var arrayOfFirstInformation = [String]()
         var arrayOfSecondInformation = [String]()
+        // print("stringArray", stringArray)
         let length = stringArray.count
-        for i in 0..<length{
-            // print("[i][0]", stringArray[i][0])
-            // print("[i][1]", stringArray[i][1])
-            arrayOfFirstInformation.append(stringArray[i][0])
-            arrayOfSecondInformation.append(stringArray[i][1])
+        if stringArray != [[""]] {
+            for i in 0..<length{
+                // print("[i][0]", stringArray[i][0])
+                // print("[i][1]", stringArray[i][1])
+                arrayOfFirstInformation.append(stringArray[i][0])
+                arrayOfSecondInformation.append(stringArray[i][1])
+            }
         }
+//        if length > 1{
+//            for i in 0..<length{
+//                // print("[i][0]", stringArray[i][0])
+//                // print("[i][1]", stringArray[i][1])
+//                arrayOfFirstInformation.append(stringArray[i][0])
+//                arrayOfSecondInformation.append(stringArray[i][1])
+//            }
+//        }
+
         diaryInformationCollection.photoNameFirstInformation = arrayOfFirstInformation
         diaryInformationCollection.photoNameSecondInformation = arrayOfSecondInformation
     }

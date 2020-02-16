@@ -9,7 +9,16 @@
 import Foundation
 import Cocoa
 
+extension Dictionary {
+    mutating func merge(dict: [Key: Value]){
+        for (k, v) in dict {
+            updateValue(v, forKey: k)
+        }
+    }
+}
+
 class appleScript : NSObject{
+    
     var ClassDictionary : [String : String] = [   "Preview"                 : "1",
                                                   "Pages"                   : "2",
                                                   "Numbers"                 : "2",
@@ -24,9 +33,6 @@ class appleScript : NSObject{
                                                   "Eclipse"                 : "6",
                                                   "TextEdit"                : "7"
        ]
-    
-   //  var metaDataDictionary : [String : [String]] = [:]
-    
     
     func applicationMetaData(applicationNameStack : [String]) {
         
@@ -45,6 +51,20 @@ class appleScript : NSObject{
                         valueArray.append(applicationFirstResult)
                         valueArray.append(applicationSecondResult)
                         variables.metaDataDictionary[applicationName] = valueArray
+                        
+                        
+                        
+                        var applicationInformationDictionary = [String:[String]]()
+                        var applicationInformationDictionaryCopy = [String:[String]]()
+                        applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]
+                        applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
+                        applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
+                        variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
+                        print("who knows whether it works or not", variables.metaDataDictionaryTestOne["Applications"])
+//                        var d1 = ["a": "b"]
+//                        var d2 = ["c": "e"]
+//                        d1.merge(dict: d2)
+                        
                     }
                     
                     
@@ -61,6 +81,9 @@ class appleScript : NSObject{
         
         // print("this is the dictionary of metadata", variables.metaDataDictionary)
     }
+    
+
+    
     func returnApplicationName(softwareName: String) -> String{
         return softwareName
     }

@@ -78,7 +78,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPZ-X3-AQi">
-                    <rect key="frame" x="466" y="394" width="62" height="18"/>
+                    <rect key="frame" x="466" y="394" width="56" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a5T-h8-jG5">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -155,27 +155,18 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qeM-0e-tNW">
-                    <rect key="frame" x="603" y="364" width="147" height="47"/>
+                    <rect key="frame" x="603" y="335" width="156" height="76"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="aQG-Jr-X6J">
+                    <textFieldCell key="cell" title="Label" id="aQG-Jr-X6J">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMv-0G-4xF">
-                    <rect key="frame" x="602" y="225" width="149" height="90"/>
+                    <rect key="frame" x="602" y="179" width="157" height="136"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="hZv-BP-dpw">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoB-2Z-4Cn">
-                    <rect key="frame" x="603" y="106" width="149" height="103"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Glf-Ki-JNv">
+                    <textFieldCell key="cell" title="Label" id="hZv-BP-dpw">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -280,8 +271,17 @@
                         <action selector="buttonEightAction:" target="-2" id="7iY-x3-aHz"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoB-2Z-4Cn">
+                    <rect key="frame" x="603" y="25" width="156" height="146"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" title="Label" id="Glf-Ki-JNv">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
-            <point key="canvasLocation" x="288.5" y="238"/>
+            <point key="canvasLocation" x="101.5" y="161"/>
         </customView>
     </objects>
 </document>

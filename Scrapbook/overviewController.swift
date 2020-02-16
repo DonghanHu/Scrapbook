@@ -65,6 +65,7 @@ class overviewController: NSViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Collection View"
         // Do view setup here.        
     }
     
@@ -97,7 +98,7 @@ class overviewController: NSViewController {
         } catch {
             print("preview Error: \(error)")
         }
-        print("photo name list is: ", photoNameList)
+        // print("photo name list is: ", photoNameList)
         photoNameList.removeFirst(1)
         diaryInformationCollection.photoNameList = photoNameList
     }

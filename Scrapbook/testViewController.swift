@@ -66,10 +66,10 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     @objc func firstInformationChange(_ sender: NSButton){
-        print(sender.title)
+        // print(sender.title)
         labelFirstInformation.stringValue = sender.title
         let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
-        print(tempDictionary)
+        // print(tempDictionary)
         let tempApplicationName = sender.title
         let tempApplicationMetaData = tempDictionary[tempApplicationName]
         if tempApplicationMetaData![0] != "" {

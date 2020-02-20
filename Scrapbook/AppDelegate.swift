@@ -20,7 +20,6 @@ struct variables {
     static var jsonFilePathURL                  = URL(string: "https://www.apple.com")
     static var jsonFilePathString               = ""
     
-    
     // [[string]] save all applescript
     static var applescriptStingArray = [[""]]
     static var softwareNameArray = [String]()
@@ -28,13 +27,14 @@ struct variables {
     static var recordedApplicationNameStack = [""]
     static var metaDataDictionary : [String : [String]] = [:]
     static var metaDataDictionaryTestOne : [String : Any] = ["Text"             :   String(),
+                                                             "Title"            :   String(),
                                                              "PhotoTime"        :   [String](),
                                                              "screenshotPath"   :   [String](),
                                                              "Applications"     :   [String:[String]]()
     ]
     static var metaDataIdctionaryTestDic : [String : [String]] = [:]
-    
 }
+
 struct overviewWindowVariables {
     static var windowOpenOrClose            = false
     static var subOverviewWindowController : NSWindowController? = nil
@@ -68,6 +68,11 @@ struct detailedViewControllerVariables {
     static var numberofRecordedApplication = 0
     static var recordedApplicationNameStack = [""]
     static var recordedApplicationInformation = [String:[String]]()
+}
+
+struct alternativeUserInterfaceVariables {
+    static var capturedApplicationNumber = 0
+    static var capturedApplicationCount = 0
 }
 
 @NSApplicationMain

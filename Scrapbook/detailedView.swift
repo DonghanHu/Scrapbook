@@ -60,8 +60,9 @@ class detailedView: NSViewController {
         textInformationDisplayThree.stringValue = ""
         
         openButton.title = "Open Selected Applications"
-        
+        self.title = "Detailed Window"
         // Do view setup here.
+        
         let nsImage = NSImage(contentsOfFile: screenshotInDetailedView.path)
         imageDisplayView.image = nsImage
         inputMessageDisplay.stringValue = screenshotInDetailedView.text
@@ -297,8 +298,10 @@ class detailedView: NSViewController {
                 let category = readCSVtoGetCategory(applicationName: applicationsName)
                 let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName)
                 print("final applescript", applescript)
-                // AppleScript(script: applescript)
-                runApplescript(applescript: applescript)
+                
+                let truescript = runApplescript(applescript: applescript)
+                AppleScript(script: truescript)
+                // runApplescript(applescript: applescript)
             }
         }
         
@@ -316,7 +319,8 @@ class detailedView: NSViewController {
                 var final = String()
                 let pathORurl = detailedViewControllerVariables.recordedApplicationInformation[applicationName]![0]
                 if (applicationCategory == "Productivity") {
-                    final = pathORurl.replacingOccurrences(of: "%20", with: " ")
+                    let temp = pathORurl.replacingOccurrences(of: "file://", with: "")
+                    final = temp.replacingOccurrences(of: "%20", with: " ")
                 }
                 else {
                     final = pathORurl
@@ -375,15 +379,24 @@ class detailedView: NSViewController {
         }
     }
     
-    func runApplescript(applescript : String){
-        var error: NSDictionary?
-        let scriptObject = NSAppleScript(source: applescript)
-        let output: NSAppleEventDescriptor = scriptObject!.executeAndReturnError(&error)
-        // print("output", output)
-        if (error != nil) {
-            print("error: \(String(describing: error))")
+        func runApplescript(applescript : String) -> String{
+            var error: NSDictionary?
+            let scriptObject = NSAppleScript(source: applescript)
+            let output: NSAppleEventDescriptor = scriptObject!.executeAndReturnError(&error)
+            // print("output", output)
+            if (error != nil) {
+                print("error: \(String(describing: error))")
+            }
+            if output.stringValue == nil{
+                let empty = "the result is empty"
+                return empty
+            }
+            else {
+                return (output.stringValue?.description)!
+                
+            }
         }
-    }
+    
 
     
 

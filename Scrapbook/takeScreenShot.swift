@@ -286,7 +286,8 @@ class Screencapture : NSObject {
             screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
             screenShotInformation.secondCoordinationOfX = firstCoordinationXInt + secondCoordinationXInt
             screenShotInformation.secondCoordinationOfY = firstCoordinationYInt + secondCoordinationYInt
-        
+            alternativeUserInterfaceVariables.capturedApplicationCount = 0
+            alternativeUserInterfaceVariables.capturedApplicationNumber = 0
             takeScreenshotSuccess = true
             
         }
@@ -297,13 +298,28 @@ class Screencapture : NSObject {
         
         if (takeScreenshotSuccess){
             let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
-            let applicationNameStackLength = applicationNameStack.count
+            // let applicationNameStackLength = applicationNameStack.count
             applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
             print("the process of takeing screenshot is finished, and the images has been saved locally.")
-            let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
-            let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)
-            let subWindowController = NSWindowController(window: subWindow)
-            subWindowController.showWindow(nil)
+           
+            
+// code for screenshotEditWindow view controller
+//            let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
+//            let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)
+//            let subWindowController = NSWindowController(window: subWindow)
+//            subWindowController.showWindow(nil)
+            
+            
+            let temp2 : NSViewController = testViewController()
+            let subWindow2 = NSWindow(contentViewController: temp2)
+            let subWindowController2 = NSWindowController(window: subWindow2)
+            subWindowController2.showWindow(nil)
+            
+//            let temp3: NSViewController = testViewController()
+//            temp3.view.display()
+            
+            
+            
         }
             
             

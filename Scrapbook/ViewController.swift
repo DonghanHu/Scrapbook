@@ -38,8 +38,8 @@ class ViewController: NSViewController {
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
         
-        print("photo path list:", photonumber.photoPathList)
-        print("photo text list:", photonumber.inputRelatedMessage)
+        // print("photo path list:", photonumber.photoPathList)
+        // print("photo text list:", photonumber.inputRelatedMessage)
 
 
         

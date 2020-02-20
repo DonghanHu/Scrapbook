@@ -9,26 +9,28 @@
 import Cocoa
 
 class ColViewItem: NSCollectionViewItem {
-
-
-//    @IBOutlet weak var screenshotImage: NSImageView!
-//
-//    @IBOutlet weak var inputtextField: NSTextField!
     
     @IBOutlet weak var screenshotImage: NSImageView!
-    
     @IBOutlet weak var labelSaveImagePath: NSTextField!
     @IBOutlet weak var imageButton: NSButton!
     @IBOutlet weak var inputTextField: NSTextField!
+    
     override func viewDidLoad() {
         labelSaveImagePath.isHidden = true
         labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
         print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
         super.viewDidLoad()
+        // self.view.frame
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
         screenshotImage.image = nsImage
+        
         imageButton.image = nsImage
-        print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)
+        
+        // print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)
+//        let height = nsImage?.size.height
+//        let width = nsImage?.size.width
+        
+        
         inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         // screenshotImage.image = NSImage(named: "SKTT1.jpg")
         // Do view setup here.
@@ -36,7 +38,6 @@ class ColViewItem: NSCollectionViewItem {
 
     @IBAction func imageButtonClickAction(_ sender: Any) {
     
-        
         print("button clicked", inputTextField.stringValue)
         print("click seleted image", labelSaveImagePath.stringValue)
         screenshotInDetailedView.path = labelSaveImagePath.stringValue

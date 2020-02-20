@@ -470,6 +470,7 @@ class softwareClassify : NSObject {
         print("application name list stack: ", applicationNameStack)
         variables.recordedApplicationNameStack = applicationNameStack
         variables.numberofRecordedApplication = applicationNameStack.count
+        alternativeUserInterfaceVariables.capturedApplicationNumber = applicationNameStack.count
         return applicationNameStack
 
 //        let softwareNameList1 = infoList1.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }

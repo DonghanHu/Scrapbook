@@ -42,7 +42,7 @@
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o2f-NK-sif">
                     <rect key="frame" x="362" y="96" width="410" height="268"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="LPE-ew-n0u"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="LPE-ew-n0u"/>
                 </imageView>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sn0-fD-P0G">
                     <rect key="frame" x="12" y="335" width="61" height="18"/>
@@ -230,12 +230,13 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                     <connections>
                         <action selector="openApplicationsButton:" target="-2" id="nAj-Fv-sNg"/>
                     </connections>
                 </button>
                 <textField identifier="detailedView" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PrD-qR-XOz">
-                    <rect key="frame" x="360" y="19" width="414" height="68"/>
+                    <rect key="frame" x="363" y="19" width="411" height="41"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="WvM-RK-GKe">
                         <font key="font" metaFont="system"/>

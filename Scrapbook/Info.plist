@@ -22,8 +22,6 @@
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>...this is why I need permission...</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Donghan Hu. All rights reserved.</string>
 	<key>NSSupportsSuddenTermination</key>
@@ -34,5 +32,16 @@
 	<string>NSApplication</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>this is why I need this</string>
+	<key>NSFileProviderDomainUsageDescription</key>
+	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.systempreferences</string>
+		<string>com.apple.systemevents</string>
+	</array>
 </dict>
 </plist>

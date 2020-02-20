@@ -22,6 +22,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         print("count for number", photonumber.photonumberCounting)
         print("count for photo name list length: ", diaryInformationCollection.photoNameList.count)
         let item = collectionView.makeItem(withIdentifier: .collectionViewItem, for: indexPath)
+        
         if (photonumber.photonumberCounting == diaryInformationCollection.photoNameList.count - 1){
             photonumber.photonumberCounting = 0
         }

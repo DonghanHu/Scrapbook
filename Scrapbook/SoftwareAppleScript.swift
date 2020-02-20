@@ -55,12 +55,13 @@ class appleScript : NSObject{
                         
                         
                         var applicationInformationDictionary = [String:[String]]()
+                        
                         var applicationInformationDictionaryCopy = [String:[String]]()
                         applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]
                         applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                         applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                         variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
-                        print("who knows whether it works or not", variables.metaDataDictionaryTestOne["Applications"])
+                        // print("who knows whether it works or not", variables.metaDataDictionaryTestOne["Applications"])
 //                        var d1 = ["a": "b"]
 //                        var d2 = ["c": "e"]
 //                        d1.merge(dict: d2)
@@ -72,7 +73,16 @@ class appleScript : NSObject{
                 }
             }
             else {
-                continue
+                let emptyFirst = ""
+                let emptySecond = ""
+                var applicationInformationDictionary = [String:[String]]()
+                var applicationInformationDictionaryCopy = [String:[String]]()
+                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond]
+                applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
+                applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
+                variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
+                
+                //continue
             }
             
             

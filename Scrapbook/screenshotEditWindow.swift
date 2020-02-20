@@ -79,6 +79,11 @@ class screenshotEditWindow: NSViewController {
         
         // Do view setup here.
     }
+    
+    // func all check box titles are hidden
+    func checkBoxTitleHidden(){
+        
+    }
     // func all check box are hidden at first
     func checkBoxAllHidden(){
         checkboxOne.isHidden = true

@@ -83,6 +83,7 @@ class ViewController: NSViewController {
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)
         var photoNameList = [[String]]()
         var inputMessageList = [String]()
+        var inputMessageTitleList = [String]()
         do {
             let rawData : NSData = try! NSData(contentsOf: url)
             do{
@@ -106,9 +107,14 @@ class ViewController: NSViewController {
                     for j in 1..<length{
                         let inputRelatedText = jsonarray[j]["Text"] as! [String]
                         inputMessageList.append(inputRelatedText[0])
+        
+                        let relatedTitle = jsonarray[j]["Title"] as! [String]
+                        inputMessageTitleList.append(relatedTitle[0])
 //                        photonumber.inputRelatedMessage.append(inputRelatedText[0])
                     }
                     photonumber.inputRelatedMessage = inputMessageList
+                    photonumber.inputRelatedTitle   = inputMessageTitleList
+                    
                 }
 
             // end of do judgement

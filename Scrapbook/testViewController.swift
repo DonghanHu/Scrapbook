@@ -58,7 +58,10 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         testColView.dataSource = self
         self.title = "Capture View"
         
-        captionLabelOne.stringValue = "Application Name"
+        
+        captionLabelOne.stringValue = "Application Name:"
+        captionLabelTwo.isHidden = true
+        captionLabelThree.isHidden = true
         scrapbookTitle.stringValue = "Scrap: " + dateFromatGenerate() + "(Default)"
         displayLatestScreenshot()
         

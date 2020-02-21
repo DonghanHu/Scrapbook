@@ -11,6 +11,7 @@ import Cocoa
 struct screenshotInDetailedView {
     static var path: String!
     static var text = ""
+    static var title = ""
 }
 
 

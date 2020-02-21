@@ -62,6 +62,7 @@ struct photonumber {
     static var photonumberCounting  = 0
     static var photoPathList        = [String]()
     static var inputRelatedMessage  = [""]
+    static var inputRelatedTitle    = [""]
 }
 
 struct detailedViewControllerVariables {
@@ -73,6 +74,17 @@ struct detailedViewControllerVariables {
 struct alternativeUserInterfaceVariables {
     static var capturedApplicationNumber = 0
     static var capturedApplicationCount = 0
+}
+
+struct detailedWiondwVariables {
+    static var buttonNumber = 0
+    static var buttonCount = 0
+    static var detailedDictionary : [String : Any] = [  "Text"             :   String(),
+                                                        "Title"            :   String(),
+                                                        "PhotoTime"        :   [String](),
+                                                        "screenshotPath"   :   [String](),
+                                                        "Applications"     :   [String:[String]]()
+    ]
 }
 
 @NSApplicationMain

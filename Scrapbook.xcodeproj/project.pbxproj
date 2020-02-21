@@ -27,6 +27,10 @@
 		EA9FD1E923F9F7450089870A /* applescriptCategoryCode.csv in Resources */ = {isa = PBXBuildFile; fileRef = EA9FD1E823F9F7450089870A /* applescriptCategoryCode.csv */; };
 		EAA8986323FA35DF006016DC /* AlternativeCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA8986123FA35DF006016DC /* AlternativeCaptureView.swift */; };
 		EAA8986423FA35DF006016DC /* AlternativeCaptureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA8986223FA35DF006016DC /* AlternativeCaptureView.xib */; };
+		EAC063422400568F003D82A1 /* newDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC063402400568F003D82A1 /* newDetailedView.swift */; };
+		EAC063432400568F003D82A1 /* newDetailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC063412400568F003D82A1 /* newDetailedView.xib */; };
+		EAC06347240056C3003D82A1 /* detailedColViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC06345240056C3003D82A1 /* detailedColViewItem.swift */; };
+		EAC06348240056C3003D82A1 /* detailedColViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC06346240056C3003D82A1 /* detailedColViewItem.xib */; };
 		EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2623BA9D53008ACCAE /* jsonfile.swift */; };
 		EAD90F2923BAA56C008ACCAE /* takeScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */; };
 		EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */; };
@@ -88,6 +92,10 @@
 		EAA8986123FA35DF006016DC /* AlternativeCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternativeCaptureView.swift; sourceTree = "<group>"; };
 		EAA8986223FA35DF006016DC /* AlternativeCaptureView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlternativeCaptureView.xib; sourceTree = "<group>"; };
 		EAAEE39C23CE6F7100A49238 /* ScreenCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ScreenCapture.xcodeproj; path = "../../../Downloads/swift-screencapture-master/ScreenCapture.xcodeproj"; sourceTree = "<group>"; };
+		EAC063402400568F003D82A1 /* newDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newDetailedView.swift; sourceTree = "<group>"; };
+		EAC063412400568F003D82A1 /* newDetailedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = newDetailedView.xib; sourceTree = "<group>"; };
+		EAC06345240056C3003D82A1 /* detailedColViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailedColViewItem.swift; sourceTree = "<group>"; };
+		EAC06346240056C3003D82A1 /* detailedColViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = detailedColViewItem.xib; sourceTree = "<group>"; };
 		EAD90F2623BA9D53008ACCAE /* jsonfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonfile.swift; sourceTree = "<group>"; };
 		EAD90F2823BAA56C008ACCAE /* takeScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = takeScreenShot.swift; sourceTree = "<group>"; };
 		EAD90F2A23BE7EDF008ACCAE /* SoftwareClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareClassification.swift; sourceTree = "<group>"; };
@@ -161,6 +169,10 @@
 				EA236CE923FCAF9D001DCB82 /* testColViewItem.xib */,
 				EA236CEC23FCAFB4001DCB82 /* testViewController.swift */,
 				EA236CED23FCAFB4001DCB82 /* testViewController.xib */,
+				EAC063402400568F003D82A1 /* newDetailedView.swift */,
+				EAC063412400568F003D82A1 /* newDetailedView.xib */,
+				EAC06345240056C3003D82A1 /* detailedColViewItem.swift */,
+				EAC06346240056C3003D82A1 /* detailedColViewItem.xib */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -291,8 +303,10 @@
 				EA7FE6FD23F0C212005EAACC /* Xcode1.scpt in Resources */,
 				EAA8986423FA35DF006016DC /* AlternativeCaptureView.xib in Resources */,
 				EAF3017923FB24CD0028DA6B /* checkBoxViewItem.xib in Resources */,
+				EAC063432400568F003D82A1 /* newDetailedView.xib in Resources */,
 				EA9FD1E723F9F71A0089870A /* applescriptNameCategory.csv in Resources */,
 				EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */,
+				EAC06348240056C3003D82A1 /* detailedColViewItem.xib in Resources */,
 				EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
 				EA9FD1E923F9F7450089870A /* applescriptCategoryCode.csv in Resources */,
@@ -318,10 +332,12 @@
 				EAD90F2723BA9D53008ACCAE /* jsonfile.swift in Sources */,
 				EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */,
 				EA97E95423F37AE900CB0E6E /* collectionViewController.swift in Sources */,
+				EAC06347240056C3003D82A1 /* detailedColViewItem.swift in Sources */,
 				EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */,
 				EA7FCA0F23B52CC600CEB2E8 /* AppDelegate.swift in Sources */,
 				EA97E95123F379A300CB0E6E /* ColViewItem.swift in Sources */,
 				EA236CEA23FCAF9D001DCB82 /* testColViewItem.swift in Sources */,
+				EAC063422400568F003D82A1 /* newDetailedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

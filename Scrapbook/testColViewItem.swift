@@ -23,7 +23,6 @@ class testColViewItem: NSCollectionViewItem {
         applicationNameStack = keys
         
         let newBut = NSButton(frame: NSRect(x: 25, y: 5, width: 120, height: 25))
-        // newBut.title = "press me!!!"
         newBut.title = temp[alternativeUserInterfaceVariables.capturedApplicationCount]
         newBut.bezelStyle = NSButton.BezelStyle.regularSquare
         newBut.action = #selector(testViewController.firstInformationChange(_:))

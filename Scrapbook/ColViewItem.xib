@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="imageButton" destination="vk1-wF-Xyz" id="mbt-iZ-1Dx"/>
                 <outlet property="inputTextField" destination="hLa-9a-I9U" id="niM-Nr-Afy"/>
+                <outlet property="inputTitleField" destination="igT-AZ-yTk" id="fbN-QH-Yc1"/>
                 <outlet property="labelSaveImagePath" destination="byT-hc-nIN" id="MCA-5V-Wcy"/>
                 <outlet property="screenshotImage" destination="LzS-EV-F97" id="ssU-Cs-nrA"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -50,6 +51,15 @@
                     <rect key="frame" x="12" y="64" width="37" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ho5-ll-K6B">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igT-AZ-yTk">
+                    <rect key="frame" x="12" y="40" width="37" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="jHP-ma-Rqf">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

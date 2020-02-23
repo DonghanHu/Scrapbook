@@ -87,6 +87,13 @@ struct detailedWiondwVariables {
     ]
 }
 
+struct readNewCSVFileVariables {
+    static var nameList = [String]()
+    static var CateAndApplescriptList = [[""]]
+    static var AppAndCateList = [[""]]
+    
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -108,14 +115,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.title = "S"
         statusItem.button?.target = self
         statusItem.button?.action = #selector(showSettings)
-        
-        // let task = Process()
-        // task.launchPath = "/usr/bin/osascript"
-        // task.arguments = ["/applescript/Xcode1.scpt"]
-//        task.launchPath = "Xcode1.scpt"
-//        task.launch()
-        // print("xcode test,", XcodeFileName(softwarename: "Xcode"))
         csvFileReadHandler.readCSV()
+        csvFileReadHandler.readCSVAPPandCate()
+        csvFileReadHandler.readCSVCateAndScript()
     }
     
     func XcodeFileName(softwarename : String) -> (String){

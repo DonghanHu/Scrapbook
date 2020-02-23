@@ -14,13 +14,6 @@ class softwareClassify : NSObject {
     let softwareBoundaryDictionary = [String : Int]()
     
     
-    func currentMousePosition (){
-        let xMoustLoaction = Int(NSEvent.mouseLocation.x)
-        let yMouseLocation = Int(NSEvent.mouseLocation.y)
-        // x and y are current mouse location of the major monitor
-        
-    }
-    
     // return the name of the current front most application
     func frontmostApplication() -> String{
         let frontMostApplicationName = NSWorkspace.shared.frontmostApplication?.localizedName?.description

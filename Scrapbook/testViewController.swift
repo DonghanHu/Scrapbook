@@ -70,11 +70,28 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     
     @objc func firstInformationChange(_ sender: NSButton){
         // print(sender.title)
+        captionLabelTwo.isHidden = false
+        captionLabelThree.isHidden = false
         labelFirstInformation.stringValue = sender.title
         let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
         // print(tempDictionary)
         let tempApplicationName = sender.title
         let tempApplicationMetaData = tempDictionary[tempApplicationName]
+        print(tempApplicationMetaData![2])
+        if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+            captionLabelTwo.stringValue = "url:"
+            captionLabelThree.stringValue = "title:"
+        }
+        if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+            captionLabelTwo.stringValue = "path:"
+            captionLabelThree.stringValue = "name:"
+        }
+        
+        if tempApplicationMetaData![2] == "Others"{
+            captionLabelTwo.stringValue = "other one"
+            captionLabelThree.stringValue = "other two"
+        }
+        
         if tempApplicationMetaData![0] != "" {
             labelSecondInformation.stringValue = (tempApplicationMetaData?[0])!
         }

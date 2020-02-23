@@ -13,6 +13,8 @@
 		EA236CEF23FCAFB4001DCB82 /* testViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA236CED23FCAFB4001DCB82 /* testViewController.xib */; };
 		EA60B60923C3D19300061A33 /* screenshotEditWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */; };
 		EA60B60A23C3D19300061A33 /* screenshotEditWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA60B60823C3D19300061A33 /* screenshotEditWindow.xib */; };
+		EA743D912401C9C300B1BBF6 /* AppAndCate.csv in Resources */ = {isa = PBXBuildFile; fileRef = EA743D8F2401C9C300B1BBF6 /* AppAndCate.csv */; };
+		EA743D932401C9C800B1BBF6 /* CateAndScript.csv in Resources */ = {isa = PBXBuildFile; fileRef = EA743D922401C9C800B1BBF6 /* CateAndScript.csv */; };
 		EA7FCA0F23B52CC600CEB2E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FCA0E23B52CC600CEB2E8 /* AppDelegate.swift */; };
 		EA7FCA1123B52CC600CEB2E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7FCA1023B52CC600CEB2E8 /* ViewController.swift */; };
 		EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA7FCA1223B52CC600CEB2E8 /* Scrapbook.xcdatamodeld */; };
@@ -74,6 +76,8 @@
 		EA236CED23FCAFB4001DCB82 /* testViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testViewController.xib; sourceTree = "<group>"; };
 		EA60B60723C3D19300061A33 /* screenshotEditWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = screenshotEditWindow.swift; sourceTree = "<group>"; };
 		EA60B60823C3D19300061A33 /* screenshotEditWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = screenshotEditWindow.xib; sourceTree = "<group>"; };
+		EA743D8F2401C9C300B1BBF6 /* AppAndCate.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AppAndCate.csv; sourceTree = "<group>"; };
+		EA743D922401C9C800B1BBF6 /* CateAndScript.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CateAndScript.csv; sourceTree = "<group>"; };
 		EA7FCA0B23B52CC600CEB2E8 /* Scrapbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scrapbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7FCA0E23B52CC600CEB2E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7FCA1023B52CC600CEB2E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				EAEA0BA123EF830F005B483E /* applescript.csv */,
 				EA9FD1E823F9F7450089870A /* applescriptCategoryCode.csv */,
 				EA9FD1E523F9F71A0089870A /* applescriptNameCategory.csv */,
+				EA743D8F2401C9C300B1BBF6 /* AppAndCate.csv */,
+				EA743D922401C9C800B1BBF6 /* CateAndScript.csv */,
 				EA97E94F23F379A300CB0E6E /* ColViewItem.swift */,
 				EA97E95023F379A300CB0E6E /* ColViewItem.xib */,
 				EA97E95323F37AE900CB0E6E /* collectionViewController.swift */,
@@ -296,6 +302,7 @@
 			files = (
 				EADFF44D23F600D6003C9CEB /* detailedView.xib in Resources */,
 				EA97E95223F379A300CB0E6E /* ColViewItem.xib in Resources */,
+				EA743D932401C9C800B1BBF6 /* CateAndScript.csv in Resources */,
 				EA236CEF23FCAFB4001DCB82 /* testViewController.xib in Resources */,
 				EA236CEB23FCAF9D001DCB82 /* testColViewItem.xib in Resources */,
 				EAEA0BA223EF830F005B483E /* applescript.csv in Resources */,
@@ -310,6 +317,7 @@
 				EA97E95623F3873300CB0E6E /* SKTT1.jpg in Resources */,
 				EA7FCA1923B52CC800CEB2E8 /* Main.storyboard in Resources */,
 				EA9FD1E923F9F7450089870A /* applescriptCategoryCode.csv in Resources */,
+				EA743D912401C9C300B1BBF6 /* AppAndCate.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

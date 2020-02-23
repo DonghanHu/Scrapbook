@@ -44,20 +44,28 @@ class appleScript : NSObject{
                         let applicationName = returnApplicationName(softwareName: applicationNameStack[i])
                         let applicationFirstResult = returnApplicationFirstFactor(softwareName: applicationNameStack[i])
                         let applicationSecondResult = returnApplicationSecondFactor(softwareName: applicationNameStack[i])
-                        print("applicationName", applicationName)
+                        let applicationThirdResult = returnApplicationThirdFactor(softwareName: applicationNameStack[i])
+                        // print("applicationName", applicationName)
+                        let firstInformation = FirstApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
+                        let secondInformation = secondApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
+                        
+                        print("old second", applicationSecondResult)
+                        print("new second", secondInformation)
+                        print("old one", applicationFirstResult)
+                        print("new one", firstInformation)
                         // print("first factor result", applicationFirstResult)
                         // print("second factor result", applicationSecondResult)
                         var valueArray = [String]()
                         valueArray.append(applicationFirstResult)
                         valueArray.append(applicationSecondResult)
+                        valueArray.append(applicationThirdResult)
+                        
                         variables.metaDataDictionary[applicationName] = valueArray
-                        
-                        
-                        
                         var applicationInformationDictionary = [String:[String]]()
                         
                         var applicationInformationDictionaryCopy = [String:[String]]()
-                        applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]
+                        // applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]
+                        applicationInformationDictionary[applicationName] = [firstInformation, secondInformation, applicationThirdResult]
                         applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                         applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                         variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
@@ -103,7 +111,6 @@ class appleScript : NSObject{
         for i in 0..<variables.applescriptStingArray.count{
             if softwareName == variables.applescriptStingArray[i][0] {
                 let applescriptCode = variables.applescriptStingArray[i][1]
-                // print("appscript code is", applescriptCode)
                 let applescriptResult = runApplescript(applescript: applescriptCode)
                 let result = runApplescript(applescript: applescriptResult)
                 // return applescriptResult
@@ -121,9 +128,6 @@ class appleScript : NSObject{
         for i in 0..<variables.applescriptStingArray.count{
             if softwareName == variables.applescriptStingArray[i][0] {
                 let applescriptCode = variables.applescriptStingArray[i][2]
-                // print("appscript code is", applescriptCode)
-                // code here
-                // print("second factor apple script", applescriptCode as String)
                 let applescriptResult = runApplescript(applescript: applescriptCode)
                 let result = runApplescript(applescript: applescriptResult)
                 // return applescriptResult
@@ -133,18 +137,49 @@ class appleScript : NSObject{
                 continue
             }
         }
-
-        
-       return "first factor error"
+       return "Second factor error"
     }
     
+    func FirstApplicationInformation(softwareName: String, cate: String) -> String{
+        for i in 0..<readNewCSVFileVariables.CateAndApplescriptList.count{
+            if cate == readNewCSVFileVariables.CateAndApplescriptList[i][0] {
+                let initScriptCode = readNewCSVFileVariables.CateAndApplescriptList[i][1]
+                let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                let applescriptResult = runApplescript(applescript: tempScriptCode)
+                let result = runApplescript(applescript: applescriptResult)
+                return result
+            }
+            
+        }
+        return "first factor is nil"
+    }
+    
+    func secondApplicationInformation(softwareName: String, cate: String) -> String{
+        for i in 0..<readNewCSVFileVariables.CateAndApplescriptList.count{
+            if cate == readNewCSVFileVariables.CateAndApplescriptList[i][0] {
+                let initScriptCode = readNewCSVFileVariables.CateAndApplescriptList[i][2]
+                let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                let applescriptResult = runApplescript(applescript: tempScriptCode)
+                let result = runApplescript(applescript: applescriptResult)
+                return result
+            }
+            
+        }
+        return "second factor is nil"
+    }
+    
+    func returnApplicationThirdFactor(softwareName: String) -> String{
+        for i in 0..<readNewCSVFileVariables.AppAndCateList.count{
+            if softwareName == readNewCSVFileVariables.AppAndCateList[i][0]{
+                return readNewCSVFileVariables.AppAndCateList[i][1]
+            }
+            
+        }
+        return "Others"
+    }
+
     
     func runApplescript(applescript : String) -> String{
-//        print("first apple script is,", applescript)
-//        var temp = ""
-//        temp = applescript as String
-//        print("description", temp)
-        
         var error: NSDictionary?
         let scriptObject = NSAppleScript(source: applescript)
         let output: NSAppleEventDescriptor = scriptObject!.executeAndReturnError(&error)
@@ -163,44 +198,28 @@ class appleScript : NSObject{
     }
     
     
-    func softwareClassifyBasedOnCategory(softwareName: String){
-        let categoryNumber = ClassDictionary[softwareName]
-        if categoryNumber == "1" {
-            let fileNameInPreview = PreviewFileName()
-            let filePathInPreview = PreviewFilePath()
-            let category = "Productivity"
-            
-        }
-        
-        else if categoryNumber == "2" {
-            
-        }
-        
-        else if categoryNumber == "3" {
-            
-        }
-        
-        else if categoryNumber == "4" {
-            
-        }
-        
-        else if categoryNumber == "5" {
-            
-        }
-        
-        else if categoryNumber == "6" {
-            
-        }
-        
-        else if categoryNumber == "7" {
-            
-        }
-        
-        else {
-            
-        }
-        // end of the function: softwareClassifyBasedOnCategory
+    func cleanRows(file:String)->String{
+        var cleanFile = file
+        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
+        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";;", with: "")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";\n", with: "")
+        return cleanFile
     }
+    
+    
+    func csv(data: String) -> [[String]] {
+        var result: [[String]] = []
+        let rows = data.components(separatedBy: "\n")
+        for row in rows {
+            // print(row)
+            let columns = row.components(separatedBy: ",")
+            result.append(columns)
+        }
+        return result
+    }
+
+
     
     //preview opened file path
     func PreviewFilePath() -> String{

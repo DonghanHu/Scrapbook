@@ -35,7 +35,8 @@ class ColViewItem: NSCollectionViewItem {
         // display the text body
         //inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         // display the title body
-        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
+
+        inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         inputTitleField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
         // screenshotImage.image = NSImage(named: "SKTT1.jpg")
         // Do view setup here.
@@ -48,6 +49,7 @@ class ColViewItem: NSCollectionViewItem {
         screenshotInDetailedView.path = labelSaveImagePath.stringValue
         screenshotInDetailedView.text = inputTextField.stringValue
         screenshotInDetailedView.title = inputTitleField.stringValue
+
         
         // let detailedViewHandler = detailedView(labelSaveImagePath.stringValue, inputTextField.stringValue)
         
@@ -64,9 +66,10 @@ class ColViewItem: NSCollectionViewItem {
         let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
         let subWindowController1 = NSWindowController(window: subWindow1)
         subWindowController1.showWindow(nil)
+
         // reset to zero
         detailedWiondwVariables.buttonCount = 0
-        print("corresponding dictionary", detailedWiondwVariables.detailedDictionary)
+        // print("corresponding dictionary", detailedWiondwVariables.detailedDictionary)
    
     }
     

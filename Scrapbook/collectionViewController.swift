@@ -52,6 +52,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         colView.delegate = self
         colView.dataSource = self
         self.title = "Collection View"
+    
         
     }
     

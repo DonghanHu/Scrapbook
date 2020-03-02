@@ -16,6 +16,8 @@ struct variables {
     static var latesScreenShotPathString        = ""
     static var latestScreenShotTime             = ""
     
+    static var currentTimeInformation           = ""
+    
     // json file path
     static var jsonFilePathURL                  = URL(string: "https://www.apple.com")
     static var jsonFilePathString               = ""
@@ -118,6 +120,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         csvFileReadHandler.readCSV()
         csvFileReadHandler.readCSVAPPandCate()
         csvFileReadHandler.readCSVCateAndScript()
+        
+        // NSApplication.shared.keyWindow?.close()
     }
     
     func XcodeFileName(softwarename : String) -> (String){

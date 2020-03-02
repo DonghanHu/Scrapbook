@@ -8,10 +8,12 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="newDetailedView" customModule="Scrapbook" customModuleProvider="target">
             <connections>
+                <outlet property="currentTimeLabel" destination="3uT-gN-6SV" id="gWk-dE-XGe"/>
                 <outlet property="detailedColView" destination="rUy-Dr-Zh8" id="wNg-xk-lwf"/>
                 <outlet property="detailedInformationFirst" destination="bxy-cy-jAl" id="xuX-3v-riu"/>
                 <outlet property="detailedInformationSecond" destination="xvg-Hz-k3Z" id="ZcM-zn-Ly1"/>
                 <outlet property="detailedInformationThird" destination="6Xb-5W-7wi" id="Xhs-dx-J19"/>
+                <outlet property="openAllApplicationsButton" destination="t5h-oa-QKb" id="DEE-1k-YeM"/>
                 <outlet property="openSelectedApplicationsButton" destination="VeX-od-lWY" id="afa-av-4c1"/>
                 <outlet property="scrapbookBody" destination="QFu-zw-q8z" id="BEu-FH-JVG"/>
                 <outlet property="scrapbookTitle" destination="oGI-2D-vON" id="an9-yf-81U"/>
@@ -25,25 +27,25 @@
             <rect key="frame" x="0.0" y="0.0" width="900" height="490"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Dr-Hbn">
-                    <rect key="frame" x="654" y="310" width="207" height="160"/>
+                <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Dr-Hbn">
+                    <rect key="frame" x="645" y="290" width="235" height="160"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" ambiguous="YES" id="75U-cL-Wph">
-                        <rect key="frame" x="1" y="1" width="205" height="158"/>
+                        <rect key="frame" x="1" y="1" width="233" height="158"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView ambiguous="YES" id="rUy-Dr-Zh8">
-                                <rect key="frame" x="0.0" y="0.0" width="205" height="158"/>
+                                <rect key="frame" x="0.0" y="0.0" width="233" height="158"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="wwp-Ok-qDU">
-                                    <size key="itemSize" width="180" height="55"/>
+                                    <size key="itemSize" width="230" height="35"/>
                                 </collectionViewFlowLayout>
                                 <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </collectionView>
                         </subviews>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3fG-47-b9s">
-                        <rect key="frame" x="1" y="143" width="204" height="16"/>
+                        <rect key="frame" x="-100" y="-100" width="204" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KyG-sY-NQh">
@@ -101,8 +103,28 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uT-gN-6SV">
+                    <rect key="frame" x="645" y="458" width="237" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="5wP-WJ-VGo">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5h-oa-QKb">
+                    <rect key="frame" x="641" y="0.0" width="219" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="34U-EK-WCn">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openAllAppsAction:" target="-2" id="e1x-pj-vH0"/>
+                    </connections>
+                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeX-od-lWY">
-                    <rect key="frame" x="648" y="13" width="219" height="32"/>
+                    <rect key="frame" x="641" y="26" width="219" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2oD-ke-eei">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

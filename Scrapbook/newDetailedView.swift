@@ -28,6 +28,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var detailedColView: NSCollectionView!
     
     @IBOutlet weak var screenshotDisplay: NSImageView!
+    @IBOutlet weak var currentTimeLabel: NSTextField!
+    
     
     @IBOutlet weak var detailedInformationFirst: NSTextField!
     @IBOutlet weak var detailedInformationSecond: NSTextField!
@@ -37,6 +39,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var scrapbookBody: NSTextField!
     
     @IBOutlet weak var openSelectedApplicationsButton: NSButton!
+    @IBOutlet weak var openAllApplicationsButton: NSButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +56,15 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         // Do view setup here.
         
         let nsImage = NSImage(contentsOfFile: screenshotInDetailedView.path)
+        nsImage?.prefersColorMatch = false
+        nsImage?.matchesOnMultipleResolution = true
         screenshotDisplay.image = nsImage
         scrapbookTitle.stringValue = screenshotInDetailedView.title
         scrapbookBody.stringValue = screenshotInDetailedView.text
+        
+        let timetemp = detailedWiondwVariables.detailedDictionary["PhotoTime"] as![String]
+        
+        currentTimeLabel.stringValue = timetemp[2]
         
         detailedInformationFirst.stringValue = "click application button to dispaly."
         detailedInformationSecond.stringValue = "click application button to display."
@@ -84,6 +94,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     }
     
     @objc func collectionViewCheckBox (_ sender: NSButton){
+        
         print("check box title", sender.title)
     }
     
@@ -104,6 +115,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             let truescript = runApplescript(applescript: applescript)
             AppleScript(script: truescript)
         }
+    }
+    
+    
+    @IBAction func openAllAppsAction(_ sender: Any) {
+        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        
     }
     
    func readCSVtoGetCategory(applicationName : String) -> String{

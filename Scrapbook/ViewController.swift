@@ -37,7 +37,7 @@ class ViewController: NSViewController {
         getAllAvailableScrapbookList()
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
-        
+        CaputerButton.title = "Capture"
         // print("photo path list:", photonumber.photoPathList)
         // print("photo text list:", photonumber.inputRelatedMessage)
 

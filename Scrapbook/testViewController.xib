@@ -20,6 +20,7 @@
                 <outlet property="scrapbookTitle" destination="JaZ-cM-NHV" id="jn6-z1-EgO"/>
                 <outlet property="screenshotDisplay" destination="h5W-OV-xWa" id="LR5-tB-XSF"/>
                 <outlet property="testColView" destination="YNf-VD-bUA" id="Ku0-lD-fZY"/>
+                <outlet property="timeLabelDisplay" destination="2Ch-d5-3ZR" id="5TL-WI-Our"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -30,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvN-a5-QE8">
-                    <rect key="frame" x="657" y="328" width="227" height="148"/>
+                    <rect key="frame" x="654" y="308" width="227" height="148"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" ambiguous="YES" id="fUm-qb-1cS">
                         <rect key="frame" x="1" y="1" width="225" height="146"/>
@@ -40,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="146"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="x5T-3j-hWE">
-                                    <size key="itemSize" width="160" height="60"/>
+                                    <size key="itemSize" width="230" height="40"/>
                                 </collectionViewFlowLayout>
                                 <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </collectionView>
@@ -56,7 +57,7 @@
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g18-Mp-74E">
-                    <rect key="frame" x="655" y="248" width="193" height="37"/>
+                    <rect key="frame" x="655" y="238" width="193" height="37"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="Dwk-Zf-Ey6">
                         <font key="font" usesAppearanceFont="YES"/>
@@ -121,7 +122,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="apo-EZ-RS5">
-                    <rect key="frame" x="655" y="293" width="224" height="16"/>
+                    <rect key="frame" x="655" y="283" width="224" height="16"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="uZK-lg-USX">
                         <font key="font" metaFont="systemBold"/>
@@ -151,6 +152,15 @@
                     <rect key="frame" x="657" y="63" width="229" height="78"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="MQD-cL-ife">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ch-d5-3ZR">
+                    <rect key="frame" x="654" y="460" width="223" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="zkJ-Or-Gvl">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -28,6 +28,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     
 
     @IBOutlet weak var testColView: NSCollectionView!
+    @IBOutlet weak var timeLabelDisplay: NSTextField!
     
     @IBOutlet weak var labelFirstInformation: NSTextField!
     @IBOutlet weak var labelSecondInformation: NSTextField!
@@ -58,6 +59,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         testColView.dataSource = self
         self.title = "Capture View"
         
+        timeLabelDisplay.stringValue = variables.currentTimeInformation
         
         captionLabelOne.stringValue = "Application Name:"
         captionLabelTwo.isHidden = true
@@ -116,6 +118,19 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             checkBoxCollection.append(sender.title)
         }
         
+//        if sender.state == .on || checkBoxCollection.contains(sender.title){
+//            
+//        }
+//        else if (sender.state == .on) || !(checkBoxCollection.contains(sender.title)){
+//            checkBoxCollection.append(sender.title)
+//        }
+//        else if (sender.state == .off) || checkBoxCollection.contains(sender.title){
+//            checkBoxCollection.removeAll{ $0 == sender.title }
+//        }
+//        else if (sender.state == .off) || !(checkBoxCollection.contains(sender.title)){
+//
+//        }
+        
     }
     
     func displayLatestScreenshot() {
@@ -146,7 +161,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
         variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
-        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString]
+        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
         var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
         let dictionary = [String:[String]]()
         let length = checkBoxCollection.count

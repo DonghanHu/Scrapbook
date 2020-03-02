@@ -78,6 +78,7 @@ class Screencapture : NSObject {
         let dateString = dateFormatter.string(from: date)
         variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
         
+        
         let regionUrl = ScreenCapture.captureRegion(variables.latesScreenShotPathString)
         
         
@@ -94,6 +95,11 @@ class Screencapture : NSObject {
         dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
         let dateString = dateFormatter.string(from: date)
         variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
+        
+        dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        let currentTime = dateFormatter.string(from: date)
+        variables.currentTimeInformation = currentTime
+        print("current", currentTime)
         
         var displayCount: UInt32 = 0;
         var result = CGGetActiveDisplayList(0, nil, &displayCount)
@@ -140,6 +146,11 @@ class Screencapture : NSObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
         let dateString = dateFormatter.string(from: date)
+        
+        dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        let currentTime = dateFormatter.string(from: date)
+        variables.currentTimeInformation = currentTime
+        
         let task = Process()
         task.launchPath = "/usr/sbin/screencapture"
         var arguments = [String]();

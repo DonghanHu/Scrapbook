@@ -49,10 +49,10 @@ class appleScript : NSObject{
                         let firstInformation = FirstApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
                         let secondInformation = secondApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
                         
-                        print("old second", applicationSecondResult)
-                        print("new second", secondInformation)
-                        print("old one", applicationFirstResult)
-                        print("new one", firstInformation)
+//                        print("old second", applicationSecondResult)
+//                        print("new second", secondInformation)
+//                        print("old one", applicationFirstResult)
+//                        print("new one", firstInformation)
                         // print("first factor result", applicationFirstResult)
                         // print("second factor result", applicationSecondResult)
                         var valueArray = [String]()
@@ -85,7 +85,7 @@ class appleScript : NSObject{
                 let emptySecond = ""
                 var applicationInformationDictionary = [String:[String]]()
                 var applicationInformationDictionaryCopy = [String:[String]]()
-                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond]
+                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond, "Others"]
                 applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                 applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                 variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy

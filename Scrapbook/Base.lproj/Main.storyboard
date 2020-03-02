@@ -766,17 +766,17 @@
             <objects>
                 <viewController storyboardIdentifier="collectionViewID" id="eGB-z8-xtp" customClass="collectionViewController" customModule="Scrapbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="g6c-cR-sDr">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TY-P5-3it">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                            <scrollView wantsLayer="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TY-P5-3it">
+                                <rect key="frame" x="12" y="13" width="724" height="475"/>
                                 <clipView key="contentView" id="K66-2A-qwY">
-                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="722" height="473"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="Dqp-89-vam">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="722" height="473"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="IYc-2M-yhX">
                                                 <size key="itemSize" width="150" height="100"/>
@@ -786,11 +786,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="iJL-Xb-g4j">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dxt-PS-PWO">
-                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="dxt-PS-PWO">
+                                    <rect key="frame" x="707" y="1" width="16" height="466"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -808,7 +808,7 @@
                 </viewController>
                 <customObject id="r7K-0c-uKO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-50" y="607"/>
+            <point key="canvasLocation" x="-45" y="748"/>
         </scene>
     </scenes>
 </document>

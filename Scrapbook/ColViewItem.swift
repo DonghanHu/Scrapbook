@@ -64,8 +64,24 @@ class ColViewItem: NSCollectionViewItem {
         // newDetailedView
         let WindowHandler1 : NSViewController = newDetailedView()
         let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
+
         let subWindowController1 = NSWindowController(window: subWindow1)
+
+      
         subWindowController1.showWindow(nil)
+        // subWindow1.orderFront((Any).self)
+        // subWindow1.collectionBehavior = .canJoinAllSpaces
+        //subWindow1.orderedIndex = 1
+        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow)) + 2)
+        // NSApplication.shared.modalWindow?.orderFrontRegardless()
+        // subWindow1.makeKeyAndOrderFront(nil)
+        
+        
+        
+        
+        // NSApp.activate(ignoringOtherApps: true)
+        
+        // self.window setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces
 
         // reset to zero
         detailedWiondwVariables.buttonCount = 0

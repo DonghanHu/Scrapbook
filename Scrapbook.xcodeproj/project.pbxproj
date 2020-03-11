@@ -41,6 +41,7 @@
 		EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */; };
 		EAEA0B9F23EF7ECD005B483E /* readcsvFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */; };
 		EAEA0BA223EF830F005B483E /* applescript.csv in Resources */ = {isa = PBXBuildFile; fileRef = EAEA0BA123EF830F005B483E /* applescript.csv */; };
+		EAF0B5E12416C6F500EAB5D6 /* controllerWebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0B5E02416C6F500EAB5D6 /* controllerWebKit.swift */; };
 		EAF3017823FB24CD0028DA6B /* checkBoxViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF3017623FB24CD0028DA6B /* checkBoxViewItem.swift */; };
 		EAF3017923FB24CD0028DA6B /* checkBoxViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF3017723FB24CD0028DA6B /* checkBoxViewItem.xib */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,7 @@
 		EAE5E90623D79B4F001DC791 /* SoftwareAppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareAppleScript.swift; sourceTree = "<group>"; };
 		EAEA0B9E23EF7ECD005B483E /* readcsvFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readcsvFile.swift; sourceTree = "<group>"; };
 		EAEA0BA123EF830F005B483E /* applescript.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescript.csv; sourceTree = "<group>"; };
+		EAF0B5E02416C6F500EAB5D6 /* controllerWebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = controllerWebKit.swift; sourceTree = "<group>"; };
 		EAF3017623FB24CD0028DA6B /* checkBoxViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkBoxViewItem.swift; sourceTree = "<group>"; };
 		EAF3017723FB24CD0028DA6B /* checkBoxViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = checkBoxViewItem.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 				EAC063412400568F003D82A1 /* newDetailedView.xib */,
 				EAC06345240056C3003D82A1 /* detailedColViewItem.swift */,
 				EAC06346240056C3003D82A1 /* detailedColViewItem.xib */,
+				EAF0B5E02416C6F500EAB5D6 /* controllerWebKit.swift */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				EA7FCA1423B52CC600CEB2E8 /* Scrapbook.xcdatamodeld in Sources */,
 				EA97E95423F37AE900CB0E6E /* collectionViewController.swift in Sources */,
 				EAC06347240056C3003D82A1 /* detailedColViewItem.swift in Sources */,
+				EAF0B5E12416C6F500EAB5D6 /* controllerWebKit.swift in Sources */,
 				EAE5E90723D79B4F001DC791 /* SoftwareAppleScript.swift in Sources */,
 				EA7FCA0F23B52CC600CEB2E8 /* AppDelegate.swift in Sources */,
 				EA97E95123F379A300CB0E6E /* ColViewItem.swift in Sources */,

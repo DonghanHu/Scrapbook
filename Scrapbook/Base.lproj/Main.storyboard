@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -748,6 +749,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="HGU-2X-U4r" kind="show" id="OCw-rL-hZ5"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -760,6 +764,58 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="92.5" y="201"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="Yle-tU-Whu">
+            <objects>
+                <windowController id="HGU-2X-U4r" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Shp-WZ-lGr">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="1865" y="133" width="600" height="383"/>
+                        <rect key="screenRect" x="1440" y="-180" width="2560" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="HGU-2X-U4r" id="FFd-5w-igM"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Hww-CJ-t9L" kind="relationship" relationship="window.shadowedContentViewController" id="kV5-Ma-Sll"/>
+                    </connections>
+                </windowController>
+                <customObject id="oXB-9A-sfv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652" y="254"/>
+        </scene>
+        <!--Controller Web Kit-->
+        <scene sceneID="bQ3-dR-krt">
+            <objects>
+                <viewController id="Hww-CJ-t9L" customClass="controllerWebKit" customModule="Scrapbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="TYe-Kc-lc9">
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3g-0i-U5i">
+                                <rect key="frame" x="0.0" y="0.0" width="900" height="600"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="M3g-0i-U5i" secondAttribute="bottom" id="1M5-JQ-god"/>
+                            <constraint firstItem="M3g-0i-U5i" firstAttribute="top" secondItem="TYe-Kc-lc9" secondAttribute="top" id="5I2-qp-eSN"/>
+                            <constraint firstAttribute="trailing" secondItem="M3g-0i-U5i" secondAttribute="trailing" id="Flm-qR-YQ6"/>
+                            <constraint firstItem="M3g-0i-U5i" firstAttribute="leading" secondItem="TYe-Kc-lc9" secondAttribute="leading" id="PNF-a4-ajv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webkit" destination="M3g-0i-U5i" id="xH3-IY-lbq"/>
+                    </connections>
+                </viewController>
+                <customObject id="u08-dn-zpV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1541" y="247"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="uOF-bt-hNe">

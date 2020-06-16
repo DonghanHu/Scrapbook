@@ -96,6 +96,35 @@ struct readNewCSVFileVariables {
     
 }
 
+
+struct dataStructure: Codable {
+    let text, title: String
+    let apps: [App]
+    let photoTime, screenshotPath: String
+
+    enum CodingKeys: String, CodingKey {
+        case text = "Text"
+        case title = "Title"
+        case apps
+        case photoTime = "PhotoTime"
+        case screenshotPath = "screenshotPath"
+    }
+}
+struct App: Codable {
+    let applicationname: String
+    let applicationCategory: String
+    let apppath: String
+    let filename: String
+}
+
+struct screenshotInDetailedView {
+    static var path: String!
+    static var text = ""
+    static var title = ""
+}
+
+
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     

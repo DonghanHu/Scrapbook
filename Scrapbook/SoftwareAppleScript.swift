@@ -19,21 +19,6 @@ extension Dictionary {
 
 class appleScript : NSObject{
     
-    var ClassDictionary : [String : String] = [   "Preview"                 : "1",
-                                                  "Pages"                   : "2",
-                                                  "Numbers"                 : "2",
-                                                  "Keynote"                 : "2",
-                                                  "Xcode"                   : "3",
-                                                  "Google Chrome"           : "4",
-                                                  "Safari"                  : "5",
-                                                  "Microsoft Word"          : "6",
-                                                  "Microsoft Excel"         : "6",
-                                                  "Microsoft PowerPoint"    : "6",
-                                                  "Acrobat Reader"          : "6",
-                                                  "Eclipse"                 : "6",
-                                                  "TextEdit"                : "7"
-       ]
-    
     func applicationMetaData(applicationNameStack : [String]) {
         
         let length = applicationNameStack.count
@@ -62,6 +47,8 @@ class appleScript : NSObject{
                         
                         variables.metaDataDictionary[applicationName] = valueArray
                         var applicationInformationDictionary = [String:[String]]()
+                        
+                        
                         
                         var applicationInformationDictionaryCopy = [String:[String]]()
                         // applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]

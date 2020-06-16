@@ -59,7 +59,7 @@ class AlternativeCaptureView: NSViewController , NSCollectionViewDelegate, NSCol
         
         
         //
-        print("variables", variables.metaDataDictionaryTestOne)
+        // print("variables", variables.metaDataDictionaryTestOne)
         // Do view setup here.
         
         

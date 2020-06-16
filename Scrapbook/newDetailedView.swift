@@ -76,7 +76,6 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         print("button title", sender.title)
         detailedInformationFirst.stringValue = sender.title
         let detailedDictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
-        // let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
         let tempApplicationName = sender.title
         let tempApplicationMetaData = detailedDictionary[tempApplicationName]
         if tempApplicationMetaData![0] != "" {

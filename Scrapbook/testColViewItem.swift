@@ -25,6 +25,7 @@ class testColViewItem: NSCollectionViewItem {
         
         let newBut = NSButton(frame: NSRect(x: 35, y: 0, width: 180, height: 30))
         newBut.alignment = .left
+        newBut.contentTintColor = NSColor.green
         newBut.title = temp[alternativeUserInterfaceVariables.capturedApplicationCount]
         newBut.isBordered = false
         newBut.bezelStyle = NSButton.BezelStyle.regularSquare

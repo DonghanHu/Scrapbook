@@ -201,8 +201,8 @@ class Screencapture : NSObject {
         // output is String format
         // let outputDictionary = output as NSDictionary
         // print ("output dictionary format", outputDictionary)
-
-        let temp = ( output as! String )
+        // let temp = ( output as! String )
+        let temp = ( output! )
         // print("output", output!)
         print ("temp", temp)
         
@@ -313,13 +313,7 @@ class Screencapture : NSObject {
             applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
             print("the process of takeing screenshot is finished, and the images has been saved locally.")
            
-            
-// code for screenshotEditWindow view controller
-//            let screenshotEditWindowHandler : NSViewController = screenshotEditWindow()
-//            let subWindow = NSWindow(contentViewController:  screenshotEditWindowHandler)
-//            let subWindowController = NSWindowController(window: subWindow)
-//            subWindowController.showWindow(nil)
-            
+                 
             
             let temp2 : NSViewController = testViewController()
             let subWindow2 = NSWindow(contentViewController: temp2)

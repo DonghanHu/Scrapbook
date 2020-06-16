@@ -35,8 +35,8 @@ class ColViewItem: NSCollectionViewItem {
         // display the text body
         //inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         // display the title body
-
-        inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
+        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
+        //inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         inputTitleField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
         // screenshotImage.image = NSImage(named: "SKTT1.jpg")
         // Do view setup here.
@@ -53,11 +53,6 @@ class ColViewItem: NSCollectionViewItem {
         
         // let detailedViewHandler = detailedView(labelSaveImagePath.stringValue, inputTextField.stringValue)
         
-        // old detialed view controller window
-//        let WindowHandler : NSViewController = detailedView()
-//        let subWindow = NSWindow(contentViewController:  WindowHandler)
-//        let subWindowController = NSWindowController(window: subWindow)
-//        subWindowController.showWindow(nil)
         
         readJsonFile()
         

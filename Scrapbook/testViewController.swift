@@ -76,7 +76,11 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         captionLabelThree.isHidden = false
         labelFirstInformation.stringValue = sender.title
         let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
-        // print(tempDictionary)
+    
+        print("here is temp dictionary")
+        // now, only have applications' information, stored in the dictionary
+        print(variables.metaDataDictionaryTestOne["PhotoTime"])
+        print(tempDictionary)
         let tempApplicationName = sender.title
         let tempApplicationMetaData = tempDictionary[tempApplicationName]
         print(tempApplicationMetaData![2])

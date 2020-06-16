@@ -25,7 +25,7 @@ class ColViewItem: NSCollectionViewItem {
         // self.view.frame
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
         screenshotImage.image = nsImage
-        
+        screenshotImage.imageScaling = .scaleAxesIndependently
         imageButton.image = nsImage
         
         // print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)

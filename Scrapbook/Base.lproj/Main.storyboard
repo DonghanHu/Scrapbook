@@ -784,22 +784,23 @@
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </collectionView>
                                     </subviews>
+                                    <edgeInsets key="contentInsets" left="20" right="20" top="20" bottom="20"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="iJL-Xb-g4j">
                                     <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="dxt-PS-PWO">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="dxt-PS-PWO">
                                     <rect key="frame" x="707" y="1" width="16" height="466"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="8TY-P5-3it" firstAttribute="top" secondItem="g6c-cR-sDr" secondAttribute="top" id="9rX-Q4-SPX"/>
-                            <constraint firstItem="8TY-P5-3it" firstAttribute="leading" secondItem="g6c-cR-sDr" secondAttribute="leading" id="UGg-fI-Mz0"/>
-                            <constraint firstAttribute="trailing" secondItem="8TY-P5-3it" secondAttribute="trailing" id="fJD-aI-50b"/>
-                            <constraint firstAttribute="bottom" secondItem="8TY-P5-3it" secondAttribute="bottom" id="r48-77-Q8c"/>
+                            <constraint firstItem="8TY-P5-3it" firstAttribute="top" secondItem="g6c-cR-sDr" secondAttribute="top" constant="20" id="9rX-Q4-SPX"/>
+                            <constraint firstItem="8TY-P5-3it" firstAttribute="leading" secondItem="g6c-cR-sDr" secondAttribute="leading" constant="20" id="UGg-fI-Mz0"/>
+                            <constraint firstAttribute="trailing" secondItem="8TY-P5-3it" secondAttribute="trailing" constant="20" id="fJD-aI-50b"/>
+                            <constraint firstAttribute="bottom" secondItem="8TY-P5-3it" secondAttribute="bottom" constant="20" id="r48-77-Q8c"/>
                         </constraints>
                     </view>
                     <connections>

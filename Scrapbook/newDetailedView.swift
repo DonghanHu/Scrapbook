@@ -37,6 +37,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     @IBOutlet weak var scrapbookTitle: NSTextField!
     @IBOutlet weak var scrapbookBody: NSTextField!
+    @IBOutlet weak var editableTitle: NSTextField!
     
     @IBOutlet weak var openSelectedApplicationsButton: NSButton!
     @IBOutlet weak var openAllApplicationsButton: NSButton!
@@ -60,6 +61,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         nsImage?.matchesOnMultipleResolution = true
         screenshotDisplay.image = nsImage
         scrapbookTitle.stringValue = screenshotInDetailedView.title
+        scrapbookTitle.isHidden = true
+        editableTitle.stringValue = screenshotInDetailedView.title
         scrapbookBody.stringValue = screenshotInDetailedView.text
         
         let timetemp = detailedWiondwVariables.detailedDictionary["PhotoTime"] as![String]

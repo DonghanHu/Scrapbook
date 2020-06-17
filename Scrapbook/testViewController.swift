@@ -64,7 +64,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         captionLabelOne.stringValue = "Application Name:"
         captionLabelTwo.isHidden = true
         captionLabelThree.isHidden = true
-        scrapbookTitle.stringValue = "Scrap: " + dateFromatGenerate() + "(Default)"
+        scrapbookTitle.stringValue = "Scrapbook: " + dateFromatGenerate() + " (Default)"
         displayLatestScreenshot()
         
         // Do view setup here.
@@ -153,11 +153,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     func dateFromatGenerate() -> String{
-           let date = Date()
-           let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "YYYY.MM.dd,HH:mm"
-           let dateString = dateFormatter.string(from: date)
-           return dateString
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+           //dateFormatter.dateFormat = "YYYY.MM.dd,HH:mm"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
        }
     
     @IBAction func saveButtonAction(_ sender: Any) {

@@ -96,7 +96,8 @@ class Screencapture : NSObject {
         let dateString = dateFormatter.string(from: date)
         variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
         
-        dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        //dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
         let currentTime = dateFormatter.string(from: date)
         variables.currentTimeInformation = currentTime
         print("current", currentTime)
@@ -147,7 +148,8 @@ class Screencapture : NSObject {
         dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
         let dateString = dateFormatter.string(from: date)
         
-        dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        //dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        dateFormatter.dateFormat = "EEEE, MMM dd, yyyy"
         let currentTime = dateFormatter.string(from: date)
         variables.currentTimeInformation = currentTime
         

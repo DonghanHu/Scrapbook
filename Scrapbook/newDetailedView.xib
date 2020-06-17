@@ -13,6 +13,7 @@
                 <outlet property="detailedInformationFirst" destination="bxy-cy-jAl" id="xuX-3v-riu"/>
                 <outlet property="detailedInformationSecond" destination="xvg-Hz-k3Z" id="ZcM-zn-Ly1"/>
                 <outlet property="detailedInformationThird" destination="6Xb-5W-7wi" id="Xhs-dx-J19"/>
+                <outlet property="editableTitle" destination="A34-yd-ttQ" id="YIH-jy-9z7"/>
                 <outlet property="openAllApplicationsButton" destination="t5h-oa-QKb" id="DEE-1k-YeM"/>
                 <outlet property="openSelectedApplicationsButton" destination="VeX-od-lWY" id="afa-av-4c1"/>
                 <outlet property="scrapbookBody" destination="QFu-zw-q8z" id="BEu-FH-JVG"/>
@@ -134,6 +135,15 @@
                         <action selector="openApplicationsButton:" target="-2" id="UPR-8T-t1i"/>
                     </connections>
                 </button>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A34-yd-ttQ">
+                    <rect key="frame" x="20" y="85" width="600" height="21"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="e3E-hf-PKo">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <point key="canvasLocation" x="140" y="154"/>
         </customView>

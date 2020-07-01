@@ -76,7 +76,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         
         let stringCountNumber = String(variables.countNumber)
-        scrapbookTitle.stringValue = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        
+        variables.defaultTitle = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        
+        scrapbookTitle.placeholderString = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        
+        //scrapbookTitle.stringValue = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        
+        scrapbookBody.placeholderString = "Input your memo here..."
+        
         displayLatestScreenshot()
         
         // Do view setup here.
@@ -176,8 +184,19 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     @IBAction func saveButtonAction(_ sender: Any) {
         print("this is checkbox collection: ", checkBoxCollection)
         
+        if (scrapbookTitle.stringValue == "") {
+            scrapbookTitle.stringValue = variables.defaultTitle
+            variables.defaultTitle = ""
+        }
+        else {
+            print("this is the customized title", scrapbookTitle.stringValue)
+        }
+        
+        
         variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
         variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+        // print("memo body", variables.metaDataDictionaryTestOne["Text"])
+        
         variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
         var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
         let dictionary = [String:[String]]()
@@ -239,6 +258,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     @IBAction func deleteButtonAction(_ sender: Any) {
+        variables.defaultTitle = ""
         let filePathString = variables.latesScreenShotPathString
         let fileURL = URL(fileURLWithPath: filePathString)
         do {

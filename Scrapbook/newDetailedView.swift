@@ -42,6 +42,9 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var openSelectedApplicationsButton: NSButton!
     @IBOutlet weak var openAllApplicationsButton: NSButton!
     
+    @IBOutlet weak var saveEditButton: NSButton!
+    
+    var checkBoxCollection = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         detailedColView.dataSource = self
         
         openSelectedApplicationsButton.title = "Open Selected Applications"
+        openAllApplicationsButton.title = "Open All Applications"
+        saveEditButton.title = "Save change"
         self.title = "Detailed Window"
         // Do view setup here.
         
@@ -62,6 +67,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         screenshotDisplay.image = nsImage
         scrapbookTitle.stringValue = screenshotInDetailedView.title
         scrapbookTitle.isHidden = true
+        
+        
         editableTitle.stringValue = screenshotInDetailedView.title
         scrapbookBody.stringValue = screenshotInDetailedView.text
         
@@ -98,11 +105,43 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @objc func collectionViewCheckBox (_ sender: NSButton){
         
         print("check box title", sender.title)
+        if checkBoxCollection.contains(sender.title) {
+            // print("checkboxcollection has already contained this application name")
+        }
+        else {
+            checkBoxCollection.append(sender.title)
+        }
     }
     
     
     @IBAction func openApplicationsButton(_ sender: Any) {
-        // print("detailedWindowdictionary", detailedWiondwVariables.detailedDictionary)
+        print("this is checkbox collection: ", checkBoxCollection)
+        
+        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        var applicationArray = [String]()
+        let keys: Array<String> = Array<String>( dictionary.keys)
+        applicationArray = keys
+        let keyLength = keys.count
+        for i in 0..<keyLength{
+            if checkBoxCollection.contains(keys[i]) {
+                let applicationsName = applicationArray[i]
+                let category = readCSVtoGetCategory(applicationName: applicationsName)
+                let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
+                print("final applescript", applescript)
+                
+                let truescript = runApplescript(applescript: applescript)
+                AppleScript(script: truescript)
+            }
+            else {
+                print("this app is not selected, hence not opened")
+            }
+            
+
+        }
+    }
+    
+    
+    @IBAction func openAllAppsAction(_ sender: Any) {
         let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         var applicationArray = [String]()
         let keys: Array<String> = Array<String>( dictionary.keys)
@@ -117,11 +156,6 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             let truescript = runApplescript(applescript: applescript)
             AppleScript(script: truescript)
         }
-    }
-    
-    
-    @IBAction func openAllAppsAction(_ sender: Any) {
-        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         
     }
     
@@ -198,6 +232,20 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         else {
             return (output.stringValue?.description)!
         }
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+    }
+    
+    
+    func dialogOK(question: String, text: String) -> Bool {
+              let alert = NSAlert()
+              alert.messageText = question
+              alert.informativeText = text
+              alert.alertStyle = .warning
+              alert.addButton(withTitle: "OK")
+              return alert.runModal() == .alertFirstButtonReturn
     }
     // end of the class
 }

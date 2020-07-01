@@ -113,7 +113,9 @@ class ViewController: NSViewController {
 //                        photonumber.inputRelatedMessage.append(inputRelatedText[0])
                     }
                     photonumber.inputRelatedMessage = inputMessageList
+                    print("message", photonumber.inputRelatedMessage)
                     photonumber.inputRelatedTitle   = inputMessageTitleList
+                    print("title", photonumber.inputRelatedTitle)
                     
                 }
 

@@ -42,13 +42,16 @@ class ColViewItem: NSCollectionViewItem {
 //        let width = nsImage?.size.width
         
         // display the text body
-        //inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
         // display the title body
-        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
-        //inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
-        inputTitleField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
-        // screenshotImage.image = NSImage(named: "SKTT1.jpg")
+        // print("message again", photonumber.inputRelatedMessage[photonumber.photonumberCounting])
+        // inputTextField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
+        // print("xxx+", inputTextField.stringValue)
+        // inputTitleField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
+        
         // Do view setup here.
+        //reverse title and text
+        inputTitleField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
+        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
     }
 
     @IBAction func imageButtonClickAction(_ sender: Any) {
@@ -56,9 +59,13 @@ class ColViewItem: NSCollectionViewItem {
         print("button clicked", inputTextField.stringValue)
         print("click seleted image", labelSaveImagePath.stringValue)
         screenshotInDetailedView.path = labelSaveImagePath.stringValue
-        screenshotInDetailedView.text = inputTextField.stringValue
-        screenshotInDetailedView.title = inputTitleField.stringValue
-
+        
+        
+        // print("memo body", inputTextField.stringValue)
+//        screenshotInDetailedView.text = inputTextField.stringValue
+//        screenshotInDetailedView.title = inputTitleField.stringValue
+        screenshotInDetailedView.text = inputTitleField.stringValue
+        screenshotInDetailedView.title = inputTextField.stringValue
         
         // let detailedViewHandler = detailedView(labelSaveImagePath.stringValue, inputTextField.stringValue)
         

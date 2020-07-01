@@ -38,6 +38,7 @@ struct variables {
     
     static var countNumber                       = 1
     static var tempDay                           = 0
+    static var defaultTitle                      = " "
 }
 
 struct overviewWindowVariables {

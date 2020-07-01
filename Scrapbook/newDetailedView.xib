@@ -16,6 +16,7 @@
                 <outlet property="editableTitle" destination="A34-yd-ttQ" id="YIH-jy-9z7"/>
                 <outlet property="openAllApplicationsButton" destination="t5h-oa-QKb" id="DEE-1k-YeM"/>
                 <outlet property="openSelectedApplicationsButton" destination="VeX-od-lWY" id="afa-av-4c1"/>
+                <outlet property="saveEditButton" destination="VPn-eQ-dFS" id="dsb-nh-vFX"/>
                 <outlet property="scrapbookBody" destination="QFu-zw-q8z" id="BEu-FH-JVG"/>
                 <outlet property="scrapbookTitle" destination="oGI-2D-vON" id="an9-yf-81U"/>
                 <outlet property="screenshotDisplay" destination="JVm-jo-uoX" id="GRN-oO-cLh"/>
@@ -114,7 +115,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5h-oa-QKb">
-                    <rect key="frame" x="641" y="0.0" width="219" height="32"/>
+                    <rect key="frame" x="641" y="0.0" width="109" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="34U-EK-WCn">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -144,6 +145,17 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VPn-eQ-dFS">
+                    <rect key="frame" x="750" y="0.0" width="110" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sxa-8l-D9H">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="saveButton:" target="-2" id="ced-MP-fPd"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="140" y="154"/>
         </customView>

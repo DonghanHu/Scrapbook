@@ -48,6 +48,9 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         let item = NSNib(nibNamed: "ColViewItem", bundle: nil)
         
         colView.register(item, forItemWithIdentifier: .collectionViewItem)
+    
+        colView.layer?.borderWidth = 13.0
+        colView.layer?.borderColor = NSColor.red as! CGColor
         
         colView.delegate = self
         colView.dataSource = self

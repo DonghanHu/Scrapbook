@@ -98,8 +98,10 @@ class appleScript : NSObject{
         for i in 0..<variables.applescriptStingArray.count{
             if softwareName == variables.applescriptStingArray[i][0] {
                 let applescriptCode = variables.applescriptStingArray[i][1]
+                print("applescriptCode", applescriptCode)
                 let applescriptResult = runApplescript(applescript: applescriptCode)
                 let result = runApplescript(applescript: applescriptResult)
+                print("applescript result", result)
                 // return applescriptResult
                 return result
             }

@@ -16,16 +16,25 @@ class ColViewItem: NSCollectionViewItem {
     @IBOutlet weak var inputTextField: NSTextField!
     @IBOutlet weak var inputTitleField: NSTextField!
     
+    @IBOutlet weak var boundary: NSTextField!
     override func viewDidLoad() {
         labelSaveImagePath.isHidden = true
         inputTitleField.isHidden = true
+        boundary.stringValue = ""
+        
         labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
         print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
         super.viewDidLoad()
+        // 1
+        self.view.layer?.borderColor = NSColor.black.cgColor
+        // 2
+        self.view.layer?.borderWidth = 10.0
+
         // self.view.frame
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
         screenshotImage.image = nsImage
-        screenshotImage.imageScaling = .scaleAxesIndependently
+        screenshotImage.isHidden = true
+        //screenshotImage.imageScaling = .scaleAxesIndependently
         imageButton.image = nsImage
         
         // print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)

@@ -64,7 +64,19 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         captionLabelOne.stringValue = "Application Name:"
         captionLabelTwo.isHidden = true
         captionLabelThree.isHidden = true
-        scrapbookTitle.stringValue = "Scrapbook: " + dateFromatGenerate() + " (Default)"
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let stringDay = calendar.component(.day, from: date)
+        let intDay = Int(stringDay)
+        if intDay != variables.tempDay {
+            variables.countNumber = 1
+        }
+        
+        
+        
+        let stringCountNumber = String(variables.countNumber)
+        scrapbookTitle.stringValue = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
         displayLatestScreenshot()
         
         // Do view setup here.
@@ -184,6 +196,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
         dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+        variables.countNumber = variables.countNumber + 1
         self.view.window?.close()
     }
     

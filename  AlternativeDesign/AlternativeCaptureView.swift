@@ -54,7 +54,7 @@ class AlternativeCaptureView: NSViewController , NSCollectionViewDelegate, NSCol
         collectionView.dataSource = self
         self.title = "Capture View"
         
-        textInputTitile.stringValue = "Scrap: " + dateFromatGenerate() + "(Default)"
+        textInputTitile.stringValue = "Scrap: " + dateFromatGenerate()
         displayLatestScreenshot()
         
         

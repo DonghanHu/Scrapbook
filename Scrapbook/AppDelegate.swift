@@ -35,6 +35,9 @@ struct variables {
                                                              "Applications"     :   [String:[String]]()
     ]
     static var metaDataIdctionaryTestDic : [String : [String]] = [:]
+    
+    static var countNumber                       = 1
+    static var tempDay                           = 0
 }
 
 struct overviewWindowVariables {
@@ -149,6 +152,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         csvFileReadHandler.readCSV()
         csvFileReadHandler.readCSVAPPandCate()
         csvFileReadHandler.readCSVCateAndScript()
+        
+        
+        // set count number as 1
+        let date = Date()
+        let calendar = Calendar.current
+        let stringDay = calendar.component(.day, from: date)
+        let intDay = Int(stringDay)
+        variables.tempDay = intDay
         
         // NSApplication.shared.keyWindow?.close()
     }

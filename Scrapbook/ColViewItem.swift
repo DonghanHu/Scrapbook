@@ -21,7 +21,7 @@ class ColViewItem: NSCollectionViewItem {
         labelSaveImagePath.isHidden = true
         inputTitleField.isHidden = true
         boundary.stringValue = ""
-        
+        //photonumber.photonumberCounting = photonumber.photonumberCounting - 1
         labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
         print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
         super.viewDidLoad()

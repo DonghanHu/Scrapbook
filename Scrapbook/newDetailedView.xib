@@ -8,6 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="newDetailedView" customModule="Scrapbook" customModuleProvider="target">
             <connections>
+                <outlet property="LabelOne" destination="Sb2-jB-68h" id="rf6-qe-mAl"/>
+                <outlet property="LabelThree" destination="vcI-Wq-a2s" id="uaW-7U-nXA"/>
+                <outlet property="LabelTwo" destination="0bY-Fl-GVf" id="w8Z-Lb-Vby"/>
                 <outlet property="currentTimeLabel" destination="3uT-gN-6SV" id="gWk-dE-XGe"/>
                 <outlet property="detailedColView" destination="rUy-Dr-Zh8" id="wNg-xk-lwf"/>
                 <outlet property="detailedInformationFirst" destination="bxy-cy-jAl" id="xuX-3v-riu"/>
@@ -70,7 +73,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFu-zw-q8z">
-                    <rect key="frame" x="20" y="13" width="600" height="62"/>
+                    <rect key="frame" x="20" y="7" width="600" height="68"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="BXL-WG-ZgD">
                         <font key="font" metaFont="system"/>
@@ -79,7 +82,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxy-cy-jAl">
-                    <rect key="frame" x="654" y="232" width="209" height="39"/>
+                    <rect key="frame" x="645" y="225" width="209" height="39"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="EvI-Vb-15c">
                         <font key="font" metaFont="system"/>
@@ -88,7 +91,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvg-Hz-k3Z">
-                    <rect key="frame" x="653" y="152" width="209" height="72"/>
+                    <rect key="frame" x="647" y="151" width="209" height="72"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="3po-c0-miT">
                         <font key="font" metaFont="system"/>
@@ -97,7 +100,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-5W-7wi">
-                    <rect key="frame" x="654" y="54" width="208" height="74"/>
+                    <rect key="frame" x="649" y="69" width="208" height="74"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="Wg7-Xg-faV">
                         <font key="font" metaFont="system"/>
@@ -115,7 +118,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5h-oa-QKb">
-                    <rect key="frame" x="641" y="0.0" width="109" height="32"/>
+                    <rect key="frame" x="640" y="26" width="245" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="34U-EK-WCn">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -126,7 +129,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeX-od-lWY">
-                    <rect key="frame" x="641" y="26" width="219" height="32"/>
+                    <rect key="frame" x="641" y="54" width="245" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2oD-ke-eei">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -145,8 +148,35 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sb2-jB-68h">
+                    <rect key="frame" x="645" y="266" width="235" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="U2t-w4-xfF">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bY-Fl-GVf">
+                    <rect key="frame" x="647" y="225" width="233" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ItQ-BK-kpm">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vcI-Wq-a2s">
+                    <rect key="frame" x="649" y="144" width="231" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="jY8-gz-BSN">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VPn-eQ-dFS">
-                    <rect key="frame" x="750" y="0.0" width="110" height="32"/>
+                    <rect key="frame" x="640" y="0.0" width="244" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sxa-8l-D9H">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

@@ -19,7 +19,7 @@ class detailedColViewItem: NSCollectionViewItem {
         applicationNameStack = keys
                 
         let newBut = NSButton(frame: NSRect(x: 35, y: 0, width: 180, height: 30))
-        newBut.contentTintColor = NSColor.green
+        newBut.contentTintColor = NSColor.black
         newBut.title = applicationNameStack[detailedWiondwVariables.buttonCount]
         newBut.bezelStyle = NSButton.BezelStyle.regularSquare
         newBut.alignment = .left

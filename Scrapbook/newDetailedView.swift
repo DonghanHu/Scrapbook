@@ -46,9 +46,19 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     var checkBoxCollection = [String]()
     
+    @IBOutlet weak var LabelOne: NSTextField!
+    @IBOutlet weak var LabelTwo: NSTextField!
+    
+    @IBOutlet weak var LabelThree: NSTextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        LabelOne.stringValue = "Application Name:"
+        LabelTwo.isHidden = true
+        LabelThree.isHidden = true
         
         let item = NSNib(nibNamed: "detailedColViewItem", bundle: nil)
         detailedColView.register(item, forItemWithIdentifier: .detailedItem)
@@ -57,7 +67,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         openSelectedApplicationsButton.title = "Open Selected Applications"
         openAllApplicationsButton.title = "Open All Applications"
-        saveEditButton.title = "Save change"
+        saveEditButton.title = "Save Change"
         self.title = "Detailed Window"
         // Do view setup here.
         
@@ -83,11 +93,31 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     }
     
     @objc func collectionViewButton (_ sender: NSButton){
+        
+        LabelTwo.isHidden = false
+        LabelThree.isHidden = false
+        
         print("button title", sender.title)
         detailedInformationFirst.stringValue = sender.title
         let detailedDictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         let tempApplicationName = sender.title
         let tempApplicationMetaData = detailedDictionary[tempApplicationName]
+        
+        if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+                   LabelTwo.stringValue = "URL:"
+                   LabelThree.stringValue = "Title:"
+               }
+               if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+                   LabelTwo.stringValue = "Path:"
+                   LabelThree.stringValue = "Name:"
+               }
+               
+               if tempApplicationMetaData![2] == "Others"{
+                   LabelTwo.stringValue = "other one"
+                   LabelThree.stringValue = "other two"
+               }
+        
+        
         if tempApplicationMetaData![0] != "" {
             detailedInformationSecond.stringValue = (tempApplicationMetaData?[0])!
         }
@@ -235,7 +265,40 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        
+        // var detailedDictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        let oldOne = detailedWiondwVariables.detailedDictionary
+        detailedWiondwVariables.detailedDictionary["Title"] = [editableTitle.stringValue]
+        detailedWiondwVariables.detailedDictionary["Text"] = [scrapbookBody.stringValue]
+        let newOne = detailedWiondwVariables.detailedDictionary
+
+//        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+//        var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+//        let dictionary = [String:[String]]()
+//        let length = checkBoxCollection.count
+//        let keys: Array<String> = Array<String>(tempDictionary.keys)
+//        let keyLength = keys.count
+//        for i in 0..<keyLength{
+//            if checkBoxCollection.contains(keys[i]){
+//
+//            }
+//            else {
+//                tempDictionary.removeValue(forKey: keys[i])
+//            }
+//        }
+//        variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+//
+        
+        //writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: detailedWiondwVariables.detailedDictionary)
+        let val = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
+        let keyTime = val[0]
+        print("key value time", keyTime)
+        tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
+        // dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        // variables.countNumber = variables.countNumber + 1
+        self.view.window?.close()
+
+        // dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
     }
     
     
@@ -247,5 +310,113 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
               alert.addButton(withTitle: "OK")
               return alert.runModal() == .alertFirstButtonReturn
     }
+    
+    func tempfuction (newOne : Dictionary<String, Any>, timeVal : String, title : [String], text : [String]){
+        do {
+            let jsonData = try! JSONSerialization.data(withJSONObject: newOne, options: JSONSerialization.WritingOptions.prettyPrinted)
+                // here "decoded" is of type `Any`, decoded from JSON data
+                // you can now cast it with the right type
+            let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+            var fileSize : UInt64
+            do {
+                let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+                fileSize = attr[FileAttributeKey.size] as! UInt64
+                if fileSize == 0{
+                    print("json file is empty")
+                    try jsonData.write(to: url, options : .atomic)
+                }
+                else{
+                    let rawData : NSData = try! NSData(contentsOf: url)
+                    do{
+                        let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                        let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                        var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                        let number = jsonarray.count
+
+                        innerLoop: for i in 0..<number{
+                            var tempelement = jsonarray[i]
+                            if tempelement["PhotoTime"] != nil {
+                                let kss =  tempelement["PhotoTime"] as! [String]
+                                if kss[0] == timeVal {
+                                    print("index", i)
+                                    print("target jsonarry", tempelement)
+                                    tempelement["Title"] = title
+                                    tempelement["Text"] = text
+                                    //jsonarray.remove(at: i)
+                                    // print("changed element", tempelement)
+                                    jsonarray[i] = tempelement
+                                    //jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                                    //print("jsonDataDictionary1", jsonDataDictionary as Any)
+                                    break innerLoop
+                                }
+                            }
+                            
+                        }
+//                        var keyValue = temp["PhotoTime"]![0]
+//                        jsonarray.dictionaryObject?.removeValue(forKey: keyValue)
+//                        jsonarray.append(newOne)
+                    print("jsonarray", jsonarray)
+                    jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                    print("jsonDataDictionary", jsonDataDictionary)
+                    // correct till now
+                        
+                    let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                        print("json data", jsonData)
+                        file.write(jsonData)
+                        file.closeFile()
+                    }
+                    }catch {print(error)}
+                }
+            } catch {
+                print("preview Error: \(error)")
+                }
+            }
+            catch{
+                print(Error.self)
+        }
+    }
+    
+        func writeAndReadMetaDataInformaionIntoJsonFileTest (metaData : Dictionary<String, Any>, temp: Dictionary<String, Any>){
+            do {
+                let jsonData = try! JSONSerialization.data(withJSONObject: metaData, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    // here "decoded" is of type `Any`, decoded from JSON data
+                    // you can now cast it with the right type
+                let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+                var fileSize : UInt64
+                do {
+                    let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+                    fileSize = attr[FileAttributeKey.size] as! UInt64
+                    if fileSize == 0{
+                        print("json file is empty")
+                        try jsonData.write(to: url, options : .atomic)
+                    }
+                    else{
+                        let rawData : NSData = try! NSData(contentsOf: url)
+                        do{
+                            let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                            let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                            var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                            let number = jsonarray.count
+
+                            jsonarray.append(metaData)
+                            
+                            jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                            let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                            if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                                file.write(jsonData)
+                                file.closeFile()
+                            }
+                        }catch {print(error)}
+                    }
+                } catch {
+                    print("preview Error: \(error)")
+                    }
+                }
+                catch{
+                    print(Error.self)
+            }
+        }
+
     // end of the class
 }

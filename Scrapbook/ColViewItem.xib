@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="i5g-3k-06X">
-                    <rect key="frame" x="5" y="5" width="141" height="92"/>
+                    <rect key="frame" x="5" y="5" width="145" height="92"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" selectable="YES" borderStyle="border" title="Multiline Label" id="wZZ-Pb-JbC">
                         <font key="font" metaFont="system"/>

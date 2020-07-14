@@ -32,7 +32,7 @@ class testColViewItem: NSCollectionViewItem {
         newBut.action = #selector(testViewController.firstInformationChange(_:))
 //        newBut.action = #selector(testViewController.firstInformationChange())
         
-        let checkBoxFrame = NSRect(x: 10, y: 10, width: 15, height: 15)
+        let checkBoxFrame = NSRect(x: 10, y: 8, width: 17, height: 17)
         let newCheckBut = NSButton.init(checkboxWithTitle: temp[alternativeUserInterfaceVariables.capturedApplicationCount], target: nil, action: #selector(testViewController.collectCheckBoxNumber(_:)))
         newCheckBut.frame = checkBoxFrame
         

@@ -59,7 +59,7 @@
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLa-9a-I9U">
                     <rect key="frame" x="5" y="0.0" width="135" height="21"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="charWrapping" continuous="YES" title="Text: blurblurblur" id="3YG-D0-rbO">
+                    <textFieldCell key="cell" lineBreakMode="charWrapping" continuous="YES" title="Text: blahblah" id="3YG-D0-rbO">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

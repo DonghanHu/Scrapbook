@@ -357,12 +357,24 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
 //                        jsonarray.append(newOne)
                     print("jsonarray", jsonarray)
                     jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
-                    print("jsonDataDictionary", jsonDataDictionary)
+                    print("jsonDataDictionary display", jsonDataDictionary)
                     // correct till now
                         
+                    let emptyText = ""
+                    let tempFilePathString = "file://" + variables.jsonFilePathString
+                    let tempFIlePathURL = URL(string: tempFilePathString)
+                    print("tempFIlePathURL,", tempFIlePathURL)
+                    do {
+                        try emptyText.write(to: tempFIlePathURL!, atomically: false, encoding: .utf8)
+                       } catch {
+                         print(error)
+                       }
+                        
+                    
                     let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
                     if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
                         print("json data", jsonData)
+                        
                         file.write(jsonData)
                         file.closeFile()
                     }

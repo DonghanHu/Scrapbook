@@ -156,8 +156,15 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             if checkBoxCollection.contains(keys[i]) {
                 let applicationsName = applicationArray[i]
                 let category = readCSVtoGetCategory(applicationName: applicationsName)
-                let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
-                print("final applescript", applescript)
+                var applescript = ""
+                if (applicationsName == "Acrobat Reader"){
+                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)
+                }
+                else {
+                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
+                }
+                
+                print("first final applescript", applescript)
                 
                 let truescript = runApplescript(applescript: applescript)
                 AppleScript(script: truescript)
@@ -181,7 +188,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             let applicationsName = applicationArray[i]
             let category = readCSVtoGetCategory(applicationName: applicationsName)
             let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
-            print("final applescript", applescript)
+            print("second final applescript", applescript)
             
             let truescript = runApplescript(applescript: applescript)
             AppleScript(script: truescript)
@@ -202,15 +209,19 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
        return "Others"
    }
     func readCSVtoGetApplescript(applicationCategory : String, applicationName : String, dic : Dictionary<String, [String]>) -> String{
+        var tempapplicationName = applicationName
         let filepath = Bundle.main.path(forResource: "applescriptCategoryCode", ofType: "csv")!
         var contents = try! String(contentsOfFile: filepath, encoding: .utf8)
         contents = cleanRows(file: contents)
         let csvRows = csv(data: contents)
+        if applicationName == "Adobe Acrobat Reader DC" {
+            tempapplicationName = "Acrobat Reader"
+        }
         for i in 0..<csvRows.count{
             if csvRows[i][0] == applicationCategory {
                 var final = String()
-                let pathORurl = dic[applicationName]![0]
-                if (applicationCategory == "Productivity") {
+                let pathORurl = dic[tempapplicationName]![0]
+                if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader") {
                     let temp = pathORurl.replacingOccurrences(of: "file://", with: "")
                     final = temp.replacingOccurrences(of: "%20", with: " ")
                 }
@@ -222,7 +233,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 return applescriptCode
             }
         }
-        return "tell application" + applicationName + "to activate \n end tell"
+        // return "tell application " + applicationName + "\n activate \n end tell"
+        return "tell application " + applicationName + " to activate \n end tell"
     }
     func cleanRows(file:String)->String{
         var cleanFile = file

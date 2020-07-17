@@ -92,8 +92,12 @@ class ViewController: NSViewController {
                 let jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
                 // print("jsonarray", jsonarray)
                 let length = jsonarray.count
-                // print("jsonarry length", jsonarray)
-                print("message count:", photonumber.inputRelatedMessage.count)
+                
+                
+                // print the number of message
+                //print("message count:", photonumber.inputRelatedMessage.count)
+                
+                
                 if (photonumber.inputRelatedMessage.count == length || length == 1){
                     print("nothing happen")
                 }
@@ -113,9 +117,14 @@ class ViewController: NSViewController {
 //                        photonumber.inputRelatedMessage.append(inputRelatedText[0])
                     }
                     photonumber.inputRelatedMessage = inputMessageList
-                    print("message", photonumber.inputRelatedMessage)
+                    
+                    // print the memo of this page of scrapbook
+                    // print("message", photonumber.inputRelatedMessage)
+                    
                     photonumber.inputRelatedTitle   = inputMessageTitleList
-                    print("title", photonumber.inputRelatedTitle)
+                    
+                    //print the title of this page of scrapbook
+                    // print("title", photonumber.inputRelatedTitle)
                     
                 }
 
@@ -124,9 +133,10 @@ class ViewController: NSViewController {
         } catch {
             print("preview Error: \(error)")
         }
-        // print("photo name list is: ", photoNameList)
-        print("text information is:", photonumber.inputRelatedMessage)
-//        diaryInformationCollection.photoNameList = photoNameList
+        
+        // print the memo body as text information
+        // print("text information is:", photonumber.inputRelatedMessage)
+
     }
     
     func divideIntoTwoArray(stringArray: [[String]]){
@@ -157,7 +167,10 @@ class ViewController: NSViewController {
     
     func photoNameListGenerate(){
         
-        print("second information count",diaryInformationCollection.photoNameSecondInformation.count)
+        
+        // print the number of photo information
+        // print("second information count",diaryInformationCollection.photoNameSecondInformation.count)
+        
         for i in 0..<diaryInformationCollection.photoNameSecondInformation.count{
             // print("i", i)
             // print("second information", diaryInformationCollection.photoNameSecondInformation[i])

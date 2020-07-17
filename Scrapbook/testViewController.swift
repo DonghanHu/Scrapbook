@@ -99,10 +99,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         labelFirstInformation.stringValue = sender.title
         let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
     
-        print("here is temp dictionary")
         // now, only have applications' information, stored in the dictionary
+        // print photo times
         print(variables.metaDataDictionaryTestOne["PhotoTime"])
-        print(tempDictionary)
+        // print tempdictionary body
+        //print(tempDictionary)
+        
         let tempApplicationName = sender.title
         let tempApplicationMetaData = tempDictionary[tempApplicationName]
         print(tempApplicationMetaData![2])
@@ -184,6 +186,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
        }
     
     @IBAction func saveButtonAction(_ sender: Any) {
+        
+        
         print("this is checkbox collection: ", checkBoxCollection)
         
         if (scrapbookTitle.stringValue == "") {

@@ -19,8 +19,12 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        print("count for number", photonumber.photonumberCounting)
-        print("count for photo name list length: ", diaryInformationCollection.photoNameList.count)
+        
+        // print screenshot's number
+        //print("count for number", photonumber.photonumberCounting)
+        
+        // print the totoal number of screenshots the same as name list
+        // print("count for photo name list length: ", diaryInformationCollection.photoNameList.count)
         let item = collectionView.makeItem(withIdentifier: .collectionViewItem, for: indexPath)
         
         if (photonumber.photonumberCounting == diaryInformationCollection.photoNameList.count - 1){

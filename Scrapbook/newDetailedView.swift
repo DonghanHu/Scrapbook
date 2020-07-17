@@ -355,15 +355,23 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
 //                        var keyValue = temp["PhotoTime"]![0]
 //                        jsonarray.dictionaryObject?.removeValue(forKey: keyValue)
 //                        jsonarray.append(newOne)
-                    print("jsonarray", jsonarray)
+                        
+                    // print jsonarry, josnarry contains the whole metadata
+                    // print("jsonarray", jsonarray)
                     jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
-                    print("jsonDataDictionary display", jsonDataDictionary)
-                    // correct till now
+                        
+                    // print jsondata dictionary, this is the who json data content, including hello world and image conut number
+                    // print("jsonDataDictionary display", jsonDataDictionary)
+                        
                         
                     let emptyText = ""
                     let tempFilePathString = "file://" + variables.jsonFilePathString
                     let tempFIlePathURL = URL(string: tempFilePathString)
-                    print("tempFIlePathURL,", tempFIlePathURL)
+                        
+                    // print temp file path in the URL format
+                    // print("tempFIlePathURL,", tempFIlePathURL)
+                        
+                        
                     do {
                         try emptyText.write(to: tempFIlePathURL!, atomically: false, encoding: .utf8)
                        } catch {
@@ -373,8 +381,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                     
                     let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
                     if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
-                        print("json data", jsonData)
                         
+                        // tried to print json data in string format, bur after transmission, it prints our the size of json data, like 1225 bytes.
+                        // print("json data", jsonData)
+                        
+                        
+                        // rewrite json data into target file
                         file.write(jsonData)
                         file.closeFile()
                     }

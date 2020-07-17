@@ -23,7 +23,10 @@ class ColViewItem: NSCollectionViewItem {
         boundary.stringValue = ""
         //photonumber.photonumberCounting = photonumber.photonumberCounting - 1
         labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
-        print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
+        
+        // in collection view, count the whole number of screenshots
+        // print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
+        
         super.viewDidLoad()
         // 1
         self.view.layer?.borderColor = NSColor.black.cgColor

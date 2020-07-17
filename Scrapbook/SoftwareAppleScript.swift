@@ -61,6 +61,13 @@ class appleScript : NSObject{
 //                        var d2 = ["c": "e"]
 //                        d1.merge(dict: d2)
                         
+                        print("firstInformation", firstInformation)
+                        // file path
+                        print("secondInformation", secondInformation)
+                        // file name
+                        print("applicationThirdResult", applicationThirdResult)
+                        // application category: Xcode, Prod2
+                        
                     }
                     
                     
@@ -98,10 +105,11 @@ class appleScript : NSObject{
         for i in 0..<variables.applescriptStingArray.count{
             if softwareName == variables.applescriptStingArray[i][0] {
                 let applescriptCode = variables.applescriptStingArray[i][1]
-                print("applescriptCode", applescriptCode)
+                print("running applescriptCode", applescriptCode)
                 let applescriptResult = runApplescript(applescript: applescriptCode)
+                print("middle first running apple script code, ", applescriptResult)
                 let result = runApplescript(applescript: applescriptResult)
-                print("applescript result", result)
+                print("running applescript result", result)
                 // return applescriptResult
                 return result
             }
@@ -117,8 +125,11 @@ class appleScript : NSObject{
         for i in 0..<variables.applescriptStingArray.count{
             if softwareName == variables.applescriptStingArray[i][0] {
                 let applescriptCode = variables.applescriptStingArray[i][2]
+                print("second running applescriptCode", applescriptCode)
                 let applescriptResult = runApplescript(applescript: applescriptCode)
+                print("middel result  of second running applescript", applescriptResult)
                 let result = runApplescript(applescript: applescriptResult)
+                print("second running applescript result", result)
                 // return applescriptResult
                 return result
             }
@@ -147,9 +158,12 @@ class appleScript : NSObject{
         for i in 0..<readNewCSVFileVariables.CateAndApplescriptList.count{
             if cate == readNewCSVFileVariables.CateAndApplescriptList[i][0] {
                 let initScriptCode = readNewCSVFileVariables.CateAndApplescriptList[i][2]
+                print("applescript code for second information, file name", initScriptCode)
                 let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
                 let applescriptResult = runApplescript(applescript: tempScriptCode)
+                print("applescript for second inforamtion in lines, file name", applescriptResult)
                 let result = runApplescript(applescript: applescriptResult)
+                print("result for second inforamtion, file name", result)
                 return result
             }
             

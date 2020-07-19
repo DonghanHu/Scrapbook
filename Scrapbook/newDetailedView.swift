@@ -166,7 +166,9 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 
                 print("first final applescript", applescript)
                 
+                
                 let truescript = runApplescript(applescript: applescript)
+                print("after transmitted", truescript)
                 AppleScript(script: truescript)
             }
             else {
@@ -218,6 +220,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             tempapplicationName = "Acrobat Reader"
         }
         for i in 0..<csvRows.count{
+
             if csvRows[i][0] == applicationCategory {
                 var final = String()
                 let pathORurl = dic[tempapplicationName]![0]
@@ -228,8 +231,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 else {
                     final = pathORurl
                 }
-                let applescriptCode = csvRows[i][1] + applicationName + csvRows[i][2] + final + csvRows[1][3]
-                
+                let applescriptCode = csvRows[i][1] + applicationName + csvRows[i][2] + final + csvRows[i][3]
                 return applescriptCode
             }
         }

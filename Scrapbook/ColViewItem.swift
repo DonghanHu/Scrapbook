@@ -75,6 +75,7 @@ class ColViewItem: NSCollectionViewItem {
         
         readJsonFile()
         
+
         // newDetailedView
         let WindowHandler1 : NSViewController = newDetailedView()
         let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
@@ -83,10 +84,12 @@ class ColViewItem: NSCollectionViewItem {
 
       
         subWindowController1.showWindow(nil)
+        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow) + 2))
+        
         // subWindow1.orderFront((Any).self)
         // subWindow1.collectionBehavior = .canJoinAllSpaces
         //subWindow1.orderedIndex = 1
-        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow)) + 2)
+       
         // NSApplication.shared.modalWindow?.orderFrontRegardless()
         // subWindow1.makeKeyAndOrderFront(nil)
         
@@ -104,8 +107,7 @@ class ColViewItem: NSCollectionViewItem {
     }
     
     func readJsonFile(){
-        
-        _ = [String]()
+    
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)
         let rawData : NSData = try! NSData(contentsOf: url)
         do{

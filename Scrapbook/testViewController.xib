@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,11 +33,11 @@
                 <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvN-a5-QE8">
                     <rect key="frame" x="654" y="308" width="227" height="148"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <clipView key="contentView" ambiguous="YES" id="fUm-qb-1cS">
+                    <clipView key="contentView" id="fUm-qb-1cS">
                         <rect key="frame" x="1" y="1" width="225" height="146"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView ambiguous="YES" id="YNf-VD-bUA">
+                            <collectionView id="YNf-VD-bUA">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="146"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="x5T-3j-hWE">
@@ -79,18 +79,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-RV-SkV">
-                    <rect key="frame" x="651" y="6" width="129" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Delete Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HVH-dJ-kkg">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                    <connections>
-                        <action selector="deleteButtonAction:" target="-2" id="TrW-hT-GuU"/>
-                    </connections>
-                </button>
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JaZ-cM-NHV">
                     <rect key="frame" x="36" y="74" width="600" height="30"/>
                     <autoresizingMask key="autoresizingMask"/>
@@ -155,7 +143,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" id="a2X-Yu-fcj">
-                    <rect key="frame" x="780" y="6" width="110" height="32"/>
+                    <rect key="frame" x="767" y="6" width="123" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Save Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vgU-z3-u1C">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -164,6 +152,18 @@
                     <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                     <connections>
                         <action selector="saveButtonAction:" target="-2" id="1eN-HL-8Wb"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-RV-SkV">
+                    <rect key="frame" x="638" y="6" width="129" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Delete Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HVH-dJ-kkg">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    <connections>
+                        <action selector="deleteButtonAction:" target="-2" id="TrW-hT-GuU"/>
                     </connections>
                 </button>
             </subviews>

@@ -71,6 +71,8 @@ class softwareClassify : NSObject {
         }
         
         print("opened software name list in order: ", allApplicationNmaeList)
+        
+        variables.capturedApplicationNameList = allApplicationNmaeList
 
         for simpleSoftware in softwareNameList {
             // print("one simple software window's information:", simpleSoftware)

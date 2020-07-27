@@ -12,6 +12,7 @@ class detailedColViewItem: NSCollectionViewItem {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         
         var applicationNameStack = [String]()
@@ -32,7 +33,9 @@ class detailedColViewItem: NSCollectionViewItem {
                 
         self.view.addSubview(newCheckBut)
         self.view.addSubview(newBut)
+        
         // Do view setup here.
+        
     }
     
 }

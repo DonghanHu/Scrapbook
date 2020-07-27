@@ -18,6 +18,7 @@ class testColViewItem: NSCollectionViewItem {
         
         let dictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
         
+        
         var applicationNameStack = [String]()
         let temp = variables.recordedApplicationNameStack
         let keys: Array<String> = Array<String>(dictionary.keys)
@@ -35,6 +36,8 @@ class testColViewItem: NSCollectionViewItem {
         let checkBoxFrame = NSRect(x: 10, y: 8, width: 17, height: 17)
         let newCheckBut = NSButton.init(checkboxWithTitle: temp[alternativeUserInterfaceVariables.capturedApplicationCount], target: nil, action: #selector(testViewController.collectCheckBoxNumber(_:)))
         newCheckBut.frame = checkBoxFrame
+        
+        newCheckBut.state = .on
         
         self.view.addSubview(newCheckBut)
         self.view.addSubview(newBut)

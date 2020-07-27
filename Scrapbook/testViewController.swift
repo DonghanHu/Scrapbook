@@ -53,6 +53,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkBoxCollection = variables.capturedApplicationNameList
+        
         let item = NSNib(nibNamed: "testColViewItem", bundle: nil)
         testColView.register(item, forItemWithIdentifier: .testItem)
         testColView.delegate = self
@@ -86,6 +88,57 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         scrapbookBody.placeholderString = "Input your memo here..."
         
         displayLatestScreenshot()
+        
+
+        if (checkBoxCollection[0] != nil){
+            let firstApplicationName = checkBoxCollection[0]
+            labelFirstInformation.stringValue = firstApplicationName
+            print("first application name in caputer view", firstApplicationName)
+            let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            let tempApplicationMetaData = tempDictionary[firstApplicationName]
+            print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+            if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "URL:"
+                captionLabelThree.stringValue = "Title:"
+            }
+            else if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "Path:"
+                captionLabelThree.stringValue = "Name:"
+            }
+
+            else if tempApplicationMetaData![2] == "Others"{
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "Infomation one"
+                captionLabelThree.stringValue = "Information two"
+            }
+            
+            
+            print("tempApplicationMetaData![0]", tempApplicationMetaData![0])
+            if tempApplicationMetaData![0] != "" {
+                labelSecondInformation.stringValue = (tempApplicationMetaData?[0])!
+            }
+            else {
+                labelSecondInformation.stringValue = "Nothing here"
+            }
+            
+            print("tempApplicationMetaData![1]", tempApplicationMetaData![1])
+            if tempApplicationMetaData![1] != "" {
+                labelThirdInformation.stringValue = (tempApplicationMetaData?[1])!
+            }
+            else {
+                labelThirdInformation.stringValue = "Nothing here"
+            }
+
+
+
+        }
+        
+        
         
         // Do view setup here.
     }
@@ -139,12 +192,28 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     @objc func collectCheckBoxNumber(_ sender: NSButton){
-        if checkBoxCollection.contains(sender.title) {
-            // print("checkboxcollection has already contained this application name")
-        }
-        else {
+        
+    
+        if (sender.state == .on && !checkBoxCollection.contains(sender.title)){
             checkBoxCollection.append(sender.title)
         }
+        else if (sender.state == .off && checkBoxCollection.contains(sender.title)){
+            let index = checkBoxCollection.firstIndex(of: sender.title)
+            checkBoxCollection.remove(at: index!)
+        }
+      
+        
+        // previous code: double click will not remove application name from string array
+        // hence, uncheck checkbox will still remain previous application name
+//
+//        if checkBoxCollection.contains(sender.title) {
+//            // print("checkboxcollection has already contained this application name")
+//        }
+//        else {
+//            checkBoxCollection.append(sender.title)
+//        }
+        
+        
         
 //        if sender.state == .on || checkBoxCollection.contains(sender.title){
 //            

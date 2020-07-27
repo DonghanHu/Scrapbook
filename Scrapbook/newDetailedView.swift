@@ -67,7 +67,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         openSelectedApplicationsButton.title = "Open Selected Applications"
         openAllApplicationsButton.title = "Open All Applications"
-        saveEditButton.title = "Save Change"
+        saveEditButton.title = "Save Change and Close"
         self.title = "Detailed Window"
         // Do view setup here.
         

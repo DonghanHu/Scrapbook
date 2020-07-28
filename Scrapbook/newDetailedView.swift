@@ -97,6 +97,37 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         LabelTwo.isHidden = false
         LabelThree.isHidden = false
         
+        // var attributedString = NSMutableAttributedString(string:sender.title)
+        
+        let appNameString = sender.title as NSString
+        let tempNameString = sender.title as NSString
+        let range = (appNameString as NSString).range(of: tempNameString as String)
+
+        let attribute = NSMutableAttributedString.init(string: appNameString as String)
+        attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor.red , range: range)
+        // sender.font = NSFont(name: "Monaco", size: 12.0)
+        print("attribute", attribute)
+        sender.attributedStringValue = attribute
+        
+        let namelength = variables.detailedApplicationNameList.count
+        
+        sender.bezelColor = NSColor.red
+        
+        
+//
+//        if (sender.contentTintColor == NSColor.black) {
+//            sender.contentTintColor = NSColor.blue
+//        }
+//        else {
+//            sender.contentTintColor = NSColor.red
+//        }
+        
+        
+        
+       // sender.title.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor.red , range: range)
+        
+        
+        
         print("button title", sender.title)
         detailedInformationFirst.stringValue = sender.title
         let detailedDictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]

@@ -13,11 +13,15 @@ class detailedColViewItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         
         var applicationNameStack = [String]()
         let keys: Array<String> = Array<String>(dictionary.keys)
         applicationNameStack = keys
+        
+        variables.detailedApplicationNameList = applicationNameStack
+        
                 
         let newBut = NSButton(frame: NSRect(x: 35, y: 0, width: 180, height: 30))
         newBut.contentTintColor = NSColor.black

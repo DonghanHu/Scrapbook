@@ -40,8 +40,8 @@
                             <collectionView id="YNf-VD-bUA">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="146"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="x5T-3j-hWE">
-                                    <size key="itemSize" width="230" height="40"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" id="x5T-3j-hWE">
+                                    <size key="itemSize" width="230" height="30"/>
                                 </collectionViewFlowLayout>
                                 <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </collectionView>

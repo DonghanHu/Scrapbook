@@ -75,16 +75,21 @@ class ColViewItem: NSCollectionViewItem {
         
         readJsonFile()
         
+        // perfect solution
+        
+        presentAsModalWindow(newDetailedView() as NSViewController)
+        
+        // previous solution with bug
 
         // newDetailedView
-        let WindowHandler1 : NSViewController = newDetailedView()
-        let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
-
-        let subWindowController1 = NSWindowController(window: subWindow1)
-
-      
-        subWindowController1.showWindow(nil)
-        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow) + 2))
+//        let WindowHandler1 : NSViewController = newDetailedView()
+//        let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
+//
+//        let subWindowController1 = NSWindowController(window: subWindow1)
+//
+//
+//        subWindowController1.showWindow(nil)
+//        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow) + 2))
         
         // subWindow1.orderFront((Any).self)
         // subWindow1.collectionBehavior = .canJoinAllSpaces

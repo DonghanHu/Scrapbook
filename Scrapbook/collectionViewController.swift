@@ -46,9 +46,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
     @IBOutlet weak var colView: NSCollectionView!
     
-    override func viewWillAppear() {
-        self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow) + 1))
-    }
+
     
     override func viewDidLoad() {
         

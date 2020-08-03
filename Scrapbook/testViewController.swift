@@ -193,7 +193,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     
     @objc func collectCheckBoxNumber(_ sender: NSButton){
         
-    
+        print("check box collection", checkBoxCollection)
         if (sender.state == .on && !checkBoxCollection.contains(sender.title)){
             checkBoxCollection.append(sender.title)
         }
@@ -227,7 +227,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
 //        else if (sender.state == .off) || !(checkBoxCollection.contains(sender.title)){
 //
 //        }
-        
+        print("check box collection", checkBoxCollection)
     }
     
     func displayLatestScreenshot() {
@@ -289,9 +289,24 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
         
         writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
-        dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
-        variables.countNumber = variables.countNumber + 1
-        self.view.window?.close()
+        
+        if (checkBoxCollection.count == 0){
+            let result = dialogCheck(question: "No application has been selected to save.", text: "")
+            if (result == true){
+                dialogOK(question: "Information has been saved successfully without any metadata.", text: "Click OK to continue.")
+                           variables.countNumber = variables.countNumber + 1
+                           self.view.window?.close()
+            }
+            else {
+                
+            }
+        }
+        else {
+            dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+            variables.countNumber = variables.countNumber + 1
+            self.view.window?.close()
+        }
+        
     }
     
     func writeAndReadMetaDataInformaionIntoJsonFileTest (metaData : Dictionary<String, Any>){
@@ -355,4 +370,14 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
            return alert.runModal() == .alertFirstButtonReturn
        }
     
+        func dialogCheck(question: String, text: String) -> Bool {
+            let alert = NSAlert()
+            alert.messageText = question
+            alert.informativeText = text
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "Go ahead.")
+            alert.addButton(withTitle: "Oh.")
+            return alert.runModal() == .alertFirstButtonReturn
+        }
+        
 }

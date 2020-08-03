@@ -692,9 +692,10 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKS-K9-T7D">
                                 <rect key="frame" x="24" y="143" width="262" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Capture Selected Screen" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W0L-CX-Mac">
+                                <buttonCell key="cell" type="push" title="Capture Selected Screen (S)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W0L-CX-Mac">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">s</string>
                                     <connections>
                                         <action selector="CaptureScreenshot:" target="XfG-lQ-9wD" id="tIO-gV-H6D"/>
                                     </connections>
@@ -703,7 +704,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjm-js-RAD">
                                 <rect key="frame" x="24" y="13" width="262" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uva-HW-rAI">
+                                <buttonCell key="cell" type="push" title="Quit Scrapbook" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uva-HW-rAI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -714,9 +715,10 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akX-M8-TGG">
                                 <rect key="frame" x="24" y="100" width="256" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Capture The Whole Screen" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6d2-zg-e4M">
+                                <buttonCell key="cell" type="push" title="Capture The Whole Screen (W)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6d2-zg-e4M">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">w</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="CaptureScreenShotMethodTwo:" target="XfG-lQ-9wD" id="f4t-ca-PjP"/>

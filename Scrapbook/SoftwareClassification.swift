@@ -66,11 +66,19 @@ class softwareClassify : NSObject {
         print("kcgWindowName is not nil and the number of the opening software is: ", softwareNameList.count)
         
         var allApplicationNmaeList = [String]()
+        var allApplicationPIDList = [String]()
         for singleApplication in softwareNameList {
             let singleApplicationName = singleApplication["kCGWindowOwnerName"] as! String
-            if singleApplicationName != "universalAccessAuthWarn" {
-                allApplicationNmaeList.append(singleApplicationName)
+            print("PID", singleApplication["kCGWindowOwnerPID"] ?? "PID value is nil")
+            let singleApplicationPIDName = String(describing: singleApplication["kCGWindowOwnerPID"])
+            
+            if (!allApplicationPIDList.contains(singleApplicationPIDName)){
+                if singleApplicationName != "universalAccessAuthWarn" {
+                    allApplicationNmaeList.append(singleApplicationName)
+                    allApplicationPIDList.append(singleApplicationPIDName)
+                }
             }
+            
         }
         
         print("opened software name list in order: ", allApplicationNmaeList)

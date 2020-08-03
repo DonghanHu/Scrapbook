@@ -35,10 +35,11 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         getAllAvailableScrapbookList()
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
-        CaputerButton.title = "Capture"
+        CaputerButton.title = "Capture Selected Screen (S)"
         // print("photo path list:", photonumber.photoPathList)
         // print("photo text list:", photonumber.inputRelatedMessage)
 

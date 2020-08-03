@@ -244,9 +244,11 @@ class Screencapture : NSObject {
             let firstCommaPosition = recTangleString.indexDistance(of: ",")!
             let firstCommaIndex = recTangleString.index(recTangleString.startIndex, offsetBy: firstCommaPosition)
             let firstCoordinationX = String(recTangleString[..<firstCommaIndex])
-            let firstCoordinationXInt = (firstCoordinationX as NSString).integerValue
+            var firstCoordinationXInt = (firstCoordinationX as NSString).integerValue
             print("first x: ", firstCoordinationXInt)
-            
+            if (firstCoordinationXInt == 0){
+                firstCoordinationXInt = 1
+            }
             let secondEndPooint = 0 - (recTangleString.count - firstCommaPosition) + 2
             let secondPartEndIndex = recTangleString.index(recTangleString.endIndex, offsetBy: secondEndPooint)
             let secondPartOfRectangleInformation = recTangleString[secondPartEndIndex...]
@@ -256,9 +258,11 @@ class Screencapture : NSObject {
             let secondCommaPosition = secondPartOfRectangleInformation.indexDistance(of: ",")!
             let secondCommaIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.startIndex, offsetBy: secondCommaPosition)
             let firstCoordinationY = String(secondPartOfRectangleInformation[..<secondCommaIndex])
-            let firstCoordinationYInt = (firstCoordinationY as NSString).integerValue
+            var firstCoordinationYInt = (firstCoordinationY as NSString).integerValue
             print("first y: ", firstCoordinationYInt)
-            
+            if (firstCoordinationYInt == 0){
+                firstCoordinationYInt = 1
+            }
             let thirdEndPoint = 0 - ( secondPartOfRectangleInformation.count - secondCommaPosition ) + 2
             let thirdPartEndIndex = secondPartOfRectangleInformation.index(secondPartOfRectangleInformation.endIndex, offsetBy: thirdEndPoint)
             let thirdPartOfRectangleInformation = secondPartOfRectangleInformation[thirdPartEndIndex...]
@@ -268,9 +272,11 @@ class Screencapture : NSObject {
             let thirdCommaPosition = thirdPartOfRectangleInformation.indexDistance(of: ",")!
             let thirdCommaIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.startIndex, offsetBy: thirdCommaPosition)
             let secondCoordinationX = String(thirdPartOfRectangleInformation[..<thirdCommaIndex])
-            let secondCoordinationXInt = (secondCoordinationX as NSString).integerValue
+            var secondCoordinationXInt = (secondCoordinationX as NSString).integerValue
             print("second X: ", secondCoordinationXInt)
-            
+            if (secondCoordinationXInt == 0){
+                secondCoordinationXInt = 1
+            }
             let forthEndPoint = 0 - ( thirdPartOfRectangleInformation.count - secondCommaPosition) + 2
             let forthPartEndIndex = thirdPartOfRectangleInformation.index(thirdPartOfRectangleInformation.endIndex, offsetBy: forthEndPoint)
             let forthPartOfRectangleInformation = thirdPartOfRectangleInformation[forthPartEndIndex...]
@@ -280,9 +286,11 @@ class Screencapture : NSObject {
             let forthCommaPosition = forthPartOfRectangleInformation.indexDistance(of: ".")!
             let forthCommaIndex = forthPartOfRectangleInformation.index(forthPartOfRectangleInformation.startIndex, offsetBy: forthCommaPosition)
             let secondCoordinationY = String(forthPartOfRectangleInformation[..<forthCommaIndex])
-            let secondCoordinationYInt = (secondCoordinationY as NSString).integerValue
+            var secondCoordinationYInt = (secondCoordinationY as NSString).integerValue
             print("second Y: ", secondCoordinationYInt)
-            
+            if (secondCoordinationYInt == 0){
+                secondCoordinationYInt = 1
+            }
             // get for coordination of the screenshot
             // (firstCoordinationXInt, firstCoordinationYInt) -> (secondCoordinationXInt, secondCoordinationYInt)
     //        if secondCoordinationXInt < firstCoordinationXInt {
@@ -295,12 +303,17 @@ class Screencapture : NSObject {
     //            screenShotInformation.secondCoordinationOfY = firstCoordinationYInt
     //        }
     //
+            print(firstCoordinationXInt)
+            print(firstCoordinationYInt)
+            print(firstCoordinationXInt + secondCoordinationXInt)
+            print(firstCoordinationYInt + secondCoordinationYInt)
             screenShotInformation.firstCoordinationOfX = firstCoordinationXInt
             screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
             screenShotInformation.secondCoordinationOfX = firstCoordinationXInt + secondCoordinationXInt
             screenShotInformation.secondCoordinationOfY = firstCoordinationYInt + secondCoordinationYInt
             alternativeUserInterfaceVariables.capturedApplicationCount = 0
             alternativeUserInterfaceVariables.capturedApplicationNumber = 0
+            print("1122")
             takeScreenshotSuccess = true
             
         }
@@ -374,5 +387,89 @@ class Screencapture : NSObject {
     func switchTwoValue(valueOne : Int, valueTwo : Int){
         
     }
+    
+    func wholeScreenCapture(){
+            
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
+        let dateString = dateFormatter.string(from: date)
+        
+        //dateFormatter.dateFormat = "yyyy, MMMM, dd, E, hh:mm:ss"
+        dateFormatter.dateFormat = "EEEE, MMM dd, yyyy"
+        let currentTime = dateFormatter.string(from: date)
+        variables.currentTimeInformation = currentTime
+        
+        let task = Process()
+        task.launchPath = "/usr/sbin/screencapture"
+        var arguments = [String]()
+        
+        arguments.append(variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg")
+        
+        variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
+        variables.latestScreenShotTime = dateString
+        print("save path", variables.latesScreenShotPathString)
+        task.arguments = arguments
+        let outpipe = Pipe()
+        task.standardOutput = outpipe
+        task.standardError = outpipe
+
+        
+        
+        //task.launch() // asynchronous call.
+        do {
+          try task.run()
+        } catch {}
+
+        
+        let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: outdata, encoding: .utf8)
+
+        let temp = ( output! )
+        // print("output", output!)
+        print ("temp", temp)
+    
+        let screen = NSScreen.main
+        let rect = screen!.frame
+        let height = rect.size.height
+        let width = rect.size.width
+        print("height", height)
+        print("width", width)
+
+        screenShotInformation.firstCoordinationOfX = 0
+        screenShotInformation.firstCoordinationOfY = 0
+        screenShotInformation.secondCoordinationOfX = Int(width)
+        screenShotInformation.secondCoordinationOfY = Int(height)
+        alternativeUserInterfaceVariables.capturedApplicationCount = 0
+        alternativeUserInterfaceVariables.capturedApplicationNumber = 0
+        
+        print("1122", screenShotInformation.firstCoordinationOfX, screenShotInformation.firstCoordinationOfY, screenShotInformation.secondCoordinationOfY, screenShotInformation.secondCoordinationOfY)
+                takeScreenshotSuccess = true
+                
+            //********************************
+            
+            // softeareClassificationHandler.screenAboveWindowListPrint()
+            
+            task.waitUntilExit()
+            
+            if (takeScreenshotSuccess){
+                let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
+                // let applicationNameStackLength = applicationNameStack.count
+                applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
+                print("the process of takeing screenshot is finished, and the images has been saved locally.")
+
+                let temp2 : NSViewController = testViewController()
+                let subWindow2 = NSWindow(contentViewController: temp2)
+                let subWindowController2 = NSWindowController(window: subWindow2)
+                subWindowController2.showWindow(nil)
+            }
+
+            else {
+                print("the action of taking a screenshot failed. please repeat your action.")
+            }
+   
+        }
+    
+    // end of class
     
 }

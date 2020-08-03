@@ -112,18 +112,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let namelength = variables.detailedApplicationNameList.count
         
         sender.bezelColor = NSColor.red
-        
-        
-//
-//        if (sender.contentTintColor == NSColor.black) {
-//            sender.contentTintColor = NSColor.blue
-//        }
-//        else {
-//            sender.contentTintColor = NSColor.red
-//        }
-        
-        
-        
+    
        // sender.title.addAttribute(NSAttributedString.Key.foregroundColor, value: NSColor.red , range: range)
         
         
@@ -165,13 +154,24 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     @objc func collectionViewCheckBox (_ sender: NSButton){
         
-        print("check box title", sender.title)
-        if checkBoxCollection.contains(sender.title) {
-            // print("checkboxcollection has already contained this application name")
-        }
-        else {
+        // checkbox states detection
+        if (sender.state == .on && !checkBoxCollection.contains(sender.title)){
             checkBoxCollection.append(sender.title)
         }
+        else if (sender.state == .off && checkBoxCollection.contains(sender.title)){
+            let index = checkBoxCollection.firstIndex(of: sender.title)
+            checkBoxCollection.remove(at: index!)
+        }
+          
+        
+//        print("check box title", sender.title)
+//        if checkBoxCollection.contains(sender.title) {
+//            // print("checkboxcollection has already contained this application name")
+//        }
+//        else {
+//            checkBoxCollection.append(sender.title)
+//        }
+        
     }
     
     

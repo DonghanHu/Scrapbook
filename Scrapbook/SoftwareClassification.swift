@@ -51,8 +51,9 @@ class softwareClassify : NSObject {
         // print("infoList", infoList)
         // let visibleWindows = infoList.filter{ $0["kCGWindowLayer"] as! Int == 0 }
         
-        let softwareNameList = infoList.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }
-        
+        var softwareNameList = infoList.filter{ ($0["kCGWindowLayer"] as! Int == 0) && ($0["kCGWindowOwnerName"] as? String != nil) }
+        print("softwarenamelist", softwareNameList)
+
         var totoalRectArea = 0
         
         // var overlappedAreaWithLastLayer = 0
@@ -67,10 +68,14 @@ class softwareClassify : NSObject {
         var allApplicationNmaeList = [String]()
         for singleApplication in softwareNameList {
             let singleApplicationName = singleApplication["kCGWindowOwnerName"] as! String
-            allApplicationNmaeList.append(singleApplicationName)
+            if singleApplicationName != "universalAccessAuthWarn" {
+                allApplicationNmaeList.append(singleApplicationName)
+            }
         }
         
         print("opened software name list in order: ", allApplicationNmaeList)
+        
+        
         
         variables.capturedApplicationNameList = allApplicationNmaeList
 
@@ -88,137 +93,271 @@ class softwareClassify : NSObject {
              Y = 0;
              }
             */
+            
             let boundDictionaryFormat = applicationBounds as! NSDictionary
             print("software name is: ", applicationName)
-            print("bounds in dictionary format", boundDictionaryFormat)
-            // dictionary.count == 4
-            
-            var firstX  : Int!
-            var firstY  : Int!
-            var height  : Int!
-            var width   : Int!
-            var secondX : Int!
-            var secondY : Int!
-            
-            var newFirstX   : Int!
-            var newFirstY   : Int!
-            var newSecondX  : Int!
-            var newSecondY  : Int!
-            
-            for (key, vaule) in boundDictionaryFormat {
-                print(key, vaule)
-                if (key as! String) == "X" {
-                    firstX = (boundDictionaryFormat.value(forKey: "X") as! Int)
-                    // print("the value of firstX is: ", firstX!)
-                    // print("the value of X: ", boundDictionaryFormat.value(forKey: "X") as! Int)
-                }
+            if (applicationName == "universalAccessAuthWarn"){
                 
-                else if (key as! String) == "Y" {
-                    firstY = ( boundDictionaryFormat.value(forKey: "Y") as! Int )
-                    // print("the value of firstY is: ", firstY!)
-                }
-                
-                else if (key as! String == "Width"){
-                    width = (boundDictionaryFormat.value(forKey: "Width") as! Int)
-                    // print("the value of secondX is: ", secondX!)
-                }
-                
-                else if (key as! String == "Height"){
-                    height =  (boundDictionaryFormat.value(forKey: "Height") as! Int)
-                    // print("the value of secondY is: ", secondY!)
-                }
-                
-                //print(boundDictionaryFormat.value(forKey: "X") as! Int)
-                
-                // get the bound information separately
-                
-                /*
-                 X 1440
-                 Height 1080
-                 Y 0
-                 Width 1920
-                 */
-            }
-            
-            secondX = firstX + width
-            secondY = firstY + height
-            
-            
-            // get the first and second coordination of the openning application
-            
-            print("software first x position: ", firstX!)
-            print("software first y position: ", firstY!)
-            print("software second x position: ", secondX!)
-            print("software second y position: ", secondY!)
-            
-            
-            /*
-             screenShotInformation.firstCoordinationOfX = firstCoordinationXInt
-             screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
-             screenShotInformation.secondCoordinationOfX = secondCoordinationXInt
-             screenShotInformation.secondCoordinationOfY = secondCoordinationYInt
-             */
-            
-            print("screenshot first x: ", screenShotInformation.firstCoordinationOfX!)
-            print("screenshot first y: ", screenShotInformation.firstCoordinationOfY!)
-            print("screenshot second x: ", screenShotInformation.secondCoordinationOfX!)
-            print("secreenshot second y: ", screenShotInformation.secondCoordinationOfY!)
-            
-            // areaOfScreenshot is the area of the screenshot
-            let areaOfScreenshot = (screenShotInformation.secondCoordinationOfX - screenShotInformation.firstCoordinationOfX) * (screenShotInformation.secondCoordinationOfY - screenShotInformation.firstCoordinationOfY)
-            print("area of screenshot is: ", areaOfScreenshot)
-            
-            let x5 = max(screenShotInformation.firstCoordinationOfX, firstX)
-            let y5 = max(screenShotInformation.firstCoordinationOfY, firstY)
-            let x6 = min(screenShotInformation.secondCoordinationOfX, secondX)
-            let y6 = min(screenShotInformation.secondCoordinationOfY, secondY)
-            print("x5: ", x5)
-            print("y5: ", y5)
-            print("x5: ", x6)
-            print("y6: ", y6)
-            if (x5 > x6) || (y5 > y6){
-                print("no overlapping between screenshot and this application")
-                continue
             }
             else {
-                newFirstX = x5
-                newFirstY = y5
-                newSecondX = x6
-                newSecondY = y6
-                print("newFirstX: ", newFirstX!)
-                print("newFirstY: ", newFirstY!)
-                print("newSecondX:  ", newSecondX!)
-                print("newSecondY: ", newSecondY!)
+                print("bounds in dictionary format", boundDictionaryFormat)
+                // dictionary.count == 4
+                
+                var firstX  : Int!
+                var firstY  : Int!
+                var height  : Int!
+                var width   : Int!
+                var secondX : Int!
+                var secondY : Int!
+                
+                var newFirstX   : Int!
+                var newFirstY   : Int!
+                var newSecondX  : Int!
+                var newSecondY  : Int!
+                
+                for (key, vaule) in boundDictionaryFormat {
+                    print(key, vaule)
+                    if (key as! String) == "X" {
+                        firstX = (boundDictionaryFormat.value(forKey: "X") as! Int)
+                        // print("the value of firstX is: ", firstX!)
+                        // print("the value of X: ", boundDictionaryFormat.value(forKey: "X") as! Int)
+                    }
+                    
+                    else if (key as! String) == "Y" {
+                        firstY = ( boundDictionaryFormat.value(forKey: "Y") as! Int )
+                        // print("the value of firstY is: ", firstY!)
+                    }
+                    
+                    else if (key as! String == "Width"){
+                        width = (boundDictionaryFormat.value(forKey: "Width") as! Int)
+                        // print("the value of secondX is: ", secondX!)
+                    }
+                    
+                    else if (key as! String == "Height"){
+                        height =  (boundDictionaryFormat.value(forKey: "Height") as! Int)
+                        // print("the value of secondY is: ", secondY!)
+                    }
+                    
+                    //print(boundDictionaryFormat.value(forKey: "X") as! Int)
+                    
+                    // get the bound information separately
+                    
+                    /*
+                     X 1440
+                     Height 1080
+                     Y 0
+                     Width 1920
+                     */
+                }
+                
+                secondX = firstX + width
+                secondY = firstY + height
+                
+                
+                // get the first and second coordination of the openning application
+                
+                print("software first x position: ", firstX!)
+                print("software first y position: ", firstY!)
+                print("software second x position: ", secondX!)
+                print("software second y position: ", secondY!)
+                
+                
+                /*
+                 screenShotInformation.firstCoordinationOfX = firstCoordinationXInt
+                 screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
+                 screenShotInformation.secondCoordinationOfX = secondCoordinationXInt
+                 screenShotInformation.secondCoordinationOfY = secondCoordinationYInt
+                 */
+                
+                print("screenshot first x: ", screenShotInformation.firstCoordinationOfX!)
+                print("screenshot first y: ", screenShotInformation.firstCoordinationOfY!)
+                print("screenshot second x: ", screenShotInformation.secondCoordinationOfX!)
+                print("secreenshot second y: ", screenShotInformation.secondCoordinationOfY!)
+                
+                // areaOfScreenshot is the area of the screenshot
+                let areaOfScreenshot = (screenShotInformation.secondCoordinationOfX - screenShotInformation.firstCoordinationOfX) * (screenShotInformation.secondCoordinationOfY - screenShotInformation.firstCoordinationOfY)
+                print("area of screenshot is: ", areaOfScreenshot)
+                
+                let x5 = max(screenShotInformation.firstCoordinationOfX, firstX)
+                let y5 = max(screenShotInformation.firstCoordinationOfY, firstY)
+                let x6 = min(screenShotInformation.secondCoordinationOfX, secondX)
+                let y6 = min(screenShotInformation.secondCoordinationOfY, secondY)
+                print("x5: ", x5)
+                print("y5: ", y5)
+                print("x5: ", x6)
+                print("y6: ", y6)
+                if (x5 > x6) || (y5 > y6){
+                    print("no overlapping between screenshot and this application")
+                    continue
+                }
+                else {
+                    newFirstX = x5
+                    newFirstY = y5
+                    newSecondX = x6
+                    newSecondY = y6
+                    print("newFirstX: ", newFirstX!)
+                    print("newFirstY: ", newFirstY!)
+                    print("newSecondX:  ", newSecondX!)
+                    print("newSecondY: ", newSecondY!)
+                }
+                
+                
+                let IntersectedArea = abs(newFirstX - newSecondX) * abs(newFirstY - newSecondY)
+                print("Intersected Area is: ", IntersectedArea)
+                print("tempFirstX: ", tempFirstx)
+                print("tempFirstY: ", tempFirstY)
+                print("tempSecondX: ", tempSecondX)
+                print("tempSecondY: ", tempSecondY)
+                let tempArea = twoRectangleOverlapArea(x1: tempFirstx, x2: tempSecondX, x3: newFirstX, x4: newSecondX, y1: tempFirstY, y2: tempSecondY, y3: newFirstY, y4: newSecondY)
+                print("temp area is: ", tempArea)
+                let validArea = IntersectedArea - tempArea
+                
+                tempFirstx = newFirstX
+                tempFirstY = newFirstY
+                tempSecondX = newSecondX
+                tempSecondY = newSecondY
+                
+                print("valid Area: ", validArea)
+                if (Double(validArea) / Double(areaOfScreenshot)) > 0 {
+                    print("valid / total area is: ", (Double(validArea) / Double(areaOfScreenshot)))
+                    applicationNameStack.append(applicationName)
+                }
+                totoalRectArea = totoalRectArea + validArea
+                print("totalRectArea is: ", totoalRectArea)
+                if (Double(totoalRectArea) / Double(areaOfScreenshot)) >= 1 {
+                    print("app total / total area is: ", (Double(totoalRectArea) / Double(areaOfScreenshot)))
+                    break
+                }
             }
-            
-            
-            let IntersectedArea = abs(newFirstX - newSecondX) * abs(newFirstY - newSecondY)
-            print("Intersected Area is: ", IntersectedArea)
-            print("tempFirstX: ", tempFirstx)
-            print("tempFirstY: ", tempFirstY)
-            print("tempSecondX: ", tempSecondX)
-            print("tempSecondY: ", tempSecondY)
-            let tempArea = twoRectangleOverlapArea(x1: tempFirstx, x2: tempSecondX, x3: newFirstX, x4: newSecondX, y1: tempFirstY, y2: tempSecondY, y3: newFirstY, y4: newSecondY)
-            print("temp area is: ", tempArea)
-            let validArea = IntersectedArea - tempArea
-            
-            tempFirstx = newFirstX
-            tempFirstY = newFirstY
-            tempSecondX = newSecondX
-            tempSecondY = newSecondY
-            
-            print("valid Area: ", validArea)
-            if (Double(validArea) / Double(areaOfScreenshot)) > 0 {
-                print("valid / total area is: ", (Double(validArea) / Double(areaOfScreenshot)))
-                applicationNameStack.append(applicationName)
-            }
-            totoalRectArea = totoalRectArea + validArea
-            print("totalRectArea is: ", totoalRectArea)
-            if (Double(totoalRectArea) / Double(areaOfScreenshot)) >= 1 {
-                print("app total / total area is: ", (Double(totoalRectArea) / Double(areaOfScreenshot)))
-                break
-            }
-            
+//            print("bounds in dictionary format", boundDictionaryFormat)
+//            // dictionary.count == 4
+//            
+//            var firstX  : Int!
+//            var firstY  : Int!
+//            var height  : Int!
+//            var width   : Int!
+//            var secondX : Int!
+//            var secondY : Int!
+//            
+//            var newFirstX   : Int!
+//            var newFirstY   : Int!
+//            var newSecondX  : Int!
+//            var newSecondY  : Int!
+//            
+//            for (key, vaule) in boundDictionaryFormat {
+//                print(key, vaule)
+//                if (key as! String) == "X" {
+//                    firstX = (boundDictionaryFormat.value(forKey: "X") as! Int)
+//                    // print("the value of firstX is: ", firstX!)
+//                    // print("the value of X: ", boundDictionaryFormat.value(forKey: "X") as! Int)
+//                }
+//                
+//                else if (key as! String) == "Y" {
+//                    firstY = ( boundDictionaryFormat.value(forKey: "Y") as! Int )
+//                    // print("the value of firstY is: ", firstY!)
+//                }
+//                
+//                else if (key as! String == "Width"){
+//                    width = (boundDictionaryFormat.value(forKey: "Width") as! Int)
+//                    // print("the value of secondX is: ", secondX!)
+//                }
+//                
+//                else if (key as! String == "Height"){
+//                    height =  (boundDictionaryFormat.value(forKey: "Height") as! Int)
+//                    // print("the value of secondY is: ", secondY!)
+//                }
+//                
+//                //print(boundDictionaryFormat.value(forKey: "X") as! Int)
+//                
+//                // get the bound information separately
+//                
+//                /*
+//                 X 1440
+//                 Height 1080
+//                 Y 0
+//                 Width 1920
+//                 */
+//            }
+//            
+//            secondX = firstX + width
+//            secondY = firstY + height
+//            
+//            
+//            // get the first and second coordination of the openning application
+//            
+//            print("software first x position: ", firstX!)
+//            print("software first y position: ", firstY!)
+//            print("software second x position: ", secondX!)
+//            print("software second y position: ", secondY!)
+//            
+//            
+//            /*
+//             screenShotInformation.firstCoordinationOfX = firstCoordinationXInt
+//             screenShotInformation.firstCoordinationOfY = firstCoordinationYInt
+//             screenShotInformation.secondCoordinationOfX = secondCoordinationXInt
+//             screenShotInformation.secondCoordinationOfY = secondCoordinationYInt
+//             */
+//            
+//            print("screenshot first x: ", screenShotInformation.firstCoordinationOfX!)
+//            print("screenshot first y: ", screenShotInformation.firstCoordinationOfY!)
+//            print("screenshot second x: ", screenShotInformation.secondCoordinationOfX!)
+//            print("secreenshot second y: ", screenShotInformation.secondCoordinationOfY!)
+//            
+//            // areaOfScreenshot is the area of the screenshot
+//            let areaOfScreenshot = (screenShotInformation.secondCoordinationOfX - screenShotInformation.firstCoordinationOfX) * (screenShotInformation.secondCoordinationOfY - screenShotInformation.firstCoordinationOfY)
+//            print("area of screenshot is: ", areaOfScreenshot)
+//            
+//            let x5 = max(screenShotInformation.firstCoordinationOfX, firstX)
+//            let y5 = max(screenShotInformation.firstCoordinationOfY, firstY)
+//            let x6 = min(screenShotInformation.secondCoordinationOfX, secondX)
+//            let y6 = min(screenShotInformation.secondCoordinationOfY, secondY)
+//            print("x5: ", x5)
+//            print("y5: ", y5)
+//            print("x5: ", x6)
+//            print("y6: ", y6)
+//            if (x5 > x6) || (y5 > y6){
+//                print("no overlapping between screenshot and this application")
+//                continue
+//            }
+//            else {
+//                newFirstX = x5
+//                newFirstY = y5
+//                newSecondX = x6
+//                newSecondY = y6
+//                print("newFirstX: ", newFirstX!)
+//                print("newFirstY: ", newFirstY!)
+//                print("newSecondX:  ", newSecondX!)
+//                print("newSecondY: ", newSecondY!)
+//            }
+//            
+//            
+//            let IntersectedArea = abs(newFirstX - newSecondX) * abs(newFirstY - newSecondY)
+//            print("Intersected Area is: ", IntersectedArea)
+//            print("tempFirstX: ", tempFirstx)
+//            print("tempFirstY: ", tempFirstY)
+//            print("tempSecondX: ", tempSecondX)
+//            print("tempSecondY: ", tempSecondY)
+//            let tempArea = twoRectangleOverlapArea(x1: tempFirstx, x2: tempSecondX, x3: newFirstX, x4: newSecondX, y1: tempFirstY, y2: tempSecondY, y3: newFirstY, y4: newSecondY)
+//            print("temp area is: ", tempArea)
+//            let validArea = IntersectedArea - tempArea
+//            
+//            tempFirstx = newFirstX
+//            tempFirstY = newFirstY
+//            tempSecondX = newSecondX
+//            tempSecondY = newSecondY
+//            
+//            print("valid Area: ", validArea)
+//            if (Double(validArea) / Double(areaOfScreenshot)) > 0 {
+//                print("valid / total area is: ", (Double(validArea) / Double(areaOfScreenshot)))
+//                applicationNameStack.append(applicationName)
+//            }
+//            totoalRectArea = totoalRectArea + validArea
+//            print("totalRectArea is: ", totoalRectArea)
+//            if (Double(totoalRectArea) / Double(areaOfScreenshot)) >= 1 {
+//                print("app total / total area is: ", (Double(totoalRectArea) / Double(areaOfScreenshot)))
+//                break
+//            }
+//            
             // let validArea = areaBetweenScreeshotAndApplication - overlappedAreaWithLastLayer
             // overlappedAreaWithLastLayer =
             

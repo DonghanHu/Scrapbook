@@ -24,6 +24,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var CaputerButton: NSButtonCell!
     
     var screenCaptureHandler = Screencapture()
+    var wholeScreenCaptureHandler = Screencapture()
     var softwareClassificationHandler = softwareClassify()
     
     @IBOutlet weak var CaptureMethodTwoButton: NSButton!
@@ -54,8 +55,7 @@ class ViewController: NSViewController {
     @IBAction func CaptureScreenShotMethodTwo(_ sender: Any) {
         
         self.view.window?.close()
-         screenCaptureHandler.screenCaptureFramework()
-        // screenCaptureHandler.screenCaptureSwiftCodeMethod(folderName: "nil")
+        wholeScreenCaptureHandler.wholeScreenCapture()
     }
     
     @IBAction func CaptureScreenshot(_ sender: Any) {
@@ -63,20 +63,6 @@ class ViewController: NSViewController {
         screenCaptureHandler.selectScreenCapture()
     }
     
-//    @IBAction func overviewWindowButtonAction(_ sender: Any) {
-//        if (overviewWindowVariables.windowOpenOrClose == false){
-//          let overViewWindowHandler = OverviewWindow()
-//          let sub1Window = NSWindow(contentViewController: overViewWindowHandler)
-//          overviewWindowVariables.subOverviewWindowController = NSWindowController(window: sub1Window)
-//          overviewWindowVariables.subOverviewWindowController?.showWindow(nil)
-//          overviewWindowVariables.windowOpenOrClose = true
-//      }
-//      else{
-//          overviewWindowVariables.subOverviewWindowController?.showWindow(nil)
-//      }
-//
-//      self.view.window?.close()
-//    }
     
     
     func getAllAvailableScrapbookList(){

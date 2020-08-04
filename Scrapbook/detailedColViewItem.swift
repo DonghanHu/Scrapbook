@@ -31,7 +31,7 @@ class detailedColViewItem: NSCollectionViewItem {
         newBut.isBordered = false
         newBut.action = #selector(newDetailedView.collectionViewButton(_:))
 
-        let checkBoxFrame = NSRect(x: 10, y: 8, width: 17, height: 17)
+        let checkBoxFrame = NSRect(x: 10, y: 8, width: 18, height: 18)
         let newCheckBut = NSButton.init(checkboxWithTitle: applicationNameStack[detailedWiondwVariables.buttonCount], target: nil, action: #selector(newDetailedView.collectionViewCheckBox(_:)))
         newCheckBut.frame = checkBoxFrame
                 

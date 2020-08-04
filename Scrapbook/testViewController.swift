@@ -257,52 +257,114 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     @IBAction func saveButtonAction(_ sender: Any) {
         
         
-        print("this is checkbox collection: ", checkBoxCollection)
-        
-        if (scrapbookTitle.stringValue == "") {
-            scrapbookTitle.stringValue = variables.defaultTitle
-            variables.defaultTitle = ""
-        }
-        else {
-            print("this is the customized title", scrapbookTitle.stringValue)
-        }
-        
-        
-        variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
-        variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
-        // print("memo body", variables.metaDataDictionaryTestOne["Text"])
-        
-        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
-        var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
-        let dictionary = [String:[String]]()
-        let length = checkBoxCollection.count
-        let keys: Array<String> = Array<String>(tempDictionary.keys)
-        let keyLength = keys.count
-        for i in 0..<keyLength{
-            if checkBoxCollection.contains(keys[i]){
-                
-            }
-            else {
-                tempDictionary.removeValue(forKey: keys[i])
-            }
-        }
-        variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
-        
-        writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+//        print("this is checkbox collection: ", checkBoxCollection)
+//
+//        if (scrapbookTitle.stringValue == "") {
+//            scrapbookTitle.stringValue = variables.defaultTitle
+//            variables.defaultTitle = ""
+//        }
+//        else {
+//            print("this is the customized title", scrapbookTitle.stringValue)
+//        }
+//
+//
+//        variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+//        variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+//
+//        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+//        var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+//        let dictionary = [String:[String]]()
+//        let length = checkBoxCollection.count
+//        let keys: Array<String> = Array<String>(tempDictionary.keys)
+//        let keyLength = keys.count
+//        for i in 0..<keyLength{
+//            if checkBoxCollection.contains(keys[i]){
+//
+//            }
+//            else {
+//                tempDictionary.removeValue(forKey: keys[i])
+//            }
+//        }
+//        variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+//
+//        writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
         
         if (checkBoxCollection.count == 0){
             let result = dialogCheck(question: "No application has been selected to save.", text: "")
             if (result == true){
+                print("go ahead")
                 dialogOK(question: "Information has been saved successfully without any metadata.", text: "Click OK to continue.")
-                           variables.countNumber = variables.countNumber + 1
-                           self.view.window?.close()
+                print("this is checkbox collection: ", checkBoxCollection)
+                
+                if (scrapbookTitle.stringValue == "") {
+                    scrapbookTitle.stringValue = variables.defaultTitle
+                    variables.defaultTitle = ""
+                }
+                else {
+                    print("this is the customized title", scrapbookTitle.stringValue)
+                }
+                
+                
+                variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+                variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+                
+                variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+                var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+                let dictionary = [String:[String]]()
+                let length = checkBoxCollection.count
+                let keys: Array<String> = Array<String>(tempDictionary.keys)
+                let keyLength = keys.count
+                for i in 0..<keyLength{
+                    if checkBoxCollection.contains(keys[i]){
+                        
+                    }
+                    else {
+                        tempDictionary.removeValue(forKey: keys[i])
+                    }
+                }
+                variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+                
+                writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+                variables.countNumber = variables.countNumber + 1
+                self.view.window?.close()
             }
             else {
-                
+                print("oh")
             }
         }
         else {
             dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+            print("this is checkbox collection: ", checkBoxCollection)
+            
+            if (scrapbookTitle.stringValue == "") {
+                scrapbookTitle.stringValue = variables.defaultTitle
+                variables.defaultTitle = ""
+            }
+            else {
+                print("this is the customized title", scrapbookTitle.stringValue)
+            }
+            
+            
+            variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+            variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+            
+            variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+            var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            let dictionary = [String:[String]]()
+            let length = checkBoxCollection.count
+            let keys: Array<String> = Array<String>(tempDictionary.keys)
+            let keyLength = keys.count
+            for i in 0..<keyLength{
+                if checkBoxCollection.contains(keys[i]){
+                    
+                }
+                else {
+                    tempDictionary.removeValue(forKey: keys[i])
+                }
+            }
+            variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+            
+            writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
             variables.countNumber = variables.countNumber + 1
             self.view.window?.close()
         }

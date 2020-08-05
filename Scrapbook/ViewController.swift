@@ -22,6 +22,7 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var QuitButton: NSButton!
     @IBOutlet weak var CaputerButton: NSButtonCell!
+    @IBOutlet weak var cancelButton: NSButton!
     
     var screenCaptureHandler = Screencapture()
     var wholeScreenCaptureHandler = Screencapture()
@@ -44,8 +45,19 @@ class ViewController: NSViewController {
         // print("photo text list:", photonumber.inputRelatedMessage)
 
 
+        //self.view.window?.makeKeyAndOrderFront(self)
+        //self.view.window?.makeMain()
+        
+        //print("rawvalue", self.view.window?.level.rawValue)
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        //self.view.window?.makeKeyAndOrderFront(self)
+        //self.view.window?.makeMain()
+        //self.view.window?.makeKeyAndOrderFront(self)
     }
 
     override var representedObject: Any? {
@@ -175,6 +187,9 @@ class ViewController: NSViewController {
         
     }
     
+    @IBAction func cancelButtonAction(_ sender: Any) {
+         self.view.window?.close()
+    }
     
     
     

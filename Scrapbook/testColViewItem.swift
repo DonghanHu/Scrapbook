@@ -24,16 +24,17 @@ class testColViewItem: NSCollectionViewItem {
         let keys: Array<String> = Array<String>(dictionary.keys)
         applicationNameStack = keys
         
-        let newBut = NSButton(frame: NSRect(x: 35, y: 0, width: 180, height: 30))
+        let newBut = NSButton(frame: NSRect(x: 35, y: 2, width: 180, height: 30))
         newBut.alignment = .left
         newBut.contentTintColor = NSColor.black
         newBut.title = temp[alternativeUserInterfaceVariables.capturedApplicationCount]
+        newBut.font = NSFont(name: "AppleSystemUIFont", size: 14.0)
         newBut.isBordered = false
         newBut.bezelStyle = NSButton.BezelStyle.regularSquare
         newBut.action = #selector(testViewController.firstInformationChange(_:))
 //        newBut.action = #selector(testViewController.firstInformationChange())
         
-        let checkBoxFrame = NSRect(x: 10, y: 8, width: 18, height: 18)
+        let checkBoxFrame = NSRect(x: 10, y: 8, width: 19, height: 19)
         let newCheckBut = NSButton.init(checkboxWithTitle: temp[alternativeUserInterfaceVariables.capturedApplicationCount], target: nil, action: #selector(testViewController.collectCheckBoxNumber(_:)))
         newCheckBut.frame = checkBoxFrame
         

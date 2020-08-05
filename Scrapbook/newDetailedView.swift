@@ -94,6 +94,39 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     @objc func collectionViewButton (_ sender: NSButton){
         
+        print("sender frame", sender.frame)
+        
+        print("sender state 1", sender.state)
+        
+        
+//        NSAnimationContext.runAnimationGroup({(context) -> Void in
+//            context.duration = 5.0
+//            sender.contentTintColor = NSColor.red
+//
+//            sender.animator().alphaValue = 1
+//        }) {
+//            print("Animation done")
+//        }
+        print(sender.font)
+        sender.contentTintColor = NSColor.red
+        sender.font = NSFont(name: "Monaco", size: 14.0)
+        let secondsToDelay = 1.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + secondsToDelay) {
+            print("This message is delayed")
+           // Put any code you want to be delayed here
+            sender.contentTintColor = NSColor.black
+            sender.font = NSFont(name: "AppleSystemUIFont", size: 14.0)
+        }
+        print("change to red")
+        //sender.contentTintColor = NSColor.black
+        
+//        NSAnimationContext.runAnimationGroup({ (context) in
+//
+//            context.duration = 10.0
+//          // Use the value you want to animate to (NOT the starting value)
+//            sender.animator().alphaValue = 0
+//        })
+        
         LabelTwo.isHidden = false
         LabelThree.isHidden = false
         
@@ -153,7 +186,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     }
     
     @objc func collectionViewCheckBox (_ sender: NSButton){
-        
+        print("sender state 2", sender.state)
         // checkbox states detection
         if (sender.state == .on && !checkBoxCollection.contains(sender.title)){
             checkBoxCollection.append(sender.title)

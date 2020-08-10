@@ -82,7 +82,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bxy-cy-jAl">
-                    <rect key="frame" x="645" y="225" width="209" height="39"/>
+                    <rect key="frame" x="645" y="240" width="235" height="24"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="EvI-Vb-15c">
                         <font key="font" metaFont="system"/>
@@ -91,7 +91,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvg-Hz-k3Z">
-                    <rect key="frame" x="647" y="151" width="209" height="72"/>
+                    <rect key="frame" x="647" y="151" width="235" height="72"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="3po-c0-miT">
                         <font key="font" metaFont="system"/>
@@ -100,7 +100,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-5W-7wi">
-                    <rect key="frame" x="649" y="69" width="208" height="74"/>
+                    <rect key="frame" x="649" y="85" width="231" height="58"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="Wg7-Xg-faV">
                         <font key="font" metaFont="system"/>

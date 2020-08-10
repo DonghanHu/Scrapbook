@@ -216,26 +216,55 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let keys: Array<String> = Array<String>( dictionary.keys)
         applicationArray = keys
         let keyLength = keys.count
+        print("key length", keyLength)
+
         for i in 0..<keyLength{
             if checkBoxCollection.contains(keys[i]) {
                 let applicationsName = applicationArray[i]
                 let category = readCSVtoGetCategory(applicationName: applicationsName)
                 var applescript = ""
+                var index = " "
+                var localpath = " "
                 if (applicationsName == "Acrobat Reader"){
-                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)
+                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[0]
+                    index = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[1]
+                    localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[2]
                 }
                 else {
-                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
+                    applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+                    index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+                    localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
                 }
                 
                 print("first final applescript", applescript)
+                if index == "1" {
+                    let truescript = runApplescript(applescript: applescript)
+                    print("after transmitted", truescript)
+                    AppleScript(script: truescript)
+                }
+                else if index == "0"{
+                    let alert = NSAlert.init()
+                    alert.messageText = "Hi"
+                    let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n " + "This is the saved path: " + localpath
+                    alert.informativeText = inforstring
+                    alert.addButton(withTitle: "OK")
+                    //alert.addButton(withTitle: "Cancel")
+                    alert.runModal()
+                }
+//                let truescript = runApplescript(applescript: applescript)
+//                print("after transmitted", truescript)
+//                AppleScript(script: truescript)
                 
                 
-                let truescript = runApplescript(applescript: applescript)
-                print("after transmitted", truescript)
-                AppleScript(script: truescript)
             }
             else {
+                let alert = NSAlert.init()
+                alert.messageText = "Hi"
+                let inforstring = "You have not selected any application. Please check again."
+                alert.informativeText = inforstring
+                alert.addButton(withTitle: "OK")
+                //alert.addButton(withTitle: "Cancel")
+                alert.runModal()
                 print("this app is not selected, hence not opened")
             }
             
@@ -253,11 +282,26 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         for i in 0..<keyLength{
             let applicationsName = applicationArray[i]
             let category = readCSVtoGetCategory(applicationName: applicationsName)
-            let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
+            let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+            let index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+            let localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
             print("second final applescript", applescript)
+            if index == "1" {
+                let truescript = runApplescript(applescript: applescript)
+                AppleScript(script: truescript)
+            }
+            else if index == "0" {
+                let alert = NSAlert.init()
+                alert.messageText = "Hi"
+                let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n" + "This is the saved path: " + localpath
+                alert.informativeText = inforstring
+                
+                alert.addButton(withTitle: "OK")
+                //alert.addButton(withTitle: "Cancel")
+                alert.runModal()
+            }
             
-            let truescript = runApplescript(applescript: applescript)
-            AppleScript(script: truescript)
+            
         }
         
     }
@@ -274,7 +318,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
        }
        return "Others"
    }
-    func readCSVtoGetApplescript(applicationCategory : String, applicationName : String, dic : Dictionary<String, [String]>) -> String{
+    func readCSVtoGetApplescript(applicationCategory : String, applicationName : String, dic : Dictionary<String, [String]>) -> [String]{
         var tempapplicationName = applicationName
         let filepath = Bundle.main.path(forResource: "applescriptCategoryCode", ofType: "csv")!
         var contents = try! String(contentsOfFile: filepath, encoding: .utf8)
@@ -283,24 +327,51 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         if applicationName == "Adobe Acrobat Reader DC" {
             tempapplicationName = "Acrobat Reader"
         }
+        var applescriptStrings = [String]()
         for i in 0..<csvRows.count{
 
             if csvRows[i][0] == applicationCategory {
                 var final = String()
                 let pathORurl = dic[tempapplicationName]![0]
-                if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader") {
+                if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader" || applicationCategory == "Finder") {
                     let temp = pathORurl.replacingOccurrences(of: "file://", with: "")
                     final = temp.replacingOccurrences(of: "%20", with: " ")
                 }
                 else {
                     final = pathORurl
                 }
-                let applescriptCode = csvRows[i][1] + applicationName + csvRows[i][2] + final + csvRows[i][3]
-                return applescriptCode
+                var applescriptCode = csvRows[i][1] + applicationName + csvRows[i][2] + final + csvRows[i][3]
+                applescriptStrings.append(applescriptCode)
+                // final is the document path
+                if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader" || applicationCategory == "Finder"){
+                    if FileManager.default.fileExists(atPath: final){
+                        let index = "1"
+                        applescriptStrings.append(index)
+                    }
+                    else{
+                        let index = "0"
+                        applescriptStrings.append(index)
+//                        let alert = NSAlert.init()
+//                        alert.messageText = "Hi"
+//                        alert.informativeText = "No file found, you may have changed the file name, move to another folder or delte the orginal file."
+//                        alert.addButton(withTitle: "OK")
+//                        //alert.addButton(withTitle: "Cancel")
+//                        alert.runModal()
+                    }
+                }
+                applescriptStrings.append(final)
+                return applescriptStrings
+                // return applescriptCode
             }
         }
         // return "tell application " + applicationName + "\n activate \n end tell"
-        return "tell application " + applicationName + " to activate \n end tell"
+        let tempstring = "tell application " + applicationName + " to activate \n end tell"
+        var tempresult = [String]()
+        tempresult.append(tempstring)
+        // 2 means nothing to reopen or retrieve
+        tempresult.append("2")
+        //return "tell application " + applicationName + " to activate \n end tell"
+        return tempresult
     }
     func cleanRows(file:String)->String{
         var cleanFile = file
@@ -324,6 +395,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         if (error != nil) {
             print("error: \(String(describing: error))")
         }
+        print("applescript result", scriptObject)
     }
     func runApplescript(applescript : String) -> String{
         var error: NSDictionary?

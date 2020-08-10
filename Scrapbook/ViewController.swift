@@ -44,7 +44,7 @@ class ViewController: NSViewController {
         // print("photo path list:", photonumber.photoPathList)
         // print("photo text list:", photonumber.inputRelatedMessage)
 
-
+        cancelButton.title = "Go Back"
         //self.view.window?.makeKeyAndOrderFront(self)
         //self.view.window?.makeMain()
         

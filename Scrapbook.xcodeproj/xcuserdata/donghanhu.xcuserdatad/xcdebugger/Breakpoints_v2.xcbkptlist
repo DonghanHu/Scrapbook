@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "002A73BD-30BC-4970-A30F-7DE0E3D83E77"
+            uuid = "692EEA45-BFC0-4CD8-A8A1-55ABEB97F834"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scrapbook/testViewController.swift"
+            filePath = "Scrapbook/newDetailedView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "saveButtonAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1CA1551A-9043-415E-AEA5-3CEFB0B4B6E0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scrapbook/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "viewDidAppear()"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
+            landmarkName = "readCSVtoGetApplescript(applicationCategory:applicationName:dic:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

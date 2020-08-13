@@ -53,6 +53,9 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         super.viewDidLoad()
         // Do view setup here.
         
+        let windowHeight = self.view.frame.size.height
+        let windowWidth = self.view.frame.size.width
+        
         
         // print("window level", NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))))
         

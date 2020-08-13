@@ -32,7 +32,8 @@ struct variables {
                                                              "Title"            :   String(),
                                                              "PhotoTime"        :   [String](),
                                                              "screenshotPath"   :   [String](),
-                                                             "Applications"     :   [String:[String]]()
+                                                             "Applications"     :   [String:[String]](),
+                                                             "Coordinates"      :   [String:[String]]()
     ]
     static var metaDataIdctionaryTestDic : [String : [String]] = [:]
     
@@ -92,6 +93,7 @@ struct detailedWiondwVariables {
                                                         "PhotoTime"        :   [String](),
                                                         "screenshotPath"   :   [String](),
                                                         "Applications"     :   [String:[String]]()
+        
     ]
 }
 
@@ -100,6 +102,15 @@ struct readNewCSVFileVariables {
     static var CateAndApplescriptList = [[""]]
     static var AppAndCateList = [[""]]
     
+}
+
+struct capturedApplicationsCoordinates {
+    // to save captured applications' coordinates
+    // esample: ["whole": ["whole", "349", "160", "574", "473"]]
+    // x, y, width and height
+    static var caputredCoordinates = [String:[String]]()
+    static var screenWidth : Int!
+    static var screenHeight : Int!
 }
 
 

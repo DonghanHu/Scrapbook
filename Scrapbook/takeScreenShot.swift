@@ -316,6 +316,24 @@ class Screencapture : NSObject {
             print("1122")
             takeScreenshotSuccess = true
             
+            var wholeImageInfor = [String]()
+            wholeImageInfor.append("whole")
+            let width = calculateWidth(valueOne: firstCoordinationXInt, valueTwo: secondCoordinationXInt)
+            let height = calculateHeight(valueOne: firstCoordinationYInt, valueTwo: secondCoordinationYInt)
+            let stringX = String(firstCoordinationXInt)
+            let stringY = String(firstCoordinationYInt)
+            let stringWidth = String(width)
+            let stringHeight = String(height)
+            wholeImageInfor.append(stringX)
+            wholeImageInfor.append(stringY)
+            wholeImageInfor.append(stringWidth)
+            wholeImageInfor.append(stringHeight)
+            var tempdic = ["whole": wholeImageInfor] as NSDictionary
+            
+            
+            capturedApplicationsCoordinates.caputredCoordinates.merge(dict: tempdic as! [String : [String]])
+            print("the captured whole image informaiton", capturedApplicationsCoordinates.caputredCoordinates)
+            
         }
         
         // softeareClassificationHandler.screenAboveWindowListPrint()
@@ -384,8 +402,22 @@ class Screencapture : NSObject {
         print("mouse locatin of ending: ", xMouseCoordination, yMouseCoordination)
     }
     
-    func switchTwoValue(valueOne : Int, valueTwo : Int){
-        
+    func calculateWidth(valueOne : Int, valueTwo : Int) -> Int{
+        if (valueOne >= valueTwo) {
+            return valueOne - valueTwo
+        }
+        else {
+            return valueTwo - valueOne
+        }
+    }
+    
+    func calculateHeight(valueOne : Int, valueTwo : Int) -> Int {
+        if (valueOne >= valueTwo) {
+            return valueOne - valueTwo
+        }
+        else {
+            return valueTwo - valueOne
+        }
     }
     
     func wholeScreenCapture(){

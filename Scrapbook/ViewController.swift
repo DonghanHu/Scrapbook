@@ -45,6 +45,8 @@ class ViewController: NSViewController {
         // print("photo text list:", photonumber.inputRelatedMessage)
 
         cancelButton.title = "Go Back"
+        // get the screen width and height
+        getScreenInfor()
         //self.view.window?.makeKeyAndOrderFront(self)
         //self.view.window?.makeMain()
         
@@ -76,7 +78,14 @@ class ViewController: NSViewController {
         screenCaptureHandler.selectScreenCapture()
     }
     
-    
+    func getScreenInfor(){
+        let screen = NSScreen.main
+        let rect = screen!.frame
+        let height = rect.size.height
+        let width = rect.size.width
+        capturedApplicationsCoordinates.screenWidth = Int(width)
+        capturedApplicationsCoordinates.screenHeight = Int(height)
+    }
     
     func getAllAvailableScrapbookList(){
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)

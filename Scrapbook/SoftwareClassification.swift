@@ -84,6 +84,7 @@ class softwareClassify : NSObject {
         print("opened software name list in order: ", allApplicationNmaeList)
         
         
+        var allApplicationsCoordinates = [String: [String]]()
         
         variables.capturedApplicationNameList = allApplicationNmaeList
 
@@ -160,6 +161,15 @@ class softwareClassify : NSObject {
                 
                 secondX = firstX + width
                 secondY = firstY + height
+                
+                var tempStringArray = [String]()
+                tempStringArray.append(applicationName)
+                tempStringArray.append(String(firstX))
+                tempStringArray.append(String(firstY))
+                tempStringArray.append(String(width))
+                tempStringArray.append(String(height))
+                var tempDic = [applicationName: tempStringArray] as NSDictionary
+                capturedApplicationsCoordinates.caputredCoordinates.merge(dict: tempDic as! [String : [String]])
                 
                 
                 // get the first and second coordination of the openning application
@@ -609,7 +619,9 @@ class softwareClassify : NSObject {
         
         
         
+        
         print("application name list stack: ", applicationNameStack)
+        print("all applications coordinates in selected part of screenshots", capturedApplicationsCoordinates.caputredCoordinates)
         variables.recordedApplicationNameStack = applicationNameStack
         variables.numberofRecordedApplication = applicationNameStack.count
         alternativeUserInterfaceVariables.capturedApplicationNumber = applicationNameStack.count

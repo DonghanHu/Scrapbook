@@ -91,6 +91,12 @@ class appleScript : NSObject{
         // end of for loop for applicationNameStack
         }
         
+        var tempCoordinates = variables.metaDataDictionaryTestOne["Coordinates"] as! [String : [String]]
+        tempCoordinates.merge(dict: capturedApplicationsCoordinates.caputredCoordinates)
+        variables.metaDataDictionaryTestOne["Coordinates"] = tempCoordinates
+        print("final dictionary", variables.metaDataDictionaryTestOne)
+        
+        
         // print("this is the dictionary of metadata", variables.metaDataDictionary)
     }
     

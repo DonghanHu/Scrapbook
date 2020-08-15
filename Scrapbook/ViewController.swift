@@ -54,19 +54,12 @@ class ViewController: NSViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        //self.view.window?.makeKeyAndOrderFront(self)
-        //self.view.window?.makeMain()
-        //self.view.window?.makeKeyAndOrderFront(self)
-    }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
+//    override var representedObject: Any? {
+//        didSet {
+//        // Update the view, if already loaded.
+//        }
+//    }
     @IBAction func CaptureScreenShotMethodTwo(_ sender: Any) {
         
         self.view.window?.close()

@@ -53,6 +53,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let width = self.view.frame.size.width
+        let height = self.view.frame.size.height
+//        screenshotDisplay.frame.size.width
+//        screenshotDisplay.frame.size.height
+        let x = screenshotDisplay.frame.origin.x
+        let y = screenshotDisplay.frame.origin.y
+        let tempvalues = screenshotDisplay.frame
+        
+        
         checkBoxCollection = variables.capturedApplicationNameList
         
         let item = NSNib(nibNamed: "testColViewItem", bundle: nil)

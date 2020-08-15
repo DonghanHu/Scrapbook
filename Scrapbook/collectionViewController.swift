@@ -57,6 +57,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         let windowWidth = self.view.frame.size.width
         
         
+        
         // print("window level", NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))))
         
         let item = NSNib(nibNamed: "ColViewItem", bundle: nil)

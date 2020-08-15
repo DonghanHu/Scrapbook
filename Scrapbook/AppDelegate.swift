@@ -8,6 +8,8 @@
 
 import Cocoa
 import Foundation
+import AppKit
+import CoreData
 
 struct variables {
     static var defaultFolderPathString          = ""
@@ -141,7 +143,7 @@ struct screenshotInDetailedView {
 }
 
 
-
+// @available(OSX 10.13, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -149,9 +151,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let jsonFileHandler = jsonRelated()
     let csvFileReadHandler = applescriptFileLoad()
     
+    let popover = NSPopover()
+    let popoverView = NSPopover()
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    var eventMonitor : EventMonitor?
 
+
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    // let statusItem = NSStatusBar.system.statusItem(withLength: -2)
+
+    // var eventMonitor: EventMonitor?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
 //        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
@@ -168,6 +178,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         csvFileReadHandler.readCSVCateAndScript()
         
         
+        
         // set count number as 1
         let date = Date()
         let calendar = Calendar.current
@@ -176,6 +187,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         variables.tempDay = intDay
         
         // NSApplication.shared.keyWindow?.close()
+        
+        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+          if let strongSelf = self, strongSelf.popover.isShown {
+            strongSelf.closePopover(sender: event)
+          }
+        }
+        
+        
     }
     
     func XcodeFileName(softwarename : String) -> (String){
@@ -196,6 +215,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    @objc func togglePopover(_ sender: Any?) {
+      if popover.isShown {
+        closePopover(sender: sender)
+      } else {
+        showPopover(sender: sender)
+      }
+    }
+
+    func showPopover(sender: Any?) {
+      if let button = statusItem.button {
+        popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+      }
+        eventMonitor?.start()
+
+    }
+
+    func closePopover(sender: Any?) {
+      popover.performClose(sender)
+        eventMonitor?.stop()
     }
     
     @objc func homePath() -> String{
@@ -238,6 +278,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popoverView.contentViewController = vc
         popoverView.behavior = .transient
         popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+        popover.contentViewController = vc
+        popover.behavior = .transient
+        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+        
+        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+          if let strongSelf = self, strongSelf.popoverView.isShown {
+            strongSelf.closePopover(sender: event)
+          }
+        }
+        
     }
 
     // MARK: - Core Data stack

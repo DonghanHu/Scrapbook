@@ -38,6 +38,7 @@
 		EAEA0BA223EF830F005B483E /* applescript.csv in Resources */ = {isa = PBXBuildFile; fileRef = EAEA0BA123EF830F005B483E /* applescript.csv */; };
 		EAF3017823FB24CD0028DA6B /* checkBoxViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF3017623FB24CD0028DA6B /* checkBoxViewItem.swift */; };
 		EAF3017923FB24CD0028DA6B /* checkBoxViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF3017723FB24CD0028DA6B /* checkBoxViewItem.xib */; };
+		EAFB3F4324E76E0400CC8CC9 /* eventmonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFB3F4224E76E0400CC8CC9 /* eventmonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		EAEA0BA123EF830F005B483E /* applescript.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = applescript.csv; sourceTree = "<group>"; };
 		EAF3017623FB24CD0028DA6B /* checkBoxViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkBoxViewItem.swift; sourceTree = "<group>"; };
 		EAF3017723FB24CD0028DA6B /* checkBoxViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = checkBoxViewItem.xib; sourceTree = "<group>"; };
+		EAFB3F4224E76E0400CC8CC9 /* eventmonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventmonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				EAC063412400568F003D82A1 /* newDetailedView.xib */,
 				EAC06345240056C3003D82A1 /* detailedColViewItem.swift */,
 				EAC06346240056C3003D82A1 /* detailedColViewItem.xib */,
+				EAFB3F4224E76E0400CC8CC9 /* eventmonitor.swift */,
 			);
 			path = Scrapbook;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD90F2B23BE7EDF008ACCAE /* SoftwareClassification.swift in Sources */,
+				EAFB3F4324E76E0400CC8CC9 /* eventmonitor.swift in Sources */,
 				EA236CEE23FCAFB4001DCB82 /* testViewController.swift in Sources */,
 				EAF3017823FB24CD0028DA6B /* checkBoxViewItem.swift in Sources */,
 				EA7FCA1123B52CC600CEB2E8 /* ViewController.swift in Sources */,

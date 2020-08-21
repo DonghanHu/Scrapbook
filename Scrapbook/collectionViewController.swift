@@ -57,6 +57,10 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         let windowWidth = self.view.frame.size.width
         
         
+        if popoverWindow.popover.isShown {
+            popoverWindow.popover.close()
+        }
+        
         
         // print("window level", NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))))
         

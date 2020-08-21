@@ -98,6 +98,14 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         displayLatestScreenshot()
         
+        if (checkBoxCollection[0] == nil){
+            let firstApplicationName = "No Application Name"
+            labelFirstInformation.stringValue = firstApplicationName
+            captionLabelTwo.isHidden = false
+            captionLabelThree.isHidden = false
+            captionLabelTwo.stringValue = "First Information:"
+            captionLabelThree.stringValue = "Scond Information:"
+        }
 
         if (checkBoxCollection[0] != nil){
             let firstApplicationName = checkBoxCollection[0]

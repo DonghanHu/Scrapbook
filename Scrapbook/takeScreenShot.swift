@@ -68,6 +68,8 @@ class Screencapture : NSObject {
     
     var takeScreenshotSuccess = false
     
+    var eventMonitor : EventMonitor?
+    
     // using packet to take screenshot from the github
     func screenCaptureFramework(){
         
@@ -422,6 +424,13 @@ class Screencapture : NSObject {
     
     func wholeScreenCapture(){
             
+        let secondsToDelay = 5.0
+
+        do {
+            sleep(UInt32(0.8))
+        }
+
+        
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM.dd,HH:mm:ss"
@@ -448,11 +457,16 @@ class Screencapture : NSObject {
 
         
         
-        //task.launch() // asynchronous call.
+        // wait a second to wait the menu window disappear
+
+        
         do {
           try task.run()
         } catch {}
-
+        // sleep(UInt32(0.5))
+        
+        //task.launch() // asynchronous call.
+        
         
         let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: outdata, encoding: .utf8)
@@ -482,23 +496,23 @@ class Screencapture : NSObject {
             
             // softeareClassificationHandler.screenAboveWindowListPrint()
             
-            task.waitUntilExit()
-            
-            if (takeScreenshotSuccess){
-                let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
-                // let applicationNameStackLength = applicationNameStack.count
-                applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
-                print("the process of takeing screenshot is finished, and the images has been saved locally.")
+        task.waitUntilExit()
+        
+        if (takeScreenshotSuccess){
+            let applicationNameStack = softeareClassificationHandler.screenAboveWindowListPrint()
+            // let applicationNameStackLength = applicationNameStack.count
+            applescriptHandler.applicationMetaData(applicationNameStack: applicationNameStack)
+            print("the process of takeing screenshot is finished, and the images has been saved locally.")
 
-                let temp2 : NSViewController = testViewController()
-                let subWindow2 = NSWindow(contentViewController: temp2)
-                let subWindowController2 = NSWindowController(window: subWindow2)
-                subWindowController2.showWindow(nil)
-            }
+            let temp2 : NSViewController = testViewController()
+            let subWindow2 = NSWindow(contentViewController: temp2)
+            let subWindowController2 = NSWindowController(window: subWindow2)
+            subWindowController2.showWindow(nil)
+        }
 
-            else {
-                print("the action of taking a screenshot failed. please repeat your action.")
-            }
+        else {
+            print("the action of taking a screenshot failed. please repeat your action.")
+        }
    
         }
     

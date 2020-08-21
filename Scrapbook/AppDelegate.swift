@@ -142,6 +142,9 @@ struct screenshotInDetailedView {
     static var title = ""
 }
 
+struct popoverWindow {
+    static var popover = NSPopover()
+}
 
 // @available(OSX 10.13, *)
 @NSApplicationMain
@@ -151,16 +154,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let jsonFileHandler = jsonRelated()
     let csvFileReadHandler = applescriptFileLoad()
     
-    let popover = NSPopover()
+    let popover = NSPopover()// new one
+    
     let popoverView = NSPopover()
     
     var eventMonitor : EventMonitor?
 
-
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    // let statusItem = NSStatusBar.system.statusItem(withLength: -2)
 
-    // var eventMonitor: EventMonitor?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -170,15 +171,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print(variables.defaultFolderPathString)
         defaultFolder(folderPath: folderPath)
         jsonFileHandler.createjson(filepath: URL(string: variables.defaultFolderPathString)!)
+        
+//        if let button = statusItem.button {
+//          button.image = NSImage(named:NSImage.Name("book"))
+//          button.action = #selector(togglePopover(_:))
+//        }
+//        popover.contentViewController = ViewController.freshController()
+//
+        
         statusItem.button?.title = "S"
         statusItem.button?.target = self
-        statusItem.button?.action = #selector(showSettings)
+        
+        // statusItem.button?.action = #selector(showSettings)
+        // statusItem.button?.action = #selector(printQuote(_:))
+        statusItem.button?.action = #selector(togglePopover(_:))
+        popover.contentViewController = ViewController.freshController()
+        
         csvFileReadHandler.readCSV()
         csvFileReadHandler.readCSVAPPandCate()
         csvFileReadHandler.readCSVCateAndScript()
-        
-        
-        
+
         // set count number as 1
         let date = Date()
         let calendar = Calendar.current
@@ -189,13 +201,50 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // NSApplication.shared.keyWindow?.close()
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-          if let strongSelf = self, strongSelf.popover.isShown {
+            if let strongSelf = self, strongSelf.popover.isShown {
             strongSelf.closePopover(sender: event)
           }
         }
         
+        // checking permission for screen recording 
+        takeTestImage()
+        deleteTestImage()
         
     }
+    
+    func takeTestImage(){
+        let task = Process()
+        task.launchPath = "/usr/sbin/screencapture"
+        var arguments = [String]();
+        arguments.append("-x")
+
+        arguments.append(variables.defaultFolderPathString + "test")
+        task.arguments = arguments
+
+        let outpipe = Pipe()
+        task.standardOutput = outpipe
+        task.standardError = outpipe
+         do {
+           try task.run()
+         } catch {}
+        
+    }
+    
+    func deleteTestImage(){
+        let path = variables.defaultFolderPathString + "test"
+        do {
+          try FileManager.default.removeItem(atPath: path)
+        } catch{}
+        
+    }
+    
+    @objc func printQuote(_ sender: Any?) {
+      let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
+      let quoteAuthor = "Mark Twain"
+      
+      print("\(quoteText) — \(quoteAuthor)")
+    }
+
     
     func XcodeFileName(softwarename : String) -> (String){
         let first = "tell application \"Xcode\" \n set fileName to name of window 1 \n end tell"
@@ -223,6 +272,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       } else {
         showPopover(sender: sender)
       }
+        
     }
 
     func showPopover(sender: Any?) {
@@ -278,15 +328,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popoverView.contentViewController = vc
         popoverView.behavior = .transient
         popoverView.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
-        popover.contentViewController = vc
-        popover.behavior = .transient
-        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
         
-        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-          if let strongSelf = self, strongSelf.popoverView.isShown {
-            strongSelf.closePopover(sender: event)
-          }
-        }
+        
+//        popover.contentViewController = vc
+//        popover.behavior = .transient
+//        popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+        
         
     }
 

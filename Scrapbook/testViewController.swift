@@ -13,7 +13,10 @@ extension NSUserInterfaceItemIdentifier {
     static let testItem = NSUserInterfaceItemIdentifier("testColViewItem")
 }
 
-class testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource{
+
+// previous one
+// testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource {
+class testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return variables.recordedApplicationNameStack.count
     }
@@ -47,6 +50,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     @IBOutlet weak var captionLabelTwo: NSTextField!
     @IBOutlet weak var captionLabelThree: NSTextField!
     
+    // this is for the table view
+    @IBOutlet weak var tableView: NSTableView!
+    
     
     var checkBoxCollection = [String]()
     
@@ -69,6 +75,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         testColView.delegate = self
         testColView.dataSource = self
         self.title = "Capture View"
+        
+        
+        // for table view
+        tableView.delegate = self
+        tableView.dataSource = self
+
         
         timeLabelDisplay.stringValue = variables.currentTimeInformation
         
@@ -458,5 +470,59 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             alert.addButton(withTitle: "Oh.")
             return alert.runModal() == .alertFirstButtonReturn
         }
-        
+        // end of the class
+}
+
+extension testViewController: NSTableViewDataSource {
+  
+  func numberOfRows(in tableView: NSTableView) -> Int {
+    // return the number of application names
+    let temp = variables.recordedApplicationNameStack
+    print(temp)
+    // print(diaryInformationCollection.photoNameFirstInformation.count)
+    return variables.recordedApplicationNameStack.count
+  }
+
+}
+
+extension testViewController: NSTableViewDelegate {
+
+  fileprivate enum CellIdentifiers {
+    static let NameCell = "NameCellID"
+  }
+
+  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+
+    var image: NSImage?
+    var text: String = ""
+    var cellIdentifier: String = ""
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .long
+    
+    // code here to read application name
+    	
+//    guard let item = directoryItems?[row] else {
+//      return nil
+//    }
+
+    // 2
+    if tableColumn == tableView.tableColumns[0] {
+      // image = item.icon
+      text = "temp name"
+      cellIdentifier = CellIdentifiers.NameCell
+    } else{
+        print("nothing here for the second clomun currently")
+    }
+
+    // 3
+    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+      cell.textField?.stringValue = text
+      // cell.imageView?.image = image ?? nil
+      return cell
+    }
+    return nil
+  }
+
 }

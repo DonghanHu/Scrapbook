@@ -52,8 +52,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     
     // this is for the table view
     @IBOutlet weak var tableView: NSTableView!
-    
-    
+    @IBOutlet weak var statusLabel: NSTextField!
+
     var checkBoxCollection = [String]()
     
     override func viewDidLoad() {
@@ -167,6 +167,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
 
         }
         
+        self.tableView.allowsMultipleSelection = true
+        self.tableView.selectAll(nil)
+        // self.tableView.allowsMultipleSelectionDuringEditing = true
         
         
         // Do view setup here.
@@ -452,24 +455,153 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     // func for pupup a alert window for saving and deleting
-       func dialogOK(question: String, text: String) -> Bool {
-           let alert = NSAlert()
-           alert.messageText = question
-           alert.informativeText = text
-           alert.alertStyle = .warning
-           alert.addButton(withTitle: "OK")
-           return alert.runModal() == .alertFirstButtonReturn
-       }
+   func dialogOK(question: String, text: String) -> Bool {
+       let alert = NSAlert()
+       alert.messageText = question
+       alert.informativeText = text
+       alert.alertStyle = .warning
+       alert.addButton(withTitle: "OK")
+       return alert.runModal() == .alertFirstButtonReturn
+   }
+
+    func dialogCheck(question: String, text: String) -> Bool {
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Go ahead.")
+        alert.addButton(withTitle: "Oh.")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
     
-        func dialogCheck(question: String, text: String) -> Bool {
-            let alert = NSAlert()
-            alert.messageText = question
-            alert.informativeText = text
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "Go ahead.")
-            alert.addButton(withTitle: "Oh.")
-            return alert.runModal() == .alertFirstButtonReturn
+    // interaction with table view for multiple selections
+    func updateStatus() {
+      
+        let text: String
+
+        // 1
+        let itemsSelected = tableView.selectedRowIndexes.count
+
+        // 2
+        if(itemsSelected == 0) {
+        text = "\(variables.recordedApplicationNameStack.count) items"
         }
+        else {
+        text = "\(itemsSelected) of \(variables.recordedApplicationNameStack.count) selected"
+        }
+        // 3
+        statusLabel.stringValue = text
+        }
+
+    
+    @IBAction func buttonForTableView(_ sender: Any) {
+        // for selected applications names
+        //let temp = tableView.selectedRowIndexes.description// 2 indexes
+        let temp = tableView.selectedRowIndexes
+        let name = ""
+        for (name, index) in tableView.selectedRowIndexes.enumerated() {
+            print(index)
+        }
+        
+        // print("selected application names", temp)
+        
+        if (tableView.selectedRowIndexes.count == 0){
+            let result = dialogCheck(question: "No application has been selected to save.", text: "")
+            if (result == true){
+                print("go ahead")
+                dialogOK(question: "Information has been saved successfully without any metadata.", text: "Click OK to continue.")
+                print("this is checkbox collection: ", checkBoxCollection)
+                
+                if (scrapbookTitle.stringValue == "") {
+                    scrapbookTitle.stringValue = variables.defaultTitle
+                    variables.defaultTitle = ""
+                }
+                else {
+                    print("this is the customized title", scrapbookTitle.stringValue)
+                }
+                
+                
+                variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+                variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+                
+                variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+                var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+                let dictionary = [String:[String]]()
+                let length = tableView.selectedRowIndexes.count
+                var tempIndexStack = [Int]()
+                var tempValueStack = [String]()
+                for (name, index) in tableView.selectedRowIndexes.enumerated() {
+                    tempIndexStack.append(index)
+                    tempValueStack.append(variables.recordedApplicationNameStack[index])
+                }
+                let keys: Array<String> = Array<String>(tempDictionary.keys)
+                let keyLength = keys.count
+                for i in 0..<keyLength{
+                    if tempValueStack.contains(keys[i]){
+                        
+                    }
+                    else {
+                        tempDictionary.removeValue(forKey: keys[i])
+                    }
+                }
+                variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+                
+                writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+                variables.countNumber = variables.countNumber + 1
+                self.view.window?.close()
+            }
+            else {
+                print("oh, if this appear, plz check, i dont know what happened here actually")
+            }
+        }
+        else {
+            dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+            // print("this is checkbox collection: ", checkBoxCollection)
+            
+            if (scrapbookTitle.stringValue == "") {
+                scrapbookTitle.stringValue = variables.defaultTitle
+                variables.defaultTitle = ""
+            }
+            else {
+                print("this is the customized title", scrapbookTitle.stringValue)
+            }
+            
+            
+            variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+            variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+            
+            variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+            var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            let dictionary = [String:[String]]()
+            let length = tableView.selectedRowIndexes.count
+            var tempIndexStack = [Int]()
+            var tempValueStack = [String]()
+            for (name, index) in tableView.selectedRowIndexes.enumerated() {
+                tempIndexStack.append(index)
+                tempValueStack.append(variables.recordedApplicationNameStack[index])
+            }
+            
+            let keys: Array<String> = Array<String>(tempDictionary.keys)
+            let keyLength = keys.count
+            
+            for i in 0..<keyLength{
+                if tempValueStack.contains(keys[i]){
+                    
+                }
+                else {
+                    tempDictionary.removeValue(forKey: keys[i])
+                }
+            }
+            variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+            
+            writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+            variables.countNumber = variables.countNumber + 1
+            self.view.window?.close()
+        }
+        
+    }
+    
+    
         // end of the class
 }
 
@@ -502,7 +634,8 @@ extension testViewController: NSTableViewDelegate {
     dateFormatter.timeStyle = .long
     
     // code here to read application name
-    	
+    let item = variables.recordedApplicationNameStack[row]
+    
 //    guard let item = directoryItems?[row] else {
 //      return nil
 //    }
@@ -510,8 +643,8 @@ extension testViewController: NSTableViewDelegate {
     // 2
     if tableColumn == tableView.tableColumns[0] {
       // image = item.icon
-      text = "temp name"
-      cellIdentifier = CellIdentifiers.NameCell
+        text = item
+        cellIdentifier = CellIdentifiers.NameCell
     } else{
         print("nothing here for the second clomun currently")
     }
@@ -524,5 +657,10 @@ extension testViewController: NSTableViewDelegate {
     }
     return nil
   }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+      updateStatus()
+    }
+
 
 }

@@ -19,6 +19,7 @@
                 <outlet property="scrapbookBody" destination="YrH-jP-YSA" id="SBU-hy-ukv"/>
                 <outlet property="scrapbookTitle" destination="JaZ-cM-NHV" id="jn6-z1-EgO"/>
                 <outlet property="screenshotDisplay" destination="h5W-OV-xWa" id="LR5-tB-XSF"/>
+                <outlet property="statusLabel" destination="rH0-l7-N2I" id="zbc-77-IGu"/>
                 <outlet property="tableView" destination="lXO-V1-Izb" id="QQS-7b-UKT"/>
                 <outlet property="testColView" destination="YNf-VD-bUA" id="Ku0-lD-fZY"/>
                 <outlet property="timeLabelDisplay" destination="2Ch-d5-3ZR" id="5TL-WI-Our"/>
@@ -230,6 +231,26 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
+                <textField verticalHuggingPriority="750" id="rH0-l7-N2I">
+                    <rect key="frame" x="894" y="283" width="323" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="fnH-UQ-pTA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AmR-Nf-GXM">
+                    <rect key="frame" x="888" y="239" width="193" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0ZQ-5u-jrf">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="buttonForTableView:" target="-2" id="lwH-UF-yBj"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="517.5" y="261"/>
         </customView>

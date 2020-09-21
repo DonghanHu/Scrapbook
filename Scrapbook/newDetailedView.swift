@@ -52,6 +52,11 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var LabelThree: NSTextField!
     
     
+    // tableView items
+    @IBOutlet weak var tableView: NSTableView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -89,6 +94,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         detailedInformationFirst.stringValue = "click application button to dispaly."
         detailedInformationSecond.stringValue = "click application button to display."
         detailedInformationThird.stringValue = "click application button to display."
+        
+        
+        // for tableview
+        tableView.delegate = self
+        tableView.dataSource = self
+
         
     }
     
@@ -594,3 +605,68 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
 
     // end of the class
 }
+
+extension newDetailedView: NSTableViewDataSource {
+  
+  func numberOfRows(in tableView: NSTableView) -> Int {
+    // return the number of application names
+    let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+    
+    var applicationNameStack = [String]()
+    let keys: Array<String> = Array<String>(dictionary.keys)
+    applicationNameStack = keys
+    
+    variables.detailedApplicationNameList = applicationNameStack
+    
+    let temp = variables.detailedApplicationNameList
+    print(temp)
+    // print(diaryInformationCollection.photoNameFirstInformation.count)
+    return variables.detailedApplicationNameList.count
+  }
+
+}
+extension newDetailedView: NSTableViewDelegate {
+
+    fileprivate enum CellIdentifiers {
+    static let NameCell = "NameCellID"
+    }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+
+    var image: NSImage?
+    var text: String = ""
+    var cellIdentifier: String = ""
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .long
+
+    // code here to read application name
+    let item = variables.detailedApplicationNameList[row]
+
+    //    guard let item = directoryItems?[row] else {
+    //      return nil
+    //    }
+
+    // 2
+    if tableColumn == tableView.tableColumns[0] {
+      // image = item.icon
+        text = item
+        cellIdentifier = CellIdentifiers.NameCell
+    } else{
+        print("nothing here for the second clomun currently")
+    }
+
+    // 3
+    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+      cell.textField?.stringValue = text
+      // cell.imageView?.image = image ?? nil
+      return cell
+    }
+    return nil
+    }
+    
+
+
+}
+

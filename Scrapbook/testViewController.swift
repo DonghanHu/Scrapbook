@@ -80,7 +80,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // for table view
         tableView.delegate = self
         tableView.dataSource = self
-
+        tableView.target = self
+        tableView.action = #selector(tableViewSingleClick(_:))
         
         timeLabelDisplay.stringValue = variables.currentTimeInformation
         
@@ -125,7 +126,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             print("first application name in caputer view", firstApplicationName)
             let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
             let tempApplicationMetaData = tempDictionary[firstApplicationName]
-            print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+            // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
             if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
                 captionLabelTwo.isHidden = false
                 captionLabelThree.isHidden = false
@@ -492,6 +493,56 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // 3
         statusLabel.stringValue = text
         }
+    // interation with table view to display detailed information
+    
+    @objc func tableViewSingleClick(_ sender:AnyObject){
+        if (tableView.selectedRowIndexes.count == 1){
+            print("selected row == 1", tableView.selectedRowIndexes)
+            print("next", tableView.selectedRow)
+            let applicationName = variables.recordedApplicationNameStack[tableView.selectedRow]
+            labelFirstInformation.stringValue = applicationName
+            // print("first application name in caputer view", applicationName)
+            let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            let tempApplicationMetaData = tempDictionary[applicationName]
+            // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+            if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "URL:"
+                captionLabelThree.stringValue = "Title:"
+            }
+            else if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "Path:"
+                captionLabelThree.stringValue = "Name:"
+            }
+
+            else if tempApplicationMetaData![2] == "Others"{
+                captionLabelTwo.isHidden = false
+                captionLabelThree.isHidden = false
+                captionLabelTwo.stringValue = "Infomation one"
+                captionLabelThree.stringValue = "Information two"
+            }
+            
+            
+            print("tempApplicationMetaData![0]", tempApplicationMetaData![0])
+            if tempApplicationMetaData![0] != "" {
+                labelSecondInformation.stringValue = (tempApplicationMetaData?[0])!
+            }
+            else {
+                labelSecondInformation.stringValue = "Nothing here"
+            }
+            
+            print("tempApplicationMetaData![1]", tempApplicationMetaData![1])
+            if tempApplicationMetaData![1] != "" {
+                labelThirdInformation.stringValue = (tempApplicationMetaData?[1])!
+            }
+            else {
+                labelThirdInformation.stringValue = "Nothing here"
+            }
+        }
+    }
 
     
     @IBAction func buttonForTableView(_ sender: Any) {
@@ -659,8 +710,10 @@ extension testViewController: NSTableViewDelegate {
   }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-      updateStatus()
+        updateStatus()
+        // displayInformation()
     }
+    
 
 
 }

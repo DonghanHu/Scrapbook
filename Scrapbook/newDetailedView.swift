@@ -53,7 +53,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     
     // tableView items
+    
+
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var openAllButton: NSButtonCell!
+    @IBOutlet weak var openSelectedButton: NSButton!
+    @IBOutlet weak var stringLabel: NSTextField!
     
     
     
@@ -370,6 +375,10 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
 //                        alert.runModal()
                     }
                 }
+                else {
+                    let index = "1"
+                    applescriptStrings.append(index)
+                }
                 applescriptStrings.append(final)
                 return applescriptStrings
                 // return applescriptCode
@@ -603,6 +612,70 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             }
         }
 
+    
+    // functions for tableview
+    func updateStatus() {
+      
+        let text: String
+
+        // 1
+        let itemsSelected = tableView.selectedRowIndexes.count
+
+        // 2
+        if(itemsSelected == 0) {
+        text = "\(variables.recordedApplicationNameStack.count) items"
+        }
+        else {
+        text = "\(itemsSelected) of \(variables.detailedApplicationNameList.count) selected"
+        }
+        // 3
+        stringLabel.stringValue = text
+    }
+    
+    @IBAction func openAllApplications(_ sender: Any) {
+        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        var applicationArray = [String]()
+        let keys: Array<String> = Array<String>( dictionary.keys)
+        applicationArray = keys
+        let keyLength = keys.count
+        for i in 0..<keyLength{
+            let applicationsName = applicationArray[i]
+            let category = readCSVtoGetCategory(applicationName: applicationsName)
+            let temp = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
+            let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+            let index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+            let localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
+            print("second final applescript", applescript)
+            if index == "1" {
+                let truescript = runApplescript(applescript: applescript)
+                AppleScript(script: truescript)
+            }
+            else if index == "0" {
+                let alert = NSAlert.init()
+                alert.messageText = "Hi"
+                let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n" + "This is the saved path: " + localpath
+                alert.informativeText = inforstring
+                
+                alert.addButton(withTitle: "OK")
+                //alert.addButton(withTitle: "Cancel")
+                alert.runModal()
+            }
+            
+            
+        }
+    }
+    
+    @IBAction func openSelectedApplications(_ sender: Any) {
+        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        var applicationArray = [String]()
+        let keys: Array<String> = Array<String>( dictionary.keys)
+        applicationArray = keys
+        let keyLength = keys.count
+        print("key length", keyLength)
+
+    }
+    
+    
     // end of the class
 }
 
@@ -619,7 +692,7 @@ extension newDetailedView: NSTableViewDataSource {
     variables.detailedApplicationNameList = applicationNameStack
     
     let temp = variables.detailedApplicationNameList
-    print(temp)
+    print("name list in detailed view table view", temp)
     // print(diaryInformationCollection.photoNameFirstInformation.count)
     return variables.detailedApplicationNameList.count
   }
@@ -659,6 +732,7 @@ extension newDetailedView: NSTableViewDelegate {
 
     // 3
     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+        print("text", text)
       cell.textField?.stringValue = text
       // cell.imageView?.image = image ?? nil
       return cell
@@ -666,6 +740,10 @@ extension newDetailedView: NSTableViewDelegate {
     return nil
     }
     
+    func tableViewSelectionDidChange(_ notification: Notification) {
+      updateStatus()
+    }
+
 
 
 }

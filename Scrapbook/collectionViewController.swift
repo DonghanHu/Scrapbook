@@ -22,7 +22,6 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         
         // print screenshot's number
         //print("count for number", photonumber.photonumberCounting)
-        
         // print the totoal number of screenshots the same as name list
         // print("count for photo name list length: ", diaryInformationCollection.photoNameList.count)
         let item = collectionView.makeItem(withIdentifier: .collectionViewItem, for: indexPath)
@@ -45,6 +44,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
     
     @IBOutlet weak var colView: NSCollectionView!
+    @IBOutlet weak var refreshButton: NSButton!
     
 
     
@@ -73,12 +73,15 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         
         colView.register(item, forItemWithIdentifier: .collectionViewItem)
     
-        colView.layer?.borderWidth = 13.0
-        colView.layer?.borderColor = NSColor.red as! CGColor
+        // colView.layer?.borderWidth = 13.0
+        // colView.layer?.borderColor = NSColor.red as! CGColor
         
         colView.delegate = self
         colView.dataSource = self
         self.title = "Collection View"
+        refreshButton.title = "Refresh"
+//        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(self.collectionViewSingleClick(_:)))
+//        colView.addGestureRecognizer(clickGesture)
     
         
     }
@@ -188,4 +191,18 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         }
         // print("photolistgenerate", photonumber.photoPathList)
     }
+    
+    @objc func collectionViewSingleClick(_ sender:AnyObject){
+        print("clicked on this collection view window")
+        getAllAvailableScrapbookList()
+        divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
+        photoNameListGenerate()
+    }
+    @IBAction func refreshAction(_ sender: Any) {
+        print("refreshed")
+        self.viewDidLoad()
+
+    }
+    
+    // end of the class
 }

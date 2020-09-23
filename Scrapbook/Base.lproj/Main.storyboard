@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.3"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -767,17 +767,17 @@ Gw
             <objects>
                 <viewController storyboardIdentifier="collectionViewID" id="eGB-z8-xtp" customClass="collectionViewController" customModule="Scrapbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="g6c-cR-sDr">
-                        <rect key="frame" x="0.0" y="0.0" width="750" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="490"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TY-P5-3it">
-                                <rect key="frame" x="12" y="13" width="724" height="475"/>
+                                <rect key="frame" x="12" y="20" width="724" height="457"/>
                                 <clipView key="contentView" id="K66-2A-qwY">
-                                    <rect key="frame" x="1" y="1" width="722" height="473"/>
+                                    <rect key="frame" x="1" y="1" width="722" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="Dqp-89-vam">
-                                            <rect key="frame" x="0.0" y="0.0" width="722" height="473"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="682" height="415"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="IYc-2M-yhX">
                                                 <size key="itemSize" width="150" height="100"/>
@@ -792,10 +792,21 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="dxt-PS-PWO">
-                                    <rect key="frame" x="707" y="1" width="16" height="466"/>
+                                    <rect key="frame" x="707" y="1" width="16" height="465"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fks-vg-t5h">
+                                <rect key="frame" x="624" y="-7" width="112" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DBc-m7-R3A">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="refreshAction:" target="eGB-z8-xtp" id="mgq-h1-flY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="8TY-P5-3it" firstAttribute="top" secondItem="g6c-cR-sDr" secondAttribute="top" constant="20" id="9rX-Q4-SPX"/>
@@ -806,11 +817,12 @@ Gw
                     </view>
                     <connections>
                         <outlet property="colView" destination="Dqp-89-vam" id="Xme-nH-REv"/>
+                        <outlet property="refreshButton" destination="fks-vg-t5h" id="wpJ-Tg-OIo"/>
                     </connections>
                 </viewController>
                 <customObject id="r7K-0c-uKO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-45" y="748"/>
+            <point key="canvasLocation" x="-45" y="743"/>
         </scene>
     </scenes>
 </document>

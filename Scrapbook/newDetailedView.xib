@@ -12,6 +12,7 @@
                 <outlet property="LabelThree" destination="vcI-Wq-a2s" id="uaW-7U-nXA"/>
                 <outlet property="LabelTwo" destination="0bY-Fl-GVf" id="w8Z-Lb-Vby"/>
                 <outlet property="currentTimeLabel" destination="3uT-gN-6SV" id="gWk-dE-XGe"/>
+                <outlet property="deleteButton" destination="hgD-3M-Fjk" id="bXo-Bt-F0h"/>
                 <outlet property="detailedColView" destination="rUy-Dr-Zh8" id="wNg-xk-lwf"/>
                 <outlet property="detailedInformationFirst" destination="bxy-cy-jAl" id="xuX-3v-riu"/>
                 <outlet property="detailedInformationSecond" destination="xvg-Hz-k3Z" id="ZcM-zn-Ly1"/>
@@ -236,7 +237,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="200" minWidth="40" maxWidth="1000" id="T7M-r0-oqs">
+                                    <tableColumn width="235" minWidth="40" maxWidth="1000" id="T7M-r0-oqs">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Application Names">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -249,11 +250,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="NameCellID" id="6oU-dj-K24">
-                                                <rect key="frame" x="1" y="1" width="200" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="235" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pwi-LJ-gnR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WiA-13-v5C">
                                                             <font key="font" metaFont="system"/>
@@ -285,6 +286,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgD-3M-Fjk">
+                    <rect key="frame" x="1101" y="0.0" width="178" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ERd-9P-w2c">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="deleteButtonAction:" target="-2" id="QzE-3B-H6J"/>
+                    </connections>
+                </button>
             </subviews>
             <point key="canvasLocation" x="332" y="154"/>
         </customView>

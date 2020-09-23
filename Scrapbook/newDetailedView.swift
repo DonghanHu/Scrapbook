@@ -59,6 +59,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var openAllButton: NSButtonCell!
     @IBOutlet weak var openSelectedButton: NSButton!
     @IBOutlet weak var stringLabel: NSTextField!
+    @IBOutlet weak var deleteButton: NSButton!
     
     
     
@@ -104,7 +105,11 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         // for tableview
         tableView.delegate = self
         tableView.dataSource = self
-
+        tableView.target = self
+        tableView.action = #selector(tableViewSingleClick(_:))
+        openSelectedButton.title = "Open selected applications"
+        openAllButton.title = "Open all applications"
+        deleteButton.title = "Delete this recording"
         
     }
     
@@ -612,6 +617,158 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             }
         }
 
+    // action for the delete button
+    @IBAction func deleteButtonAction(_ sender: Any) {
+        // delete the screenshot(image)
+        let filePathString = screenshotInDetailedView.path!
+        let fileURL = URL(fileURLWithPath: filePathString)
+        do {
+            try FileManager.default.removeItem(at: fileURL)
+        } catch {
+            print("delete screenshot error:", error)
+        }
+        // delete the json file data
+        let detailedInfor = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
+        let timeInfor = detailedInfor[0]
+        let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+        var fileSize : UInt64
+        do {
+            let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+            fileSize = attr[FileAttributeKey.size] as! UInt64
+            if fileSize == 0{
+                print("json file is empty")
+            }
+            else{
+                let rawData : NSData = try! NSData(contentsOf: url)
+                do{
+                    let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                    
+                    let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                    
+                    var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                    
+                    let tempDic : [String : Any] = ["Text"             :   String(),
+                                                    "Title"            :   String(),
+                                                    "PhotoTime"        :   [String](),
+                                                    "screenshotPath"   :   [String](),
+                                                    "Applications"     :   [String:[String]](),
+                                                    "Coordinates"      :   [String:[String]]()
+                                                    ]
+                    let number = jsonarray.count
+                    innerLoop: for i in 0..<number{
+                        var tempelement = jsonarray[i]
+                        if tempelement["PhotoTime"] != nil {
+                            let kss =  tempelement["PhotoTime"] as! [String]
+                            if kss[0] == timeInfor {
+                                print("index", i)
+                                print("target jsonarry", tempelement)
+                                jsonarray.remove(at: i)
+                                break innerLoop
+                            }
+                        }
+                        
+                    }
+                    print("new json", jsonarray)
+                    jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                    let emptyText = ""
+                    let tempFilePathString = "file://" + variables.jsonFilePathString
+                    let tempFIlePathURL = URL(string: tempFilePathString)
+                    do {
+                        try emptyText.write(to: tempFIlePathURL!, atomically: false, encoding: .utf8)
+                    } catch {
+                         print(error)
+                    }
+                    let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                    if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                        file.write(jsonData)
+                        file.closeFile()
+                    }
+                    
+                }catch {print(error)}
+            }
+        } catch {
+            print("preview Error: \(error)")
+            }
+
+        variables.countNumber = variables.countNumber - 1
+        getAllAvailableScrapbookList()
+        divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
+        // the count was not mins 1
+        // still remain the previous value
+        // code here
+        print(diaryInformationCollection.photoNameList.count)
+        photoNameListGenerate()
+        // print(detailedInfor)
+        dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+        self.view.window?.close()
+        
+        
+    }
+    // code here	
+    func getAllAvailableScrapbookList(){
+        let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+        var photoNameList = [[String]]()
+        var inputMessageList = [String]()
+        var inputMessageTitleList = [String]()
+        do {
+            let rawData : NSData = try! NSData(contentsOf: url)
+            do{
+                let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                let jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                let length = jsonarray.count
+                if (photonumber.inputRelatedMessage.count == length || length == 1){
+                    print("nothing happen")
+                }
+                else {
+                    for i in 1..<length{
+                        let photoname = jsonarray[i]["PhotoTime"] as! [String]
+                            photoNameList.append(photoname)
+                    // end of for loop
+                    }
+                    diaryInformationCollection.photoNameList = photoNameList
+                    for j in 1..<length{
+                        let inputRelatedText = jsonarray[j]["Text"] as! [String]
+                        inputMessageList.append(inputRelatedText[0])
+        
+                        let relatedTitle = jsonarray[j]["Title"] as! [String]
+                        inputMessageTitleList.append(relatedTitle[0])
+                    }
+                    photonumber.inputRelatedMessage = inputMessageList
+                    photonumber.inputRelatedTitle   = inputMessageTitleList
+                }
+
+            // end of do judgement
+            }
+        } catch {
+            print("preview Error: \(error)")
+        }
+    }
+    
+    func divideIntoTwoArray(stringArray: [[String]]){
+        var arrayOfFirstInformation = [String]()
+        var arrayOfSecondInformation = [String]()
+        let length = stringArray.count
+        if stringArray != [[""]] {
+            for i in 0..<length{
+                arrayOfFirstInformation.append(stringArray[i][0])
+                arrayOfSecondInformation.append(stringArray[i][1])
+            }
+        }
+        diaryInformationCollection.photoNameFirstInformation = arrayOfFirstInformation
+        diaryInformationCollection.photoNameSecondInformation = arrayOfSecondInformation
+    }
+    
+    func photoNameListGenerate(){
+        for i in 0..<diaryInformationCollection.photoNameSecondInformation.count{
+            if photonumber.photoPathList.contains(diaryInformationCollection.photoNameSecondInformation[i]){
+            }
+            else {
+                photonumber.photoPathList.append(diaryInformationCollection.photoNameSecondInformation[i])
+            }
+        }
+    }
+    
     
     // functions for tableview
     func updateStatus() {
@@ -672,7 +829,108 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         applicationArray = keys
         let keyLength = keys.count
         print("key length", keyLength)
+        var selectionCollection = [Int]()
+        var selectionCollectionNames = [String]()
+        for (name, index) in tableView.selectedRowIndexes.enumerated() {
+            print(index)
+            selectionCollection.append(index)
+            let temp = variables.detailedApplicationNameList[index]
+            selectionCollectionNames.append(temp)
+        }
+        let totalCount = selectionCollection.count
+        if(totalCount == 0){
+            let alert = NSAlert.init()
+            alert.messageText = "Hi"
+            let inforstring = "No applications have been selected now. Please check your choices again. Thank you!"
+            alert.informativeText = inforstring
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }else {
+            for i in 0..<keyLength{
+                if selectionCollectionNames.contains(keys[i]) {
+                    let applicationsName = applicationArray[i]
+                    let category = readCSVtoGetCategory(applicationName: applicationsName)
+                    var applescript = ""
+                    var index = " "
+                    var localpath = " "
+                    if (applicationsName == "Acrobat Reader"){
+                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[0]
+                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[1]
+                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[2]
+                    }
+                    else {
+                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
+                    }
+                    
+                    print("first final applescript", applescript)
+                    if index == "1" {
+                        let truescript = runApplescript(applescript: applescript)
+                        print("after transmitted", truescript)
+                        AppleScript(script: truescript)
+                    }
+                    else if index == "0"{
+                        let alert = NSAlert.init()
+                        alert.messageText = "Hi"
+                        let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n " + "This is the saved path: " + localpath
+                        alert.informativeText = inforstring
+                        alert.addButton(withTitle: "OK")
+                        //alert.addButton(withTitle: "Cancel")
+                        alert.runModal()
+                    }
+                    
+                }
+                
+                
+            }
+        }
 
+    }
+    
+    @objc func tableViewSingleClick(_ sender:AnyObject){
+        LabelOne.isHidden = false
+        if (tableView.selectedRowIndexes.count == 1){
+            // variables.detailedApplicationNameList
+            detailedInformationFirst.stringValue = variables.detailedApplicationNameList[tableView.selectedRow]
+            let detailedDictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+            let tempApplicationName = variables.detailedApplicationNameList[tableView.selectedRow]
+            let tempApplicationMetaData = detailedDictionary[tempApplicationName]
+            
+            if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+                    LabelTwo.isHidden = false
+                    LabelThree.isHidden = false
+                    LabelTwo.stringValue = "URL:"
+                    LabelThree.stringValue = "Title:"
+                   }
+                   if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+                        LabelTwo.isHidden = false
+                        LabelThree.isHidden = false
+                        LabelTwo.stringValue = "Path:"
+                        LabelThree.stringValue = "Name:"
+                   }
+                   
+                   if tempApplicationMetaData![2] == "Others"{
+                        LabelTwo.isHidden = false
+                        LabelThree.isHidden = false
+                        LabelTwo.stringValue = "other one"
+                        LabelThree.stringValue = "other two"
+                   }
+            
+            
+            if tempApplicationMetaData![0] != "" {
+                detailedInformationSecond.stringValue = (tempApplicationMetaData?[0])!
+            }
+            else {
+                detailedInformationSecond.stringValue = "Nothing here"
+            }
+            if tempApplicationMetaData![1] != "" {
+                detailedInformationThird.stringValue = (tempApplicationMetaData?[1])!
+            }
+            else {
+                detailedInformationThird.stringValue = "Nothing here"
+            }
+        }
     }
     
     
@@ -714,7 +972,6 @@ extension newDetailedView: NSTableViewDelegate {
     dateFormatter.dateStyle = .long
     dateFormatter.timeStyle = .long
 
-    // code here to read application name
     let item = variables.detailedApplicationNameList[row]
 
     //    guard let item = directoryItems?[row] else {

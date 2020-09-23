@@ -15,7 +15,7 @@
                 <outlet property="labelFirstInformation" destination="g18-Mp-74E" id="qsA-bA-kUz"/>
                 <outlet property="labelSecondInformation" destination="Uym-jA-yda" id="Z8l-J3-L4u"/>
                 <outlet property="labelThirdInformation" destination="rdW-QD-dWz" id="b8x-Bw-KQQ"/>
-                <outlet property="saveButton" destination="a2X-Yu-fcj" id="otY-fI-vCp"/>
+                <outlet property="saveButtonForTableView" destination="AmR-Nf-GXM" id="0n9-ua-naS"/>
                 <outlet property="scrapbookBody" destination="YrH-jP-YSA" id="SBU-hy-ukv"/>
                 <outlet property="scrapbookTitle" destination="JaZ-cM-NHV" id="jn6-z1-EgO"/>
                 <outlet property="screenshotDisplay" destination="h5W-OV-xWa" id="LR5-tB-XSF"/>

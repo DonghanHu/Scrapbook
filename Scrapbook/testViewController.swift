@@ -53,7 +53,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     // this is for the table view
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var statusLabel: NSTextField!
-
+    @IBOutlet weak var saveButtonForTableView: NSButton!
+    
     var checkBoxCollection = [String]()
     
     override func viewDidLoad() {
@@ -82,6 +83,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         tableView.dataSource = self
         tableView.target = self
         tableView.action = #selector(tableViewSingleClick(_:))
+        saveButtonForTableView.title = "Save screenshot"
         
         timeLabelDisplay.stringValue = variables.currentTimeInformation
         
@@ -496,6 +498,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     // interation with table view to display detailed information
     
     @objc func tableViewSingleClick(_ sender:AnyObject){
+        captionLabelOne.isHidden = false
         if (tableView.selectedRowIndexes.count == 1){
             print("selected row == 1", tableView.selectedRowIndexes)
             print("next", tableView.selectedRow)
@@ -684,7 +687,6 @@ extension testViewController: NSTableViewDelegate {
     dateFormatter.dateStyle = .long
     dateFormatter.timeStyle = .long
     
-    // code here to read application name
     let item = variables.recordedApplicationNameStack[row]
     
 //    guard let item = directoryItems?[row] else {

@@ -700,8 +700,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         getAllAvailableScrapbookList()
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         // the count was not mins 1
-        // still remain the previous value
-        // code here
+
         print(diaryInformationCollection.photoNameList.count)
         photoNameListGenerate()
         // print(detailedInfor)
@@ -710,7 +709,6 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         
     }
-    // code here
     func getAllAvailableScrapbookList(){
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)
         var photoNameList = [[String]]()

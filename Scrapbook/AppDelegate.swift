@@ -40,6 +40,8 @@ struct variables {
     static var metaDataIdctionaryTestDic : [String : [String]] = [:]
     
     static var countNumber                       = 1
+    // static var dateCountNumber                   = 0
+    static var dateCountNumber                   : Int!
     static var tempDay                           = 0
     static var defaultTitle                      = " "
     static var capturedApplicationNameList       = [""]

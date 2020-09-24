@@ -627,6 +627,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         } catch {
             print("delete screenshot error:", error)
         }
+        
         // delete the json file data
         let detailedInfor = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
         let timeInfor = detailedInfor[0]
@@ -668,7 +669,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                         }
                         
                     }
-                    print("new json", jsonarray)
+                    // print("new json", jsonarray)
                     jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
                     let emptyText = ""
                     let tempFilePathString = "file://" + variables.jsonFilePathString
@@ -689,8 +690,13 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         } catch {
             print("preview Error: \(error)")
             }
-
+        
         variables.countNumber = variables.countNumber - 1
+        
+        //change here
+        // diaryInformationCollection.photoNameFirstInformation = diaryInformationCollection.photoNameFirstInformation - 1
+        
+        // variables.dateCountNumber = variables.dateCountNumber - 1
         getAllAvailableScrapbookList()
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         // the count was not mins 1
@@ -704,7 +710,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         
     }
-    // code here	
+    // code here
     func getAllAvailableScrapbookList(){
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)
         var photoNameList = [[String]]()
@@ -716,9 +722,17 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
                 let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
                 let jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                print("after delete, json array", jsonarray)
+                print(jsonarray.count)
                 let length = jsonarray.count
-                if (photonumber.inputRelatedMessage.count == length || length == 1){
+                // length cant be less than 1
+                if (length == 1){
+                // if (photonumber.inputRelatedMessage.count == length || length == 1 || length == 0){
                     print("nothing happen")
+                    // diaryInformationCollection.photoNameList = [[""]]
+                    //photonumber.inputRelatedMessage = [""]
+                    //photonumber.inputRelatedTitle = [""]
+                    
                 }
                 else {
                     for i in 1..<length{

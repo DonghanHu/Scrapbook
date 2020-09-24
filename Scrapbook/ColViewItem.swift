@@ -40,10 +40,6 @@ class ColViewItem: NSCollectionViewItem {
         //screenshotImage.imageScaling = .scaleAxesIndependently
         imageButton.image = nsImage
         
-        // print("textfield display:", photonumber.photonumberCounting = photonumber.photonumberCounting)
-//        let height = nsImage?.size.height
-//        let width = nsImage?.size.width
-        
         // display the text body
         // display the title body
         // print("message again", photonumber.inputRelatedMessage[photonumber.photonumberCounting])
@@ -78,28 +74,6 @@ class ColViewItem: NSCollectionViewItem {
         // perfect solution
         
         presentAsModalWindow(newDetailedView() as NSViewController)
-        
-        // previous solution with bug
-
-        // newDetailedView
-//        let WindowHandler1 : NSViewController = newDetailedView()
-//        let subWindow1 = NSWindow(contentViewController:  WindowHandler1)
-//
-//        let subWindowController1 = NSWindowController(window: subWindow1)
-//
-//
-//        subWindowController1.showWindow(nil)
-//        subWindow1.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow) + 2))
-        
-        // subWindow1.orderFront((Any).self)
-        // subWindow1.collectionBehavior = .canJoinAllSpaces
-        //subWindow1.orderedIndex = 1
-       
-        // NSApplication.shared.modalWindow?.orderFrontRegardless()
-        // subWindow1.makeKeyAndOrderFront(nil)
-        
-        
-        
         
         // NSApp.activate(ignoringOtherApps: true)
         

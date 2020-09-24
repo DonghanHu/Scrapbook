@@ -38,7 +38,11 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        let temp = diaryInformationCollection.photoNameFirstInformation.count
         return diaryInformationCollection.photoNameFirstInformation.count
+//        let temp = diaryInformationCollection.photoNameSecondInformation.count
+//        return diaryInformationCollection.photoNameSecondInformation.count
+        
     }
 
     
@@ -105,9 +109,10 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
                 // print the number of message
                 //print("message count:", photonumber.inputRelatedMessage.count)
                 
-                
-                if (photonumber.inputRelatedMessage.count == length || length == 1){
-                    print("nothing happen")
+                // if (photonumber.inputRelatedMessage.count == length || length == 1){
+                if (length == 1){
+                    print("nothing happenn in collection view window")
+                    diaryInformationCollection.photoNameList = [[""]]
                 }
                 else {
                     for i in 1..<length{
@@ -198,9 +203,32 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
     }
+    
+    // photoNameList edit
+    func photoNameListEdit(){
+        let temp = photonumber.photoPathList.count - 1
+        if temp < 1 {
+            photonumber.photoPathList.removeAll()
+        }
+        
+        else {
+            for i in 0..<temp{
+                if !diaryInformationCollection.photoNameSecondInformation.contains(photonumber.photoPathList[i]){
+                    photonumber.photoPathList.remove(at: i)
+                }
+            }
+        }
+
+    }
+    
     @IBAction func refreshAction(_ sender: Any) {
         print("refreshed")
-        self.viewDidLoad()
+        getAllAvailableScrapbookList()
+        photoNameListEdit()
+        self.loadView()
+
+        
+        // ColViewItem.load()
 
     }
     

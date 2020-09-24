@@ -96,12 +96,19 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         let stringDay = calendar.component(.day, from: date)
         let intDay = Int(stringDay)
         if intDay != variables.tempDay {
-            variables.countNumber = 1
+            // variables.countNumber = 1
+            variables.dateCountNumber = 1
+        } else{
+            // variables.dateCountNumber = 1
+        }
+        
+        if (variables.dateCountNumber == nil){
+            variables.dateCountNumber = 1
         }
         
         
+        let stringCountNumber = String(variables.dateCountNumber)
         
-        let stringCountNumber = String(variables.countNumber)
         
         variables.defaultTitle = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
         
@@ -361,6 +368,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 
                 writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
                 variables.countNumber = variables.countNumber + 1
+                variables.dateCountNumber = variables.dateCountNumber + 1
                 self.view.window?.close()
             }
             else {
@@ -401,6 +409,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
             variables.countNumber = variables.countNumber + 1
+            variables.dateCountNumber = variables.dateCountNumber + 1
             self.view.window?.close()
         }
         
@@ -602,6 +611,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 
                 writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
                 variables.countNumber = variables.countNumber + 1
+                variables.dateCountNumber = variables.dateCountNumber + 1
                 self.view.window?.close()
             }
             else {
@@ -650,6 +660,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
             variables.countNumber = variables.countNumber + 1
+            variables.dateCountNumber = variables.dateCountNumber + 1
             self.view.window?.close()
         }
         

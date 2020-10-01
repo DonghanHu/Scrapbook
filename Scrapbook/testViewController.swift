@@ -670,6 +670,10 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // end of the class
 }
 
+extension NSUserInterfaceItemIdentifier {
+    static let check = NSUserInterfaceItemIdentifier(rawValue: "Check")
+}
+
 extension testViewController: NSTableViewDataSource {
   
   func numberOfRows(in tableView: NSTableView) -> Int {
@@ -686,6 +690,7 @@ extension testViewController: NSTableViewDelegate {
 
   fileprivate enum CellIdentifiers {
     static let NameCell = "NameCellID"
+    static let CheckboxCell = "CheckboxCellID"
   }
 
   func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -705,20 +710,34 @@ extension testViewController: NSTableViewDelegate {
 //    }
 
     // 2
-    if tableColumn == tableView.tableColumns[0] {
+    if tableColumn == tableView.tableColumns[1] {
       // image = item.icon
         text = item
         cellIdentifier = CellIdentifiers.NameCell
-    } else{
+    } else if tableColumn == tableView.tableColumns[0 ]{
+        text = ""
+        
+        
+        cellIdentifier = CellIdentifiers.CheckboxCell
+    }
+    
+    else{
         print("nothing here for the second clomun currently")
     }
 
     // 3
+
+//    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier) as? NSButton {
+//        cell.textField?.stringValue = text
+//        return cell
+//    }
+    
     if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-      cell.textField?.stringValue = text
+        cell.textField?.stringValue = text
       // cell.imageView?.image = image ?? nil
       return cell
     }
+    
     return nil
   }
     

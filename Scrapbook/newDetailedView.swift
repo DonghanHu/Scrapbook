@@ -971,7 +971,8 @@ extension newDetailedView: NSTableViewDataSource {
 extension newDetailedView: NSTableViewDelegate {
 
     fileprivate enum CellIdentifiers {
-    static let NameCell = "NameCellID"
+        static let NameCell = "NameCellID"
+        static let CheckBoxCell = "CheckboxCellID"
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -991,11 +992,16 @@ extension newDetailedView: NSTableViewDelegate {
     //    }
 
     // 2
-    if tableColumn == tableView.tableColumns[0] {
+    if tableColumn == tableView.tableColumns[1] {
       // image = item.icon
         text = item
         cellIdentifier = CellIdentifiers.NameCell
-    } else{
+    } else if tableColumn == tableView.tableColumns[0]{
+        text = ""
+        cellIdentifier = CellIdentifiers.CheckBoxCell
+    }
+    
+    else{
         print("nothing here for the second clomun currently")
     }
 

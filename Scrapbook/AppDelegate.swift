@@ -148,6 +148,11 @@ struct popoverWindow {
     static var popover = NSPopover()
 }
 
+struct checkboxInformationCaptureWindoe {
+    static var checkboxNameStack = [""]
+    static var clickstatus = 0
+}
+
 // @available(OSX 10.13, *)
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

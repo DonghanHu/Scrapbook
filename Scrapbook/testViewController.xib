@@ -11,6 +11,7 @@
                 <outlet property="captionLabelOne" destination="apo-EZ-RS5" id="Mpa-cQ-HPN"/>
                 <outlet property="captionLabelThree" destination="slZ-cF-wO8" id="kgY-bQ-gQI"/>
                 <outlet property="captionLabelTwo" destination="hLL-ry-rmh" id="gPL-Ul-Wyt"/>
+                <outlet property="checkBoxValues" destination="GuA-dY-cXz" id="0bU-He-681"/>
                 <outlet property="deleteButton" destination="DOL-RV-SkV" id="JDY-IS-ocs"/>
                 <outlet property="labelFirstInformation" destination="g18-Mp-74E" id="qsA-bA-kUz"/>
                 <outlet property="labelSecondInformation" destination="Uym-jA-yda" id="Z8l-J3-L4u"/>
@@ -21,6 +22,7 @@
                 <outlet property="screenshotDisplay" destination="h5W-OV-xWa" id="LR5-tB-XSF"/>
                 <outlet property="statusLabel" destination="rH0-l7-N2I" id="zbc-77-IGu"/>
                 <outlet property="tableView" destination="lXO-V1-Izb" id="QQS-7b-UKT"/>
+                <outlet property="testButtonForCheckbox" destination="NhN-wp-5s1" id="qaT-DT-L93"/>
                 <outlet property="testColView" destination="YNf-VD-bUA" id="Ku0-lD-fZY"/>
                 <outlet property="timeLabelDisplay" destination="2Ch-d5-3ZR" id="5TL-WI-Our"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -182,8 +184,8 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="pC1-Dd-CkJ">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Checkbox">
+                                    <tableColumn identifier="checkboxColumn" width="21" minWidth="10" maxWidth="3.4028234663852886e+38" id="pC1-Dd-CkJ">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableHeaderCell>
@@ -195,11 +197,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="CheckboxCellID" id="0ha-eP-ybr">
-                                                <rect key="frame" x="1" y="1" width="64" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="21" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgz-qk-mzx">
-                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="21" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Xry-nG-JQa">
                                                             <font key="font" metaFont="system"/>
@@ -207,10 +209,10 @@
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-dY-cXz">
+                                                    <button identifier="singlecheckbox" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuA-dY-cXz">
                                                         <rect key="frame" x="1" y="0.0" width="22" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9gL-8S-eWx">
+                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" identifier="singlecheckboxcell" inset="2" id="9gL-8S-eWx">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -235,7 +237,7 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="NameCellID" id="DnB-KC-agG">
-                                                <rect key="frame" x="68" y="1" width="252" height="17"/>
+                                                <rect key="frame" x="25" y="1" width="252" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h2g-Ex-jgr">
@@ -291,8 +293,19 @@
                         <action selector="buttonForTableView:" target="-2" id="lwH-UF-yBj"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhN-wp-5s1">
+                    <rect key="frame" x="1081" y="239" width="81" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SP0-CY-XRi">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="testForCheckbox:" target="-2" id="1Dz-ZZ-PQE"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="517.5" y="261"/>
+            <point key="canvasLocation" x="505" y="94"/>
         </customView>
     </objects>
 </document>

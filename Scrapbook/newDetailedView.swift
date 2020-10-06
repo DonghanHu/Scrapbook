@@ -833,33 +833,37 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             
         }
     }
-    
-    @IBAction func openSelectedApplications(_ sender: Any) {
+    func openSelectedAppCheckBox(){
         let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         var applicationArray = [String]()
         let keys: Array<String> = Array<String>( dictionary.keys)
         applicationArray = keys
         let keyLength = keys.count
-        print("key length", keyLength)
-        var selectionCollection = [Int]()
-        var selectionCollectionNames = [String]()
-        for (name, index) in tableView.selectedRowIndexes.enumerated() {
-            print(index)
-            selectionCollection.append(index)
-            let temp = variables.detailedApplicationNameList[index]
-            selectionCollectionNames.append(temp)
+        var tempNameStack = [""]
+        if checkboxInformationCaptureWindoe.clickstatusDetailedWindow == 0{
+            tempNameStack = variables.detailedApplicationNameList
+        }else{
+            tempNameStack = checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow
         }
-        let totalCount = selectionCollection.count
-        if(totalCount == 0){
+        let nameStackLen = tempNameStack.count
+        var emptyCount = 0
+        for j in 0..<nameStackLen{
+            if tempNameStack[j] == "Empty"{
+                emptyCount = emptyCount + 1
+            }
+        }
+        var nilEmptyCount = nameStackLen - emptyCount
+        if (nilEmptyCount == 0){
             let alert = NSAlert.init()
             alert.messageText = "Hi"
             let inforstring = "No applications have been selected now. Please check your choices again. Thank you!"
             alert.informativeText = inforstring
             alert.addButton(withTitle: "OK")
             alert.runModal()
-        }else {
+        }
+        else{
             for i in 0..<keyLength{
-                if selectionCollectionNames.contains(keys[i]) {
+                if tempNameStack.contains(keys[i]) {
                     let applicationsName = applicationArray[i]
                     let category = readCSVtoGetCategory(applicationName: applicationsName)
                     var applescript = ""
@@ -892,10 +896,132 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                         alert.runModal()
                     }
                     
-                }
-                
-                
+                }// end if tempNameStack.contains(keys[i])
+            }//end for loop
+        }
+    }
+    
+    @IBAction func openSelectedApplications(_ sender: Any) {
+//        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+//        var applicationArray = [String]()
+//        let keys: Array<String> = Array<String>( dictionary.keys)
+//        applicationArray = keys
+//        let keyLength = keys.count
+//        var selectionCollection = [Int]()
+//        var selectionCollectionNames = [String]()
+//        for (name, index) in tableView.selectedRowIndexes.enumerated() {
+//            print(index)
+//            selectionCollection.append(index)
+//            let temp = variables.detailedApplicationNameList[index]
+//            selectionCollectionNames.append(temp)
+//        }
+//        let totalCount = selectionCollection.count
+//        if(totalCount == 0){
+//            let alert = NSAlert.init()
+//            alert.messageText = "Hi"
+//            let inforstring = "No applications have been selected now. Please check your choices again. Thank you!"
+//            alert.informativeText = inforstring
+//            alert.addButton(withTitle: "OK")
+//            alert.runModal()
+//        }else {
+//            for i in 0..<keyLength{
+//                if selectionCollectionNames.contains(keys[i]) {
+//                    let applicationsName = applicationArray[i]
+//                    let category = readCSVtoGetCategory(applicationName: applicationsName)
+//                    var applescript = ""
+//                    var index = " "
+//                    var localpath = " "
+//                    if (applicationsName == "Acrobat Reader"){
+//                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[0]
+//                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[1]
+//                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[2]
+//                    }
+//                    else {
+//                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+//                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+//                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
+//                    }
+//                    print("first final applescript", applescript)
+//                    if index == "1" {
+//                        let truescript = runApplescript(applescript: applescript)
+//                        print("after transmitted", truescript)
+//                        AppleScript(script: truescript)
+//                    }
+//                    else if index == "0"{
+//                        let alert = NSAlert.init()
+//                        alert.messageText = "Hi"
+//                        let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n " + "This is the saved path: " + localpath
+//                        alert.informativeText = inforstring
+//                        alert.addButton(withTitle: "OK")
+//                        alert.runModal()
+//                    }
+//                }
+//            }
+//        }
+        let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
+        var applicationArray = [String]()
+        let keys: Array<String> = Array<String>( dictionary.keys)
+        applicationArray = keys
+        let keyLength = keys.count
+        var tempNameStack = [""]
+        if checkboxInformationCaptureWindoe.clickstatusDetailedWindow == 0{
+            tempNameStack = variables.detailedApplicationNameList
+        }else{
+            tempNameStack = checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow
+        }
+        let nameStackLen = tempNameStack.count
+        var emptyCount = 0
+        for j in 0..<nameStackLen{
+            if tempNameStack[j] == "Empty"{
+                emptyCount = emptyCount + 1
             }
+        }
+        var nilEmptyCount = nameStackLen - emptyCount
+        if (nilEmptyCount == 0){
+            let alert = NSAlert.init()
+            alert.messageText = "Hi"
+            let inforstring = "No applications have been selected now. Please check your choices again. Thank you!"
+            alert.informativeText = inforstring
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
+        else{
+            for i in 0..<keyLength{
+                if tempNameStack.contains(keys[i]) {
+                    let applicationsName = applicationArray[i]
+                    let category = readCSVtoGetCategory(applicationName: applicationsName)
+                    var applescript = ""
+                    var index = " "
+                    var localpath = " "
+                    if (applicationsName == "Acrobat Reader"){
+                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[0]
+                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[1]
+                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: "Adobe Acrobat Reader DC", dic: dictionary)[2]
+                    }
+                    else {
+                        applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
+                        index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
+                        localpath = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[2]
+                    }
+                    
+                    print("first final applescript", applescript)
+                    if index == "1" {
+                        let truescript = runApplescript(applescript: applescript)
+                        print("after transmitted", truescript)
+                        AppleScript(script: truescript)
+                    }
+                    else if index == "0"{
+                        let alert = NSAlert.init()
+                        alert.messageText = "Hi"
+                        let inforstring = "No file found, you may have changed the file name, move to another folder or delte the orginal file.\n " + "This is the saved path: " + localpath
+                        alert.informativeText = inforstring
+                        alert.addButton(withTitle: "OK")
+                        //alert.addButton(withTitle: "Cancel")
+                        alert.runModal()
+                    }
+                    
+                }// end if tempNameStack.contains(keys[i])
+            }//end for loop
         }
 
     }
@@ -945,6 +1071,33 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         }
     }
     
+    @objc func checkBoxInteraction(_ sender: NSButton){
+        print(sender.title)
+        if !checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow.contains("Empty"){
+            checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow = variables.detailedApplicationNameList
+        }
+        let length = checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow.count
+        if (sender.state == .off){
+            for i in 0..<length{
+                if checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow[i] == sender.title{
+                    checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow[i] = "Empty"
+                    break
+                }
+            }
+        }else {
+                if !checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow.contains(sender.title){
+                    let len = variables.detailedApplicationNameList.count
+                    for j in 0..<len{
+                        if variables.detailedApplicationNameList[j] == sender.title{
+                            checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow[j] = sender.title
+                        }
+                    }
+                    // checkboxInformationCaptureWindoe.checkboxNameStack.append(sender.title)
+            }
+        }
+        print("current name stack", checkboxInformationCaptureWindoe.checkboxNameStackDetailedWindow)
+        checkboxInformationCaptureWindoe.clickstatusDetailedWindow = 1
+    }
     
     // end of the class
 }
@@ -996,9 +1149,24 @@ extension newDetailedView: NSTableViewDelegate {
       // image = item.icon
         text = item
         cellIdentifier = CellIdentifiers.NameCell
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+            print("text", text)
+          cell.textField?.stringValue = text
+          // cell.imageView?.image = image ?? nil
+          return cell
+        }
+        
     } else if tableColumn == tableView.tableColumns[0]{
         text = ""
         cellIdentifier = CellIdentifiers.CheckBoxCell
+        
+        let checkBoxFrame = NSRect(x: 10, y: 8, width: 25, height: 25)
+        let newCheckBut = NSButton.init(checkboxWithTitle: item, target: nil, action: #selector(newDetailedView.checkBoxInteraction(_:)))
+        newCheckBut.frame = checkBoxFrame
+               
+        newCheckBut.state = .on
+        
+        return newCheckBut
     }
     
     else{
@@ -1006,12 +1174,12 @@ extension newDetailedView: NSTableViewDelegate {
     }
 
     // 3
-    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
-        print("text", text)
-      cell.textField?.stringValue = text
-      // cell.imageView?.image = image ?? nil
-      return cell
-    }
+//    if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+//        print("text", text)
+//      cell.textField?.stringValue = text
+//      // cell.imageView?.image = image ?? nil
+//      return cell
+//    }
     return nil
     }
     

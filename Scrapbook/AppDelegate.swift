@@ -151,6 +151,8 @@ struct popoverWindow {
 struct checkboxInformationCaptureWindoe {
     static var checkboxNameStack = [""]
     static var clickstatus = 0
+    static var checkboxNameStackDetailedWindow = [""]
+    static var clickstatusDetailedWindow = 0
 }
 
 // @available(OSX 10.13, *)

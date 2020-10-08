@@ -12,7 +12,7 @@ extension NSUserInterfaceItemIdentifier {
     static let detailedItem = NSUserInterfaceItemIdentifier("detailedColViewItem")
 }
 
-class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource {
+class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         // temp return 10
         let buttonNumber = detailedWiondwVariables.buttonNumber
@@ -81,6 +81,11 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         saveEditButton.title = "Save Change and Close"
         self.title = "Detailed Window"
         // Do view setup here.
+        
+        // hide old items
+        openSelectedApplicationsButton.isHidden = true
+        openAllApplicationsButton.isHidden = true
+        detailedColView.isHidden = true
         
         let nsImage = NSImage(contentsOfFile: screenshotInDetailedView.path)
         nsImage?.prefersColorMatch = false
@@ -469,7 +474,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let keyTime = val[0]
         print("key value time", keyTime)
         tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
-        // dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
         // variables.countNumber = variables.countNumber + 1
         self.view.window?.close()
 
@@ -705,6 +710,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         photoNameListGenerate()
         // print(detailedInfor)
         dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+        
         self.view.window?.close()
         
         
@@ -1099,6 +1105,29 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         checkboxInformationCaptureWindoe.clickstatusDetailedWindow = 1
     }
     
+    
+    //edit close button interaction
+    override func viewDidAppear() {
+        self.view.window?.delegate = self
+        
+    }
+    func windowWillClose(_ notification: Notification) {
+        print("hhhh")
+        autosaveFunction()
+    }
+    
+    // save changeing when users click close button
+    func autosaveFunction(){
+        let oldOne = detailedWiondwVariables.detailedDictionary
+        detailedWiondwVariables.detailedDictionary["Title"] = [editableTitle.stringValue]
+        detailedWiondwVariables.detailedDictionary["Text"] = [scrapbookBody.stringValue]
+        let newOne = detailedWiondwVariables.detailedDictionary
+        let val = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
+        let keyTime = val[0]
+        print("key value time", keyTime)
+        tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
+        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+    }
     // end of the class
 }
 

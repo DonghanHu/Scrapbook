@@ -50,6 +50,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     @IBOutlet weak var captionLabelTwo: NSTextField!
     @IBOutlet weak var captionLabelThree: NSTextField!
     
+    @IBOutlet weak var oldSaveImageButton: NSButton!
+    
+    
     // this is for the table view
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var statusLabel: NSTextField!
@@ -79,6 +82,11 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         testColView.delegate = self
         testColView.dataSource = self
         self.title = "Capture View"
+        
+        // hide old items
+        oldSaveImageButton.isHidden = true
+        testColView.isHidden = true
+        
         
         
         // for table view
@@ -293,7 +301,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     func dateFromatGenerate() -> String{
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMM d"
+        
+        let ordinalFormatter = NumberFormatter()
+        ordinalFormatter.numberStyle = .ordinal
+        let day = Calendar.current.component(.day, from: date)
+        let dayOrdinal = ordinalFormatter.string(from: NSNumber(value: day))!
+        
+        // dateFormatter.dateFormat = "yyyy, MMM d"
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMM d, yyyy", options: 0, locale: dateFormatter.locale)?.replacingOccurrences(of: "d", with: "'\(dayOrdinal)'")
+        // dateFormatter.dateFormat = "EEEE, MMM d"
            //dateFormatter.dateFormat = "YYYY.MM.dd,HH:mm"
         let dateString = dateFormatter.string(from: date)
         return dateString

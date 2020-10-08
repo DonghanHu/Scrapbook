@@ -226,10 +226,14 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         getAllAvailableScrapbookList()
         photoNameListEdit()
         self.loadView()
-
-        
         // ColViewItem.load()
-
+    }
+    
+    func alternativeRefreshAction() {
+        print("refresh in detialed window")
+        getAllAvailableScrapbookList()
+        photoNameListEdit()
+        self.loadView()
     }
     
     // end of the class

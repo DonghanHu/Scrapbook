@@ -776,10 +776,10 @@ Gw
                                     <rect key="frame" x="1" y="1" width="722" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="Dqp-89-vam">
+                                        <collectionView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dqp-89-vam">
                                             <rect key="frame" x="0.0" y="0.0" width="682" height="415"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="IYc-2M-yhX">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="cQA-kN-MuO">
                                                 <size key="itemSize" width="150" height="100"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -794,6 +794,9 @@ Gw
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.5" horizontal="NO" id="dxt-PS-PWO">
                                     <rect key="frame" x="707" y="1" width="16" height="465"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <connections>
+                                        <action selector="verticalScrollerAction:" target="eGB-z8-xtp" id="yBl-kI-SqP"/>
+                                    </connections>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fks-vg-t5h">
@@ -818,6 +821,7 @@ Gw
                     <connections>
                         <outlet property="colView" destination="Dqp-89-vam" id="Xme-nH-REv"/>
                         <outlet property="refreshButton" destination="fks-vg-t5h" id="wpJ-Tg-OIo"/>
+                        <outlet property="verticalScroller" destination="dxt-PS-PWO" id="sQN-dn-kZC"/>
                     </connections>
                 </viewController>
                 <customObject id="r7K-0c-uKO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

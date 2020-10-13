@@ -22,9 +22,19 @@ class ColViewItem: NSCollectionViewItem {
         inputTitleField.isHidden = true
         boundary.stringValue = ""
         //photonumber.photonumberCounting = photonumber.photonumberCounting - 1
-        labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
+        let totalImages = diaryInformationCollection.photoNameList.count - 1
+        
+//        labelSaveImagePath.stringValue = photonumber.photoPathList[photonumber.photonumberCounting]
+//        print(photonumber.photonumberCounting)
+        
+        let orderValue = totalImages - photonumber.photonumberCounting
+        print(orderValue)
+        labelSaveImagePath.stringValue = photonumber.photoPathList[totalImages - photonumber.photonumberCounting]
+        
+        
         
         // in collection view, count the whole number of screenshots
+        print(labelSaveImagePath.stringValue)
         // print("count in colviewitem", photonumber.photoPathList[photonumber.photonumberCounting])
         
         super.viewDidLoad()
@@ -34,7 +44,10 @@ class ColViewItem: NSCollectionViewItem {
         self.view.layer?.borderWidth = 10.0
 
         // self.view.frame
-        let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
+        //let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
+        
+        
+        let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[totalImages - photonumber.photonumberCounting])
         screenshotImage.image = nsImage
         screenshotImage.isHidden = true
         //screenshotImage.imageScaling = .scaleAxesIndependently
@@ -72,8 +85,12 @@ class ColViewItem: NSCollectionViewItem {
         readJsonFile()
         
         // perfect solution
-        
         presentAsModalWindow(newDetailedView() as NSViewController)
+        
+//        let temp2 : NSViewController = newDetailedView()
+//        let subWindow2 = NSWindow(contentViewController: temp2)
+//        let subWindowController2 = NSWindowController(window: subWindow2)
+//        subWindowController2.showWindow(nil)
         
         // NSApp.activate(ignoringOtherApps: true)
         

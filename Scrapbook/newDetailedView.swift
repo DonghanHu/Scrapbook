@@ -56,7 +56,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
 
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var openAllButton: NSButtonCell!
+    @IBOutlet weak var openAllButoon: NSButtonCell!
     @IBOutlet weak var openSelectedButton: NSButton!
     @IBOutlet weak var stringLabel: NSTextField!
     @IBOutlet weak var deleteButton: NSButton!
@@ -113,7 +113,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         tableView.target = self
         tableView.action = #selector(tableViewSingleClick(_:))
         openSelectedButton.title = "Open selected applications"
-        openAllButton.title = "Open all applications"
+        openAllButoon.title = "Open all applications"
         deleteButton.title = "Delete this recording"
         
     }
@@ -519,7 +519,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                                 let kss =  tempelement["PhotoTime"] as! [String]
                                 if kss[0] == timeVal {
                                     print("index", i)
-                                    print("target jsonarry", tempelement)
+                                    // print("target jsonarry", tempelement)
                                     tempelement["Title"] = title
                                     tempelement["Text"] = text
                                     //jsonarray.remove(at: i)
@@ -711,10 +711,26 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         // print(detailedInfor)
         dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
         
+        
+        // automatically refresh collection view here
+        
+//        let handler = collectionViewController()
+//        handler.alternativeRefreshAction()
+        
+        // close the self window
         self.view.window?.close()
         
+        //collectionViewController.alternativeRefreshAction(collectionViewController)
+
         
     }
+    
+    @IBAction func testButton(_ sender: Any) {
+        self.view.window?.close()
+        collectionViewController().testPrint()
+    }
+    
+    
     func getAllAvailableScrapbookList(){
         let url =  URL(fileURLWithPath: variables.jsonFilePathString)
         var photoNameList = [[String]]()
@@ -726,8 +742,10 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
                 let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
                 let jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
-                print("after delete, json array", jsonarray)
-                print(jsonarray.count)
+                // print json array after deletion
+                // print("after delete, json array", jsonarray)
+                // print(jsonarray.count)
+                
                 let length = jsonarray.count
                 // length cant be less than 1
                 if (length == 1){

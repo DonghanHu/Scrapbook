@@ -8,7 +8,7 @@
 
 import Foundation
 import AppKit
-import ScreenCapture
+// import ScreenCapture
 
 //extension StringProtocol {
 //    func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
@@ -81,7 +81,7 @@ class Screencapture : NSObject {
         variables.latesScreenShotPathString = variables.defaultFolderPathString + "Screenshot-" + dateString + ".jpg"
         
         
-        let regionUrl = ScreenCapture.captureRegion(variables.latesScreenShotPathString)
+        // let regionUrl = ScreenCapture.captureRegion(variables.latesScreenShotPathString)
         
         
     }

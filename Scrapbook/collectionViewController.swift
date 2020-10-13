@@ -15,7 +15,7 @@ extension NSUserInterfaceItemIdentifier {
 }
 
 
-class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource {
+class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
     
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -32,7 +32,6 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         else {
             photonumber.photonumberCounting = photonumber.photonumberCounting + 1
         }
-        
         return item
     }
     
@@ -49,8 +48,9 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
     @IBOutlet weak var colView: NSCollectionView!
     @IBOutlet weak var refreshButton: NSButton!
+    @IBOutlet weak var verticalScroller: NSScroller!
     
-
+    var playTimer = Timer()
     
     override func viewDidLoad() {
         
@@ -76,18 +76,60 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         let item = NSNib(nibNamed: "ColViewItem", bundle: nil)
         
         colView.register(item, forItemWithIdentifier: .collectionViewItem)
-    
         // colView.layer?.borderWidth = 13.0
         // colView.layer?.borderColor = NSColor.red as! CGColor
         
         colView.delegate = self
         colView.dataSource = self
+        print("vertical scroller value in viewdidload", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        // scroller vertical
+        colView.enclosingScrollView?.verticalScroller?.floatValue = 1.0
+        print("vertical scroller value in viewdidload", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        
         self.title = "Collection View"
         refreshButton.title = "Refresh"
+        
+        // not work
+//        if let contentSize = colView.collectionViewLayout?.collectionViewContentSize{
+//            colView.setFrameSize(contentSize)
+//        }
+//
+        
+        
 //        let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(self.collectionViewSingleClick(_:)))
 //        colView.addGestureRecognizer(clickGesture)
-    
         
+        //verticalScroller.scroll(NSPoint(x: 0, y: 0))
+        // print("scroller size", verticalScroller.locationOfPrintRect(.zero))
+        //verticalScroller.floatValue = 1.0
+        // verticalScroller.locationOfPrintRect(.zero)
+        // colView.intrinsicContentSize.height
+        // colView.self.bounds.size.height
+        
+        // verticalScroller.scroll(NSPoint(x: 0, y: colView.self.bounds.size.height))
+        
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        if let contentSize = colView.collectionViewLayout?.collectionViewContentSize{
+                    colView.setFrameSize(contentSize)
+        }
+            
+        print("vertical scroller value in viewwillappear", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        colView.enclosingScrollView?.verticalScroller?.floatValue = 1.0
+        print("vertical scroller value in viewwillappear", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        let height = colView.bounds.size.height
+//        colView.enclosingScrollView?.verticalScroller?.floatValue = Float(height)
+        //colView.enclosingScrollView?.contentView.scroll(NSPoint(x: 0, y: height))
+        
+        
+    }
+    
+    
+    @IBAction func verticalScrollerAction(_ sender: Any) {
+        print(verticalScroller.floatValue)
     }
     
 
@@ -221,6 +263,37 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
 
     }
     
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        print("vertical scroller value in viewwilllayout", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        colView.enclosingScrollView?.verticalScroller?.floatValue = 1.0
+        print("vertical scroller value in viewwilllayout", colView.enclosingScrollView?.verticalScroller?.floatValue)
+    }
+    
+    override func loadView() {
+        super.loadView()
+        print("vertical scroller value in loadview", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        colView.enclosingScrollView?.verticalScroller?.floatValue = 1.0
+        print("vertical scroller value in loadview", colView.enclosingScrollView?.verticalScroller?.floatValue)
+//        self.playTimer.fire()
+//        self.playTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(automaticallyRefresh), userInfo: nil, repeats: true)
+//        print("valid or not in loadview:", self.playTimer.isValid)
+       }
+    
+    override func viewDidAppear() {
+        self.view.window?.delegate = self
+        self.playTimer.fire()
+        // self.playTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.automaticallyRefresh), userInfo: nil, repeats: true)
+        print("valid or not in viewdidappear:", self.playTimer.isValid)
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+
+        self.playTimer.invalidate()
+        print("valid or not in windowwill close:", self.playTimer.isValid)
+    }
+    
+    
     @IBAction func refreshAction(_ sender: Any) {
         print("refreshed")
         getAllAvailableScrapbookList()
@@ -234,6 +307,15 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         getAllAvailableScrapbookList()
         photoNameListEdit()
         self.loadView()
+    }
+    
+    @objc func automaticallyRefresh(){
+        print("auto refresh in timer")
+    }
+    
+    func testPrint(){
+        self.loadView()
+       
     }
     
     // end of the class

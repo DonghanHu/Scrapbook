@@ -475,6 +475,16 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         return alert.runModal() == .alertFirstButtonReturn
     }
     
+    func dialogCollectionView(question: String, text: String) -> Bool{
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "That's all")
+        alert.addButton(withTitle: "collectionview")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
     // interaction with table view for multiple selections
     func updateStatus() {
       

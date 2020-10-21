@@ -16,7 +16,7 @@ extension NSUserInterfaceItemIdentifier {
 
 // previous one
 // testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource {
-class testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource {
+class testViewController: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return variables.recordedApplicationNameStack.count
     }
@@ -196,6 +196,16 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // Do view setup here.
     }
     
+    override func viewDidAppear() {
+        self.view.window?.delegate = self
+        
+    }
+    func windowWillClose(_ notification: Notification) {
+        print("hhhh")
+        //autosaveFunction()
+    }
+        
+        
     @objc func firstInformationChange(_ sender: NSButton){
         // print(sender.title)
         
@@ -465,7 +475,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
        return alert.runModal() == .alertFirstButtonReturn
    }
 
-    func dialogCheck(question: String, text: String) -> Bool {
+    public func dialogCheck(question: String, text: String) -> Bool {
         let alert = NSAlert()
         alert.messageText = question
         alert.informativeText = text
@@ -674,7 +684,96 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             checkboxInformationCaptureWindoe.clickstatus = 0
             self.view.window?.close()
         }
+    
+
+        func autosaveFunction(){
+            var applicationNameTotal = [""]
+            // check checkboxInformationCaptureWindoe.checkboxNameStack or variables.recordedApplicationNameStack
+            if checkboxInformationCaptureWindoe.clickstatus == 1 {
+                // checkbox clicked, use checkboxInformationCaptureWindoe.checkboxNameStack
+                applicationNameTotal = checkboxInformationCaptureWindoe.checkboxNameStack
+            }
+            else {
+                applicationNameTotal = variables.recordedApplicationNameStack
+            }
+            let stackLen = applicationNameTotal.count
+            var emptyCount = 0
+            for k in 0..<stackLen{
+                if applicationNameTotal[k] == "Empty"{
+                    emptyCount = emptyCount + 1
+                }
+            }
+            if (emptyCount == stackLen){
+                if (scrapbookTitle.stringValue == "") {
+                    scrapbookTitle.stringValue = variables.defaultTitle
+                    variables.defaultTitle = ""
+                }
+                else {
+                    print("this is the customized title", scrapbookTitle.stringValue)
+                }
+                variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+                variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+                
+                variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+                var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+                let dictionary = [String:[String]]()
+                let length = applicationNameTotal.count
+                let keys: Array<String> = Array<String>(tempDictionary.keys)
+                let keyLength = keys.count
+                for i in 0..<keyLength{
+                    if applicationNameTotal.contains(keys[i]){
+                        
+                    }
+                    else {
+                        tempDictionary.removeValue(forKey: keys[i])
+                    }
+                }
+                variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+                
+                writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+                variables.countNumber = variables.countNumber + 1
+                variables.dateCountNumber = variables.dateCountNumber + 1
+                checkboxInformationCaptureWindoe.clickstatus = 0
+                self.view.window?.close()
+            }
+            else {
+                print("this is checkbox collection: ", applicationNameTotal)
+                
+                if (scrapbookTitle.stringValue == "") {
+                    scrapbookTitle.stringValue = variables.defaultTitle
+                    variables.defaultTitle = ""
+                }
+                else {
+                    print("this is the customized title", scrapbookTitle.stringValue)
+                }
+                variables.metaDataDictionaryTestOne["Title"] = [scrapbookTitle.stringValue]
+                variables.metaDataDictionaryTestOne["Text"] = [scrapbookBody.stringValue]
+                
+                variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
+                var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+                let dictionary = [String:[String]]()
+                let length = applicationNameTotal.count
+                let keys: Array<String> = Array<String>(tempDictionary.keys)
+                let keyLength = keys.count
+                for i in 0..<keyLength{
+                    if applicationNameTotal.contains(keys[i]){
+                        
+                    }
+                    else {
+                        tempDictionary.removeValue(forKey: keys[i])
+                    }
+                }
+                variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
+                
+                writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
+                variables.countNumber = variables.countNumber + 1
+                variables.dateCountNumber = variables.dateCountNumber + 1
+                checkboxInformationCaptureWindoe.clickstatus = 0
+                self.view.window?.close()
+            }
+        }
         
+
         
         // for checkbox selections
 

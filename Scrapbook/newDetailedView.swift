@@ -78,7 +78,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         openSelectedApplicationsButton.title = "Open Selected Applications"
         openAllApplicationsButton.title = "Open All Applications"
-        saveEditButton.title = "Save Change and Close"
+        saveEditButton.title = "Save"
         self.title = "Detailed Window"
         // Do view setup here.
         
@@ -114,7 +114,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         tableView.action = #selector(tableViewSingleClick(_:))
         openSelectedButton.title = "Open selected applications"
         openAllButoon.title = "Open all applications"
-        deleteButton.title = "Delete this recording"
+        deleteButton.title = "Delete"
         
     }
     
@@ -491,6 +491,16 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
               return alert.runModal() == .alertFirstButtonReturn
     }
     
+    func dialogDelete(question: String, text: String) -> Bool{
+        let alert = NSAlert()
+        alert.messageText = question
+        alert.informativeText = text
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Yes.")
+        alert.addButton(withTitle:"Wait a minute.")
+        return alert.runModal() == .alertFirstButtonReturn
+    }
+    
     func tempfuction (newOne : Dictionary<String, Any>, timeVal : String, title : [String], text : [String]){
         do {
             let jsonData = try! JSONSerialization.data(withJSONObject: newOne, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -625,100 +635,113 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     // action for the delete button
     @IBAction func deleteButtonAction(_ sender: Any) {
         // delete the screenshot(image)
-        let filePathString = screenshotInDetailedView.path!
-        let fileURL = URL(fileURLWithPath: filePathString)
-        do {
-            try FileManager.default.removeItem(at: fileURL)
-        } catch {
-            print("delete screenshot error:", error)
-        }
+        let value = dialogDelete(question: "Are you sure that you wan to delete this recording?", text: "This delete process is irrevertible!")
+        // wait a minute return false, yes return true
+        // print(value, "value")
         
-        // delete the json file data
-        let detailedInfor = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
-        let timeInfor = detailedInfor[0]
-        let url =  URL(fileURLWithPath: variables.jsonFilePathString)
-        var fileSize : UInt64
-        do {
-            let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
-            fileSize = attr[FileAttributeKey.size] as! UInt64
-            if fileSize == 0{
-                print("json file is empty")
+        if value == true{
+            let filePathString = screenshotInDetailedView.path!
+            let fileURL = URL(fileURLWithPath: filePathString)
+            do {
+                try FileManager.default.removeItem(at: fileURL)
+            } catch {
+                print("delete screenshot error:", error)
             }
-            else{
-                let rawData : NSData = try! NSData(contentsOf: url)
-                do{
-                    let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
-                    
-                    let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
-                    
-                    var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
-                    
-                    let tempDic : [String : Any] = ["Text"             :   String(),
-                                                    "Title"            :   String(),
-                                                    "PhotoTime"        :   [String](),
-                                                    "screenshotPath"   :   [String](),
-                                                    "Applications"     :   [String:[String]](),
-                                                    "Coordinates"      :   [String:[String]]()
-                                                    ]
-                    let number = jsonarray.count
-                    innerLoop: for i in 0..<number{
-                        var tempelement = jsonarray[i]
-                        if tempelement["PhotoTime"] != nil {
-                            let kss =  tempelement["PhotoTime"] as! [String]
-                            if kss[0] == timeInfor {
-                                print("index", i)
-                                print("target jsonarry", tempelement)
-                                jsonarray.remove(at: i)
-                                break innerLoop
+            
+            // delete the json file data
+            let detailedInfor = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
+            let timeInfor = detailedInfor[0]
+            let url =  URL(fileURLWithPath: variables.jsonFilePathString)
+            var fileSize : UInt64
+            do {
+                let attr = try FileManager.default.attributesOfItem(atPath: variables.jsonFilePathString)
+                fileSize = attr[FileAttributeKey.size] as! UInt64
+                if fileSize == 0{
+                    print("json file is empty")
+                }
+                else{
+                    let rawData : NSData = try! NSData(contentsOf: url)
+                    do{
+                        let jsonDataDictionary = try JSONSerialization.jsonObject(with : rawData as Data, options: JSONSerialization.ReadingOptions.mutableContainers)as? NSDictionary
+                        
+                        let dictionaryOfReturnedJsonData = jsonDataDictionary as! Dictionary<String, AnyObject>
+                        
+                        var jsonarray = dictionaryOfReturnedJsonData["BasicInformation"] as! [[String : Any]]
+                        
+                        let tempDic : [String : Any] = ["Text"             :   String(),
+                                                        "Title"            :   String(),
+                                                        "PhotoTime"        :   [String](),
+                                                        "screenshotPath"   :   [String](),
+                                                        "Applications"     :   [String:[String]](),
+                                                        "Coordinates"      :   [String:[String]]()
+                                                        ]
+                        let number = jsonarray.count
+                        innerLoop: for i in 0..<number{
+                            var tempelement = jsonarray[i]
+                            if tempelement["PhotoTime"] != nil {
+                                let kss =  tempelement["PhotoTime"] as! [String]
+                                if kss[0] == timeInfor {
+                                    print("index", i)
+                                    print("target jsonarry", tempelement)
+                                    jsonarray.remove(at: i)
+                                    break innerLoop
+                                }
                             }
+                            
+                        }
+                        // print("new json", jsonarray)
+                        jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
+                        let emptyText = ""
+                        let tempFilePathString = "file://" + variables.jsonFilePathString
+                        let tempFIlePathURL = URL(string: tempFilePathString)
+                        do {
+                            try emptyText.write(to: tempFIlePathURL!, atomically: false, encoding: .utf8)
+                        } catch {
+                             print(error)
+                        }
+                        let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+                        if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
+                            file.write(jsonData)
+                            file.closeFile()
                         }
                         
-                    }
-                    // print("new json", jsonarray)
-                    jsonDataDictionary?.setValue(jsonarray, forKey: "BasicInformation")
-                    let emptyText = ""
-                    let tempFilePathString = "file://" + variables.jsonFilePathString
-                    let tempFIlePathURL = URL(string: tempFilePathString)
-                    do {
-                        try emptyText.write(to: tempFIlePathURL!, atomically: false, encoding: .utf8)
-                    } catch {
-                         print(error)
-                    }
-                    let jsonData = try! JSONSerialization.data(withJSONObject : jsonDataDictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
-                    if let file = FileHandle(forWritingAtPath : variables.jsonFilePathString) {
-                        file.write(jsonData)
-                        file.closeFile()
-                    }
+                    }catch {print(error)}
+                }
+            } catch {
+                print("preview Error: \(error)")
+                }
                     
-                }catch {print(error)}
-            }
-        } catch {
-            print("preview Error: \(error)")
-            }
-        
-        variables.countNumber = variables.countNumber - 1
-        
-        //change here
-        // diaryInformationCollection.photoNameFirstInformation = diaryInformationCollection.photoNameFirstInformation - 1
-        
-        // variables.dateCountNumber = variables.dateCountNumber - 1
-        getAllAvailableScrapbookList()
-        divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
-        // the count was not mins 1
+            variables.countNumber = variables.countNumber - 1
+            
+            //change here
+            // diaryInformationCollection.photoNameFirstInformation = diaryInformationCollection.photoNameFirstInformation - 1
+            
+            // variables.dateCountNumber = variables.dateCountNumber - 1
+            getAllAvailableScrapbookList()
+            divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
+            // the count was not mins 1
 
-        print(diaryInformationCollection.photoNameList.count)
-        photoNameListGenerate()
-        // print(detailedInfor)
-        dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+            print(diaryInformationCollection.photoNameList.count)
+            photoNameListGenerate()
+            // print(detailedInfor)
+            dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+            
+            
+            // automatically refresh collection view here
+            
+    //        let handler = collectionViewController()
+    //        handler.alternativeRefreshAction()
+            
+            // close the self window
+            self.view.window?.close()
+        }
+
+        else{
+            // noting happened here is click wait a minute
+            // no deleteing
+        }
         
-        
-        // automatically refresh collection view here
-        
-//        let handler = collectionViewController()
-//        handler.alternativeRefreshAction()
-        
-        // close the self window
-        self.view.window?.close()
+
         
         //collectionViewController.alternativeRefreshAction(collectionViewController)
 
@@ -1144,7 +1167,9 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let keyTime = val[0]
         print("key value time", keyTime)
         tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
-        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        // dont show a dialog pop window
+        
+        //dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
     }
     // end of the class
 }

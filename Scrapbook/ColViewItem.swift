@@ -43,6 +43,8 @@ class ColViewItem: NSCollectionViewItem {
         // 2
         self.view.layer?.borderWidth = 10.0
 
+        
+        boundary.isHidden = true
         // self.view.frame
         //let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[photonumber.photonumberCounting])
         

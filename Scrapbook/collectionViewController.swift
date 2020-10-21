@@ -14,6 +14,11 @@ extension NSUserInterfaceItemIdentifier {
     static let collectionViewItem = NSUserInterfaceItemIdentifier("ColViewItem")
 }
 
+struct notificationValues {
+    static var notificationKey = "scrapbook.notificationKey"
+}
+
+let notificationKeyCollectionView = "scrapbook.notificationKey"
 
 class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
     
@@ -57,6 +62,12 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         super.viewDidLoad()
         // Do view setup here.
         
+        
+        //code notification observer
+        NotificationCenter.default.addObserver(self, selector: #selector(collectionViewController.updateNotificationRefresh), name: NSNotification.Name(rawValue: notificationValues.notificationKey), object: nil)
+        
+        
+        // load related information
         getAllAvailableScrapbookList()
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
@@ -108,6 +119,11 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         
         // verticalScroller.scroll(NSPoint(x: 0, y: colView.self.bounds.size.height))
         
+    }
+    
+    @objc func updateNotificationRefresh(){
+        print("update function in collectionview window.")
+        alternativeRefreshAction()
     }
     
     override func viewWillAppear() {
@@ -309,14 +325,16 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         self.loadView()
     }
     
+    // useless fucntion for testing
     @objc func automaticallyRefresh(){
         print("auto refresh in timer")
     }
-    
+
     func testPrint(){
         self.loadView()
-       
+
     }
+    // useless functino ends here
     
     // end of the class
 }

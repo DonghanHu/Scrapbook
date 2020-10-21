@@ -12,6 +12,8 @@ extension NSUserInterfaceItemIdentifier {
     static let detailedItem = NSUserInterfaceItemIdentifier("detailedColViewItem")
 }
 
+let notificationKeyDetailedWindow = ".scrapbook.notificationKey"
+
 class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         // temp return 10
@@ -67,6 +69,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         super.viewDidLoad()
         // Do view setup here.
         
+        // NotificationCenter.default.addObserver(self, selector: #selector(newDetailedView.updateNotification), name: NSNotification.Name(rawValue: notificationKeyDetailedWindow), object: nil)
+        
         LabelOne.stringValue = "Application Name:"
         LabelTwo.isHidden = true
         LabelThree.isHidden = true
@@ -116,6 +120,10 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         openAllButoon.title = "Open all applications"
         deleteButton.title = "Delete"
         
+    }
+    
+    @objc func updateNotification(){
+        print("looks like that notification center worked")
     }
     
     @objc func collectionViewButton (_ sender: NSButton){
@@ -634,6 +642,13 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
 
     // action for the delete button
     @IBAction func deleteButtonAction(_ sender: Any) {
+        
+        // sending notification here
+        // NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationKeyDetailedWindow), object: self)
+        
+        
+        
+        
         // delete the screenshot(image)
         let value = dialogDelete(question: "Are you sure that you wan to delete this recording?", text: "This delete process is irrevertible!")
         // wait a minute return false, yes return true
@@ -682,7 +697,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                                 let kss =  tempelement["PhotoTime"] as! [String]
                                 if kss[0] == timeInfor {
                                     print("index", i)
-                                    print("target jsonarry", tempelement)
+                                    // print the target json information
+                                    //print("target jsonarry", tempelement)
                                     jsonarray.remove(at: i)
                                     break innerLoop
                                 }
@@ -732,6 +748,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     //        let handler = collectionViewController()
     //        handler.alternativeRefreshAction()
             
+            
+            
+            // refresh the collection view here
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationValues.notificationKey), object: (Any).self)
+            
             // close the self window
             self.view.window?.close()
         }
@@ -739,9 +761,11 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         else{
             // noting happened here is click wait a minute
             // no deleteing
+
         }
         
 
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationValues.notificationKey), object: (Any).self)
         
         //collectionViewController.alternativeRefreshAction(collectionViewController)
 
@@ -750,7 +774,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     @IBAction func testButton(_ sender: Any) {
         self.view.window?.close()
-        collectionViewController().testPrint()
+        
+        // collectionViewController().testPrint()
     }
     
     

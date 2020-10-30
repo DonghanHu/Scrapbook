@@ -50,6 +50,10 @@ class ColViewItem: NSCollectionViewItem {
         
         
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[totalImages - photonumber.photonumberCounting])
+        // screenshotImage.imageScaling = .scaleAxesIndependently
+        screenshotImage.imageScaling = .scaleProportionallyUpOrDown
+        //.scaleProportionallyUpOrDown
+        //.scaleAxesIndependently
         screenshotImage.image = nsImage
         screenshotImage.isHidden = true
         //screenshotImage.imageScaling = .scaleAxesIndependently
@@ -64,8 +68,13 @@ class ColViewItem: NSCollectionViewItem {
         
         // Do view setup here.
         //reverse title and text
-        inputTitleField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
-        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
+        
+        //
+        
+//        inputTitleField.stringValue = photonumber.inputRelatedMessage[photonumber.photonumberCounting]
+//        inputTextField.stringValue = photonumber.inputRelatedTitle[photonumber.photonumberCounting]
+        inputTitleField.stringValue = photonumber.inputRelatedMessage[totalImages - photonumber.photonumberCounting]
+        inputTextField.stringValue = photonumber.inputRelatedTitle[totalImages - photonumber.photonumberCounting]
     }
 
     @IBAction func imageButtonClickAction(_ sender: Any) {

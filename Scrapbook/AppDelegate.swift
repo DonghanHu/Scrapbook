@@ -148,6 +148,10 @@ struct popoverWindow {
     static var popover = NSPopover()
 }
 
+struct autosaveSet {
+    static var autosaveFlag = false
+}
+
 struct checkboxInformationCaptureWindoe {
     static var checkboxNameStack = [""]
     static var clickstatus = 0

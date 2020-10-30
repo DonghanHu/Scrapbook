@@ -82,7 +82,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         openSelectedApplicationsButton.title = "Open Selected Applications"
         openAllApplicationsButton.title = "Open All Applications"
-        saveEditButton.title = "Save"
+        //saveEditButton.title = "Save"
+        saveEditButton.title = "Close"
         self.title = "Detailed Window"
         // Do view setup here.
         
@@ -95,6 +96,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         nsImage?.prefersColorMatch = false
         nsImage?.matchesOnMultipleResolution = true
         screenshotDisplay.image = nsImage
+        screenshotDisplay.imageScaling = .scaleProportionallyUpOrDown
         scrapbookTitle.stringValue = screenshotInDetailedView.title
         scrapbookTitle.isHidden = true
         

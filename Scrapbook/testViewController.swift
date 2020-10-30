@@ -120,10 +120,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         let stringCountNumber = String(variables.dateCountNumber)
         
+        let defaultTitle = dateFormate() + " (" + stringCountNumber + ")"
         
-        variables.defaultTitle = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
         
-        scrapbookTitle.placeholderString = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        // old verison: Scrap #1: Oct 10th, 2020
+//        variables.defaultTitle = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+//        scrapbookTitle.placeholderString = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
+        // new version
+        variables.defaultTitle = defaultTitle
+        scrapbookTitle.placeholderString = defaultTitle
         
         //scrapbookTitle.stringValue = "Scrap #" + stringCountNumber + ": " + dateFromatGenerate()
         
@@ -203,7 +208,13 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     
     func windowWillClose(_ notification: Notification) {
         print("hhhh")
-        autosaveFunctionWhenClose()
+        if autosaveSet.autosaveFlag == true{
+            autosaveSet.autosaveFlag = false
+        }
+        else{
+            autosaveFunctionWhenClose()
+        }
+        
         
         // dont know the reason why autosaveFunctionClose() has to be exactly below this function
         // cant add the line of code: self.close in autosaveFunctionclose()
@@ -402,6 +413,23 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         let currentScreenshot = NSImage(contentsOfFile: variables.latesScreenShotPathString)
         screenshotDisplay.image = currentScreenshot
         
+    }
+    
+    func dateFormate() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        
+        let ordinalFormatter = NumberFormatter()
+        ordinalFormatter.numberStyle = .ordinal
+        let day = Calendar.current.component(.day, from: date)
+        let dayOrdinal = ordinalFormatter.string(from: NSNumber(value: day))!
+        
+        // dateFormatter.dateFormat = "yyyy, MMM d"
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMM. d, yyyy", options: 0, locale: dateFormatter.locale)?.replacingOccurrences(of: "d", with: "'\(dayOrdinal)'")
+        // dateFormatter.dateFormat = "EEEE, MMM d"
+           //dateFormatter.dateFormat = "YYYY.MM.dd,HH:mm"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
     }
     
     func dateFromatGenerate() -> String{
@@ -736,6 +764,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 variables.countNumber = variables.countNumber + 1
                 variables.dateCountNumber = variables.dateCountNumber + 1
                 checkboxInformationCaptureWindoe.clickstatus = 0
+                autosaveSet.autosaveFlag = true
                 self.view.window?.close()
             }
             else {
@@ -778,6 +807,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             variables.countNumber = variables.countNumber + 1
             variables.dateCountNumber = variables.dateCountNumber + 1
             checkboxInformationCaptureWindoe.clickstatus = 0
+            autosaveSet.autosaveFlag = true
             self.view.window?.close()
         }
     

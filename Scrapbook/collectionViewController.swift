@@ -72,6 +72,9 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
         photoNameListGenerate()
         
+        // make refresh button invisible
+        refreshButton.isHidden = true
+        
         
         let windowHeight = self.view.frame.size.height
         let windowWidth = self.view.frame.size.width

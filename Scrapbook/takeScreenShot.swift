@@ -454,27 +454,16 @@ class Screencapture : NSObject {
         let outpipe = Pipe()
         task.standardOutput = outpipe
         task.standardError = outpipe
-
-        
-        
         // wait a second to wait the menu window disappear
-
-        
         do {
           try task.run()
         } catch {}
-        // sleep(UInt32(0.5))
-        
         //task.launch() // asynchronous call.
-        
-        
         let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: outdata, encoding: .utf8)
-
         let temp = ( output! )
         // print("output", output!)
         print ("temp", temp)
-    
         let screen = NSScreen.main
         let rect = screen!.frame
         let height = rect.size.height
@@ -491,11 +480,6 @@ class Screencapture : NSObject {
         
         print("1122", screenShotInformation.firstCoordinationOfX, screenShotInformation.firstCoordinationOfY, screenShotInformation.secondCoordinationOfY, screenShotInformation.secondCoordinationOfY)
                 takeScreenshotSuccess = true
-                
-            //********************************
-            
-            // softeareClassificationHandler.screenAboveWindowListPrint()
-            
         task.waitUntilExit()
         
         if (takeScreenshotSuccess){
@@ -512,7 +496,7 @@ class Screencapture : NSObject {
 
         else {
             print("the action of taking a screenshot failed. please repeat your action.")
-        }
+            }
    
         }
     

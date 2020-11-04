@@ -50,7 +50,6 @@ class ColViewItem: NSCollectionViewItem {
         
         
         let nsImage = NSImage(contentsOfFile: photonumber.photoPathList[totalImages - photonumber.photonumberCounting])
-        // screenshotImage.imageScaling = .scaleAxesIndependently
         screenshotImage.imageScaling = .scaleProportionallyUpOrDown
         //.scaleProportionallyUpOrDown
         //.scaleAxesIndependently

@@ -59,6 +59,8 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     
     override func viewDidLoad() {
         
+        
+        
         super.viewDidLoad()
         // Do view setup here.
         

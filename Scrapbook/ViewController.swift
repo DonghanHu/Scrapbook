@@ -71,6 +71,13 @@ class ViewController: NSViewController {
         screenCaptureHandler.selectScreenCapture()
     }
     
+    @IBAction func collectionViewWindowOpen(_ sender: Any) {
+        // this function does not run
+        self.view.window?.close()
+        print("collectionview window is opened, and this window closed")
+    }
+    
+    
     func getScreenInfor(){
         let screen = NSScreen.main
         let rect = screen!.frame

@@ -735,6 +735,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="collectionViewWindowOpen:" target="XfG-lQ-9wD" id="WZn-YZ-nil"/>
                                     <segue destination="eGB-z8-xtp" kind="modal" id="qri-CF-7CE"/>
                                 </connections>
                             </button>
@@ -771,7 +772,7 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView wantsLayer="YES" misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TY-P5-3it">
-                                <rect key="frame" x="12" y="280" width="724" height="457"/>
+                                <rect key="frame" x="5" y="5" width="724" height="457"/>
                                 <clipView key="contentView" id="K66-2A-qwY">
                                     <rect key="frame" x="1" y="1" width="722" height="455"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -779,8 +780,9 @@ Gw
                                         <collectionView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dqp-89-vam">
                                             <rect key="frame" x="0.0" y="0.0" width="682" height="415"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="2" minimumLineSpacing="2" id="cQA-kN-MuO">
-                                                <size key="itemSize" width="200" height="150"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="cQA-kN-MuO">
+                                                <size key="itemSize" width="250" height="170"/>
+                                                <edgeInsets key="sectionInset" left="0.0" right="10" top="5" bottom="0.0"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </collectionView>

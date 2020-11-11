@@ -40,9 +40,13 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         return item
     }
     
+//    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//    }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         let temp = diaryInformationCollection.photoNameFirstInformation.count
+        collectionViewItemCount.countOfCollectionViewItem = temp
         return diaryInformationCollection.photoNameFirstInformation.count
 //        let temp = diaryInformationCollection.photoNameSecondInformation.count
 //        return diaryInformationCollection.photoNameSecondInformation.count
@@ -54,6 +58,7 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     @IBOutlet weak var colView: NSCollectionView!
     @IBOutlet weak var refreshButton: NSButton!
     @IBOutlet weak var verticalScroller: NSScroller!
+    @IBOutlet weak var staticInformationLabel: NSTextField!
     
     var playTimer = Timer()
     
@@ -67,6 +72,11 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         
         //code notification observer
         NotificationCenter.default.addObserver(self, selector: #selector(collectionViewController.updateNotificationRefresh), name: NSNotification.Name(rawValue: notificationValues.notificationKey), object: nil)
+        
+        
+        //staticInformationLabel.isHidden = true
+        
+        // staticInformationLabel.stringValue = "afafasdfas dfasd asdsafasdfasdfasdfasdf asdfasdfdagfasdgads dgasdgjoewjoqperuqworeywqfh sadfhkasdol fkawjef hwasdi fgaslkdjgfl asldfjkha sodifgyao iufalbksdjf hl"
         
         
         // load related information
@@ -105,6 +115,15 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         self.title = "Collection View"
         refreshButton.title = "Refresh"
         
+        
+//        if (collectionViewItemCount.countOfCollectionViewItem == 0){
+//
+//            staticInformationLabel.stringValue = "No recording has been save yet!"
+//        }
+//        else {
+//            staticInformationLabel.isHidden = true
+//        }
+        
         // not work
 //        if let contentSize = colView.collectionViewLayout?.collectionViewContentSize{
 //            colView.setFrameSize(contentSize)
@@ -126,6 +145,8 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         
     }
     
+    
+    
     @objc func updateNotificationRefresh(){
         print("update function in collectionview window.")
         alternativeRefreshAction()
@@ -145,6 +166,17 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
 //        colView.enclosingScrollView?.verticalScroller?.floatValue = Float(height)
         //colView.enclosingScrollView?.contentView.scroll(NSPoint(x: 0, y: height))
         
+        
+        
+        
+        if (collectionViewItemCount.countOfCollectionViewItem == 0){
+
+            staticInformationLabel.stringValue = "No recording has been saved yet!"
+            staticInformationLabel.font = NSFont(name: "AppleSystemUIFont", size: 22.0)
+        }
+        else {
+            staticInformationLabel.isHidden = true
+        }
         
     }
     
@@ -296,10 +328,21 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         print("vertical scroller value in loadview", colView.enclosingScrollView?.verticalScroller?.floatValue)
         colView.enclosingScrollView?.verticalScroller?.floatValue = 1.0
         print("vertical scroller value in loadview", colView.enclosingScrollView?.verticalScroller?.floatValue)
+        
+        
 //        self.playTimer.fire()
 //        self.playTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(automaticallyRefresh), userInfo: nil, repeats: true)
 //        print("valid or not in loadview:", self.playTimer.isValid)
-       }
+//
+//        if (collectionViewItemCount.countOfCollectionViewItem == 0){
+//
+//           staticInformationLabel.stringValue = "No recording has been saved yet!"
+//           staticInformationLabel.font = NSFont(name: "AppleSystemUIFont", size: 25.0)
+//       }
+//       else {
+//           staticInformationLabel.isHidden = true
+//       }
+    }
     
     override func viewDidAppear() {
         self.view.window?.delegate = self
@@ -327,7 +370,17 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         print("refresh in detialed window")
         getAllAvailableScrapbookList()
         photoNameListEdit()
+        print("collectionViewItemCount = ", collectionViewItemCount.countOfCollectionViewItem)
         self.loadView()
+        print("collectionViewItemCount = ", collectionViewItemCount.countOfCollectionViewItem)
+        if (collectionViewItemCount.countOfCollectionViewItem == 0){
+            staticInformationLabel.isHidden = false
+            staticInformationLabel.stringValue = "No recording has been saved yet!"
+            staticInformationLabel.font = NSFont(name: "AppleSystemUIFont", size: 22.0)
+        }
+        else{
+            staticInformationLabel.isHidden = true
+        }
     }
     
     // useless fucntion for testing

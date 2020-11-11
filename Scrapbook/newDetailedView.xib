@@ -29,6 +29,7 @@
                 <outlet property="screenshotDisplay" destination="JVm-jo-uoX" id="GRN-oO-cLh"/>
                 <outlet property="stringLabel" destination="lc4-Q1-fkG" id="9qC-ge-vsz"/>
                 <outlet property="tableView" destination="eid-Ga-GDS" id="u3s-mv-a7e"/>
+                <outlet property="testButton" destination="ZmF-Bi-5Ec" id="H1n-Vh-gjC"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>

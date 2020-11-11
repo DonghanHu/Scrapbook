@@ -86,7 +86,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // hide old items
         oldSaveImageButton.isHidden = true
         testColView.isHidden = true
-        
+        testButtonForCheckbox.isHidden = true
         
         
         // for table view
@@ -151,7 +151,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             print("first application name in caputer view", firstApplicationName)
             let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
             let tempApplicationMetaData = tempDictionary[firstApplicationName]
-            // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+            print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
             if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
                 captionLabelTwo.isHidden = false
                 captionLabelThree.isHidden = false
@@ -455,7 +455,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             let result = dialogCheck(question: "No application has been selected to save.", text: "")
             if (result == true){
                 print("go ahead")
-                dialogOK(question: "Information has been saved successfully without any metadata.", text: "Click OK to continue.")
+                dialogOK(question: "This recording has been saved successfully but with no metadata.", text: "Click OK to continue.")
                 print("this is checkbox collection: ", checkBoxCollection)
                 
                 if (scrapbookTitle.stringValue == "") {
@@ -497,7 +497,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             }
         }
         else {
-            dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+            dialogOK(question: "This recording has been saved successfully.", text: "Click OK to continue.")
             print("this is checkbox collection: ", checkBoxCollection)
             
             if (scrapbookTitle.stringValue == "") {
@@ -584,7 +584,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         } catch {
             print("delete screenshot error:", error)
         }
-        dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+        dialogOK(question: "This recording has been deleted successfully.", text: "Click OK to continue.")
         checkboxInformationCaptureWindoe.clickstatus = 0
         self.view.window?.close()
     }
@@ -729,7 +729,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             let result = dialogCheck(question: "No application has been selected to save.", text: "")
             if (result == true){
                 print("go ahead")
-                dialogOK(question: "Information has been saved successfully without any metadata.", text: "Click OK to continue.")
+                dialogOK(question: "This recording has been saved successfully but with no metadata.", text: "Click OK to continue.")
                 print("this is checkbox collection: ", applicationNameTotal)
                 
                 if (scrapbookTitle.stringValue == "") {
@@ -772,7 +772,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             }
         }
         else {
-            dialogOK(question: "Information has been saved successfully.", text: "Click OK to continue.")
+            dialogOK(question: "This recording has been saved successfully.", text: "Click OK to continue.")
             print("this is checkbox collection: ", applicationNameTotal)
             
             if (scrapbookTitle.stringValue == "") {

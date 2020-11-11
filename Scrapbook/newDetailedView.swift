@@ -63,7 +63,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBOutlet weak var stringLabel: NSTextField!
     @IBOutlet weak var deleteButton: NSButton!
     
-    
+    // unused ubutton, or used for testing
+    @IBOutlet weak var testButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +92,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         openSelectedApplicationsButton.isHidden = true
         openAllApplicationsButton.isHidden = true
         detailedColView.isHidden = true
+        
+        testButton.isHidden = true
         
         let nsImage = NSImage(contentsOfFile: screenshotInDetailedView.path)
         nsImage?.prefersColorMatch = false
@@ -484,10 +487,16 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let keyTime = val[0]
         print("key value time", keyTime)
         tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
-        dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        
+        // the saving action is automatice, so dont display this popup window
+        // dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
+        
+        
         // variables.countNumber = variables.countNumber + 1
         self.view.window?.close()
 
+        
+        // the saving action is automatice, so dont display this popup window
         // dialogOK(question: "Detailed has been changed ans saved successfully.", text: "Click OK to continue.")
     }
     
@@ -506,8 +515,8 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         alert.messageText = question
         alert.informativeText = text
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Yes.")
-        alert.addButton(withTitle:"Wait a minute.")
+        alert.addButton(withTitle: "Delete.")
+        alert.addButton(withTitle:"Cancel.")
         return alert.runModal() == .alertFirstButtonReturn
     }
     
@@ -652,7 +661,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         
         
         // delete the screenshot(image)
-        let value = dialogDelete(question: "Are you sure that you wan to delete this recording?", text: "This delete process is irrevertible!")
+        let value = dialogDelete(question: "Are you sure that you wan to delete this recording?", text: "This recording will be deleted permanently and this action cannot be undone!")
         // wait a minute return false, yes return true
         // print(value, "value")
         
@@ -742,7 +751,9 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             print(diaryInformationCollection.photoNameList.count)
             photoNameListGenerate()
             // print(detailedInfor)
-            dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
+            
+            // dont display this popup window
+            // dialogOK(question: "Information has been deleted successfully.", text: "Click OK to continue.")
             
             
             // automatically refresh collection view here

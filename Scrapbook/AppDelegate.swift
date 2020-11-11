@@ -152,6 +152,10 @@ struct autosaveSet {
     static var autosaveFlag = false
 }
 
+struct collectionViewItemCount {
+    static var countOfCollectionViewItem = -1
+}
+
 struct checkboxInformationCaptureWindoe {
     static var checkboxNameStack = [""]
     static var clickstatus = 0

@@ -18,9 +18,14 @@ struct notificationValues {
     static var notificationKey = "scrapbook.notificationKey"
 }
 
+struct cellCGSize {
+    static var height : CGFloat!
+    static var width : CGFloat!
+}
+
 let notificationKeyCollectionView = "scrapbook.notificationKey"
 
-class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate {
+class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCollectionViewDataSource, NSWindowDelegate, NSCollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -40,9 +45,16 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         return item
     }
     
-//    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//    }
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = view.frame.size.height
+        let width = view.frame.size.width
+        // in case you you want the cell to be 40% of your controllers view
+        cellCGSize.width = width * 0.22
+        cellCGSize.height = height * 0.22
+        
+        return CGSize(width: width * 0.22, height: height * 0.22)
+        
+    }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         let temp = diaryInformationCollection.photoNameFirstInformation.count

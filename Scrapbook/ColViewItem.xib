@@ -57,7 +57,7 @@
                     </textFieldCell>
                 </textField>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vk1-wF-Xyz">
-                    <rect key="frame" x="3" y="30" width="201" height="140"/>
+                    <rect key="frame" x="3" y="29" width="248" height="141"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="GDO-Wp-LWc">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -68,7 +68,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hLa-9a-I9U">
-                    <rect key="frame" x="3" y="0.0" width="250" height="21"/>
+                    <rect key="frame" x="18" y="1" width="250" height="21"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" lineBreakMode="charWrapping" continuous="YES" title="Text: blahblah" id="3YG-D0-rbO">
                         <font key="font" metaFont="system"/>
@@ -77,7 +77,7 @@
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="76.5" y="179.5"/>
+            <point key="canvasLocation" x="76" y="179"/>
         </customView>
         <customObject id="wPA-mz-WIg" customClass="ColViewItem" customModule="Scrapbook" customModuleProvider="target"/>
     </objects>

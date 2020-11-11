@@ -57,6 +57,8 @@ class ColViewItem: NSCollectionViewItem {
         screenshotImage.isHidden = true
         //screenshotImage.imageScaling = .scaleAxesIndependently
         imageButton.image = nsImage
+        imageButton.imageScaling = .scaleProportionallyUpOrDown
+        
         
         // display the text body
         // display the title body

@@ -76,7 +76,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="oja-rY-ObT"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uym-jA-yda">
-                    <rect key="frame" x="655" y="160" width="229" height="70"/>
+                    <rect key="frame" x="655" y="160" width="316" height="70"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <textFieldCell key="cell" title="Label" id="Dju-uE-URw">
                         <font key="font" metaFont="system"/>

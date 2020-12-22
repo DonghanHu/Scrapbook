@@ -37,6 +37,9 @@ struct variables {
                                                              "Applications"     :   [String:[String]](),
                                                              "Coordinates"      :   [String:[String]]()
     ]
+    
+    
+    
     static var metaDataIdctionaryTestDic : [String : [String]] = [:]
     
     static var countNumber                       = 1
@@ -46,6 +49,9 @@ struct variables {
     static var defaultTitle                      = " "
     static var capturedApplicationNameList       = [""]
     static var detailedApplicationNameList       = [""]
+    
+    static var newKeyCollections                 = [String]()
+    static var newRecordedApplicationNameStack   = [String]()
 }
 
 struct overviewWindowVariables {
@@ -198,6 +204,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         statusItem.button?.title = "S"
         statusItem.button?.target = self
+        
+        
+        //NSApp.activate(ignoringOtherApps: true)
         
         // statusItem.button?.action = #selector(showSettings)
         // statusItem.button?.action = #selector(printQuote(_:))

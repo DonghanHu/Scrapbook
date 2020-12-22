@@ -357,21 +357,27 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
        }
        return "Others"
    }
+    // code here
     func readCSVtoGetApplescript(applicationCategory : String, applicationName : String, dic : Dictionary<String, [String]>) -> [String]{
-        var tempapplicationName = applicationName
+        var applicationNameWithRank = applicationName
+        let cutString = "#"
+        var newApplicationNameArray = applicationName.components(separatedBy: cutString)
+        var OriginapplicationName = newApplicationNameArray[0]
+        
         let filepath = Bundle.main.path(forResource: "applescriptCategoryCode", ofType: "csv")!
         var contents = try! String(contentsOfFile: filepath, encoding: .utf8)
         contents = cleanRows(file: contents)
         let csvRows = csv(data: contents)
-        if applicationName == "Adobe Acrobat Reader DC" {
-            tempapplicationName = "Acrobat Reader"
+        if OriginapplicationName == "Adobe Acrobat Reader DC" {
+            OriginapplicationName = "Acrobat Reader"
         }
         var applescriptStrings = [String]()
         for i in 0..<csvRows.count{
 
             if csvRows[i][0] == applicationCategory {
                 var final = String()
-                let pathORurl = dic[tempapplicationName]![0]
+                let pathORurl = dic[applicationName]![0]
+                // let pathORurl = dic[tempapplicationName]![0]
                 if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader" || applicationCategory == "Finder") {
                     let temp = pathORurl.replacingOccurrences(of: "file://", with: "")
                     final = temp.replacingOccurrences(of: "%20", with: " ")
@@ -379,7 +385,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
                 else {
                     final = pathORurl
                 }
-                var applescriptCode = csvRows[i][1] + applicationName + csvRows[i][2] + final + csvRows[i][3]
+                var applescriptCode = csvRows[i][1] + OriginapplicationName + csvRows[i][2] + final + csvRows[i][3]
                 applescriptStrings.append(applescriptCode)
                 // final is the document path
                 if (applicationCategory == "Productivity" || applicationCategory == "Acrobat Reader" || applicationCategory == "Finder"){
@@ -408,7 +414,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
             }
         }
         // return "tell application " + applicationName + "\n activate \n end tell"
-        let tempstring = "tell application " + applicationName + " to activate \n end tell"
+        let tempstring = "tell application " + OriginapplicationName + " to activate \n end tell"
         var tempresult = [String]()
         tempresult.append(tempstring)
         // 2 means nothing to reopen or retrieve
@@ -464,28 +470,12 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         detailedWiondwVariables.detailedDictionary["Title"] = [editableTitle.stringValue]
         detailedWiondwVariables.detailedDictionary["Text"] = [scrapbookBody.stringValue]
         let newOne = detailedWiondwVariables.detailedDictionary
-
-//        variables.metaDataDictionaryTestOne["PhotoTime"] = [variables.latestScreenShotTime, variables.latesScreenShotPathString, variables.currentTimeInformation]
-//        var tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
-//        let dictionary = [String:[String]]()
-//        let length = checkBoxCollection.count
-//        let keys: Array<String> = Array<String>(tempDictionary.keys)
-//        let keyLength = keys.count
-//        for i in 0..<keyLength{
-//            if checkBoxCollection.contains(keys[i]){
-//
-//            }
-//            else {
-//                tempDictionary.removeValue(forKey: keys[i])
-//            }
-//        }
-//        variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
-//
         
         //writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: detailedWiondwVariables.detailedDictionary)
         let val = detailedWiondwVariables.detailedDictionary["PhotoTime"] as! [String]
         let keyTime = val[0]
         print("key value time", keyTime)
+        // code here, cant save new title and memo
         tempfuction(newOne: newOne, timeVal: keyTime,  title: [editableTitle.stringValue], text: [scrapbookBody.stringValue])
         
         // the saving action is automatice, so dont display this popup window
@@ -889,12 +879,17 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     @IBAction func openAllApplications(_ sender: Any) {
         let dictionary = detailedWiondwVariables.detailedDictionary["Applications"] as! [String:[String]]
         var applicationArray = [String]()
-        let keys: Array<String> = Array<String>( dictionary.keys)
+        let keys: Array<String> = Array<String>(dictionary.keys)
         applicationArray = keys
         let keyLength = keys.count
         for i in 0..<keyLength{
-            let applicationsName = applicationArray[i]
-            let category = readCSVtoGetCategory(applicationName: applicationsName)
+            let applicationsNameWithRank = applicationArray[i]
+            // code here
+            let applicationsName = applicationsNameWithRank
+            let applicationsNameForCategory = dictionary[applicationsNameWithRank]![3]
+            // till here
+            
+            let category = readCSVtoGetCategory(applicationName: applicationsNameForCategory)
             let temp = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)
             let applescript = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[0]
             let index = readCSVtoGetApplescript(applicationCategory: category, applicationName: applicationsName, dic: dictionary)[1]
@@ -1072,8 +1067,22 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         }
         else{
             for i in 0..<keyLength{
+                
                 if tempNameStack.contains(keys[i]) {
-                    let applicationsName = applicationArray[i]
+                    // new
+                    let applicationsNameWithRank = applicationArray[i]
+                    let applicationsName = dictionary[applicationsNameWithRank]![3]
+                    
+                    
+                    // till here
+                    // old one
+                    // let applicationsName = applicationArray[i]
+                    // second method
+//                    let temp = applicationArray[i]
+//                    var delimiter = "#"
+//                    let originName = temp.components(separatedBy: delimiter)
+                    //
+                    
                     let category = readCSVtoGetCategory(applicationName: applicationsName)
                     var applescript = ""
                     var index = " "
@@ -1187,6 +1196,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
     
     //edit close button interaction
     override func viewDidAppear() {
+        view.window?.level = .floating
         self.view.window?.delegate = self
         
     }

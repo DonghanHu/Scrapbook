@@ -7,80 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "76862ADE-B032-446E-94E8-9A1ADF2B20C1"
+            uuid = "1044B087-9C27-4DCF-AA55-FC6E8F0597C8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scrapbook/collectionViewController.swift"
+            filePath = "Scrapbook/newDetailedView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "alternativeRefreshAction()"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
+            landmarkName = "readCSVtoGetApplescript(applicationCategory:applicationName:dic:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "26A9EE40-6A87-4BD8-B182-B69622BF19B7"
+            uuid = "74197E06-A598-4205-981B-CA662D290069"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scrapbook/collectionViewController.swift"
+            filePath = "Scrapbook/SoftwareAppleScript.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "applicationMetaData(applicationNameStack:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F38B617D-CB6C-4F3E-AF49-4F4207ADB038"
+            uuid = "F1912279-317C-4AF8-9CF7-C6DD7C2C0877"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scrapbook/collectionViewController.swift"
+            filePath = "Scrapbook/SoftwareAppleScript.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "applicationMetaData(applicationNameStack:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EC1AFD1A-72B7-4DEE-996C-09C150EB5D58"
+            uuid = "71FABD05-8DED-4B16-87C7-36665C30A825"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Scrapbook/collectionViewController.swift"
+            filePath = "Scrapbook/testViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "16F4CA3C-24D6-41CC-B0CE-606C2B48D384"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Scrapbook/collectionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "collectionView(_:itemForRepresentedObjectAt:)"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

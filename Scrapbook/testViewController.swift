@@ -136,7 +136,11 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         displayLatestScreenshot()
         
-        if (checkBoxCollection[0] == nil){
+        // changed here
+        let newcheckBoxCollection = variables.newKeyCollections
+        
+        
+        if (newcheckBoxCollection[0] == nil){
             let firstApplicationName = "No Application Name"
             labelFirstInformation.stringValue = firstApplicationName
             captionLabelTwo.isHidden = false
@@ -145,13 +149,18 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             captionLabelThree.stringValue = "Scond Information:"
         }
 
-        if (checkBoxCollection[0] != nil){
-            let firstApplicationName = checkBoxCollection[0]
+        if (newcheckBoxCollection[0] != nil){
+            let firstApplicationName = newcheckBoxCollection[0]
             labelFirstInformation.stringValue = firstApplicationName
             print("first application name in caputer view", firstApplicationName)
             let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            
+            
             let tempApplicationMetaData = tempDictionary[firstApplicationName]
-            print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+            // let tempApplicationMetaData = tempDictionary[firstApplicationName]
+            
+            print(tempApplicationMetaData)
+            // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
             if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
                 captionLabelTwo.isHidden = false
                 captionLabelThree.isHidden = false
@@ -192,6 +201,69 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
 
 
         }
+        // till here
+        
+//        if (checkBoxCollection[0] == nil){
+//            let firstApplicationName = "No Application Name"
+//            labelFirstInformation.stringValue = firstApplicationName
+//            captionLabelTwo.isHidden = false
+//            captionLabelThree.isHidden = false
+//            captionLabelTwo.stringValue = "First Information:"
+//            captionLabelThree.stringValue = "Scond Information:"
+//        }
+//
+//        if (checkBoxCollection[0] != nil){
+//            let firstApplicationName = checkBoxCollection[0]
+//            labelFirstInformation.stringValue = firstApplicationName
+//            print("first application name in caputer view", firstApplicationName)
+//            let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+//
+//
+//            let tempApplicationMetaData = tempDictionary[firstApplicationName]
+//            // let tempApplicationMetaData = tempDictionary[firstApplicationName]
+//
+//            print(tempApplicationMetaData)
+//            // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
+//            if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
+//                captionLabelTwo.isHidden = false
+//                captionLabelThree.isHidden = false
+//                captionLabelTwo.stringValue = "URL:"
+//                captionLabelThree.stringValue = "Title:"
+//            }
+//            else if tempApplicationMetaData![2] == "Prod1" || tempApplicationMetaData![2] == "Prod2" || tempApplicationMetaData![2] == "Xcode" || tempApplicationMetaData![2] == "Finder" {
+//                captionLabelTwo.isHidden = false
+//                captionLabelThree.isHidden = false
+//                captionLabelTwo.stringValue = "Path:"
+//                captionLabelThree.stringValue = "Name:"
+//            }
+//
+//            else if tempApplicationMetaData![2] == "Others"{
+//                captionLabelTwo.isHidden = false
+//                captionLabelThree.isHidden = false
+//                captionLabelTwo.stringValue = "Infomation one"
+//                captionLabelThree.stringValue = "Information two"
+//            }
+//
+//
+//            print("tempApplicationMetaData![0]", tempApplicationMetaData![0])
+//            if tempApplicationMetaData![0] != "" {
+//                labelSecondInformation.stringValue = (tempApplicationMetaData?[0])!
+//            }
+//            else {
+//                labelSecondInformation.stringValue = "Nothing here"
+//            }
+//
+//            print("tempApplicationMetaData![1]", tempApplicationMetaData![1])
+//            if tempApplicationMetaData![1] != "" {
+//                labelThirdInformation.stringValue = (tempApplicationMetaData?[1])!
+//            }
+//            else {
+//                labelThirdInformation.stringValue = "Nothing here"
+//            }
+//
+//
+//
+//        }
         
         self.tableView.allowsMultipleSelection = true
         self.tableView.selectAll(nil)
@@ -202,6 +274,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     override func viewDidAppear() {
+        view.window?.level = .floating
         self.view.window?.delegate = self
         
     }
@@ -219,6 +292,13 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // dont know the reason why autosaveFunctionClose() has to be exactly below this function
         // cant add the line of code: self.close in autosaveFunctionclose()
         // this will cause the fact of keep sending notification
+        
+        
+        
+        // reset the newKeyCollections
+        variables.newKeyCollections = [String]()
+        
+        
     }
     
     func interruptfunc(){
@@ -490,6 +570,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 variables.countNumber = variables.countNumber + 1
                 variables.dateCountNumber = variables.dateCountNumber + 1
                 checkboxInformationCaptureWindoe.clickstatus = 0
+                
+                
+                // reset the newKeyCollections
+                variables.newKeyCollections = [String]()
+                
+                
                 self.view.window?.close()
             }
             else {
@@ -532,6 +618,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             variables.countNumber = variables.countNumber + 1
             variables.dateCountNumber = variables.dateCountNumber + 1
             checkboxInformationCaptureWindoe.clickstatus = 0
+            
+            
+            
+            // reset the newKeyCollections
+            variables.newKeyCollections = [String]()
+            
             self.view.window?.close()
         }
         
@@ -586,6 +678,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         }
         dialogOK(question: "This recording has been deleted successfully.", text: "Click OK to continue.")
         checkboxInformationCaptureWindoe.clickstatus = 0
+        
+        
+        
+        
+        // reset the newKeyCollections
+        variables.newKeyCollections = [String]()
+        
+        
+        
         self.view.window?.close()
     }
     
@@ -656,10 +757,19 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         if (tableView.selectedRowIndexes.count == 1){
             // print("selected row == 1", tableView.selectedRowIndexes)
             // print("next", tableView.selectedRow)
-            let applicationName = variables.recordedApplicationNameStack[tableView.selectedRow]
+            
+            // old version
+            // let applicationName = variables.recordedApplicationNameStack[tableView.selectedRow]
+            
+            // new version
+            variables.newRecordedApplicationNameStack = variables.newKeyCollections
+            let applicationName = variables.newRecordedApplicationNameStack[tableView.selectedRow]
+            // till here
+            
             labelFirstInformation.stringValue = applicationName
             // print("first application name in caputer view", applicationName)
             let tempDictionary = variables.metaDataDictionaryTestOne["Applications"] as! [String:[String]]
+            
             let tempApplicationMetaData = tempDictionary[applicationName]
             // print("tempApplicationMetaData![2]", tempApplicationMetaData![2])
             if tempApplicationMetaData![2] == "Safari" || tempApplicationMetaData![2] == "Google Chrome"{
@@ -709,12 +819,18 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         var applicationNameTotal = [""]
         
         // check checkboxInformationCaptureWindoe.checkboxNameStack or variables.recordedApplicationNameStack
+        
+        // code here
+        
         if checkboxInformationCaptureWindoe.clickstatus == 1 {
             // checkbox clicked, use checkboxInformationCaptureWindoe.checkboxNameStack
             applicationNameTotal = checkboxInformationCaptureWindoe.checkboxNameStack
         }
         else {
-            applicationNameTotal = variables.recordedApplicationNameStack
+            // old one
+            // applicationNameTotal = variables.recordedApplicationNameStack
+            // new one
+            applicationNameTotal = variables.newRecordedApplicationNameStack
         }
         //
         let stackLen = applicationNameTotal.count
@@ -765,6 +881,13 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 variables.dateCountNumber = variables.dateCountNumber + 1
                 checkboxInformationCaptureWindoe.clickstatus = 0
                 autosaveSet.autosaveFlag = true
+                
+                
+                
+                // reset the newKeyCollections
+                variables.newKeyCollections = [String]()
+                
+                
                 self.view.window?.close()
             }
             else {
@@ -808,6 +931,15 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             variables.dateCountNumber = variables.dateCountNumber + 1
             checkboxInformationCaptureWindoe.clickstatus = 0
             autosaveSet.autosaveFlag = true
+            
+            
+            
+            
+            // reset the newKeyCollections
+            variables.newKeyCollections = [String]()
+            
+            
+            
             self.view.window?.close()
         }
     
@@ -956,7 +1088,9 @@ extension testViewController: NSTableViewDataSource {
   
   func numberOfRows(in tableView: NSTableView) -> Int {
     // return the number of application names
-    let temp = variables.recordedApplicationNameStack
+    variables.newRecordedApplicationNameStack = variables.newKeyCollections
+    let temp = variables.newRecordedApplicationNameStack
+    // let temp = variables.recordedApplicationNameStack
     print(temp)
     // print(diaryInformationCollection.photoNameFirstInformation.count)
     return variables.recordedApplicationNameStack.count
@@ -981,7 +1115,11 @@ extension testViewController: NSTableViewDelegate {
     dateFormatter.dateStyle = .long
     dateFormatter.timeStyle = .long
     
-    let item = variables.recordedApplicationNameStack[row]
+    // display the rank
+    let item = variables.newRecordedApplicationNameStack[row]
+    // do not display the rank
+    // let item = variables.recordedApplicationNameStack[row]
+    
     
 //    guard let item = directoryItems?[row] else {
 //      return nil

@@ -21,18 +21,49 @@ class appleScript : NSObject{
     
     func applicationMetaData(applicationNameStack : [String]) {
         
+        var dictForRepeating = [String : Int]()
+        let initialCount = 1;
+        var updatedCount: Int
+        var plainTextRanking : String
+        
         let length = applicationNameStack.count
         for i in 0..<length {
             if variables.softwareNameArray.contains(applicationNameStack[i]){
                 for j in 0..<variables.softwareNameArray.count{
                     if variables.softwareNameArray[j] == applicationNameStack[i]{
+                        
+                        // code here
+                        if (dictForRepeating[applicationNameStack[i]] != nil){
+                            let oldCount = dictForRepeating[applicationNameStack[i]]!
+                            let newCount = oldCount + 1
+                            updatedCount = newCount
+                            dictForRepeating.updateValue(newCount, forKey: applicationNameStack[i])
+                        }
+                        else {
+                            dictForRepeating.updateValue(initialCount, forKey: applicationNameStack[i])
+                            updatedCount = initialCount
+                        }
+                        
+                        
+                        if (applicationNameStack[i] == "Google Chrome" || applicationNameStack[i] == "Safari"){
+                            plainTextRanking = transferIntegerToRank(target: updatedCount)
+                        }
+                        else{
+                            plainTextRanking = String(updatedCount)
+                        }
+                        // now update the applescript
+                        
+                        
+                        
+                        
                         let applicationName = returnApplicationName(softwareName: applicationNameStack[i])
                         let applicationFirstResult = returnApplicationFirstFactor(softwareName: applicationNameStack[i])
                         let applicationSecondResult = returnApplicationSecondFactor(softwareName: applicationNameStack[i])
                         let applicationThirdResult = returnApplicationThirdFactor(softwareName: applicationNameStack[i])
                         // print("applicationName", applicationName)
-                        let firstInformation = FirstApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
-                        let secondInformation = secondApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult)
+                        let firstInformation = FirstApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult, rank: plainTextRanking)
+                        
+                        let secondInformation = secondApplicationInformation(softwareName: applicationNameStack[i], cate: applicationThirdResult, rank: plainTextRanking)
                         
 //                        print("old second", applicationSecondResult)
 //                        print("new second", secondInformation)
@@ -49,13 +80,31 @@ class appleScript : NSObject{
                         var applicationInformationDictionary = [String:[String]]()
                         
                         
+                        //
+                        let ranking = transferIntegerToRank(target: updatedCount)
+                        let number = String(updatedCount)
+                        let forthInformationApplicationName = applicationName
+                        let fifthInformationRanking = ranking
+                        let sixthInformationNumber = number
+                        let newApplicationNameWithNumber = applicationName + "#" + plainTextRanking
+                        
+                        
+                        variables.newKeyCollections.append(newApplicationNameWithNumber)
+                        
                         
                         var applicationInformationDictionaryCopy = [String:[String]]()
-                        // applicationInformationDictionary[applicationName] = [applicationFirstResult,applicationSecondResult]
-                        applicationInformationDictionary[applicationName] = [firstInformation, secondInformation, applicationThirdResult]
+                        // old one
+                        // applicationInformationDictionary[applicationName] = [firstInformation, secondInformation, applicationThirdResult]
+                        // new one
+                        applicationInformationDictionary[newApplicationNameWithNumber] = [firstInformation, secondInformation, applicationThirdResult, forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
+                        
                         applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
-                        applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
+                        // changed here, commit the next line
+                         applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                         variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
+                        
+                        // variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionary
+                        
                         // print("who knows whether it works or not", variables.metaDataDictionaryTestOne["Applications"])
 //                        var d1 = ["a": "b"]
 //                        var d2 = ["c": "e"]
@@ -71,15 +120,52 @@ class appleScript : NSObject{
                     }
                     
                     
+                    
+                    
                 // end of for loop for softwareNameArray
                 }
             }
+                
+                // code here for applicatinos not recorded
             else {
+                // application name
+                // applicationNameStack[i]
+                let originalApplicationName = applicationNameStack[i]
+                
+                if (dictForRepeating[applicationNameStack[i]] != nil){
+                    let oldCount = dictForRepeating[applicationNameStack[i]]!
+                    let newCount = oldCount + 1
+                    updatedCount = newCount
+                    dictForRepeating.updateValue(newCount, forKey: applicationNameStack[i])
+                }
+                else {
+                    dictForRepeating.updateValue(initialCount, forKey: applicationNameStack[i])
+                    updatedCount = initialCount
+                }
+                
+                if (applicationNameStack[i] == "Google Chrome" || applicationNameStack[i] == "Safari"){
+                    plainTextRanking = transferIntegerToRank(target: updatedCount)
+                }
+                else{
+                    plainTextRanking = String(updatedCount)
+                }
+                
+                let ranking = transferIntegerToRank(target: updatedCount)
+                let number = String(updatedCount)
+                let forthInformationApplicationName = originalApplicationName
+                let fifthInformationRanking = ranking
+                let sixthInformationNumber = number
+                let newApplicationNameWithNumber = originalApplicationName + "#" + plainTextRanking
+                
+                variables.newKeyCollections.append(newApplicationNameWithNumber)
+                
+                
                 let emptyFirst = ""
                 let emptySecond = ""
                 var applicationInformationDictionary = [String:[String]]()
                 var applicationInformationDictionaryCopy = [String:[String]]()
-                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond, "Others"]
+                 applicationInformationDictionary[newApplicationNameWithNumber] = [emptyFirst,emptySecond, "Others", forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
+//                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond, "Others", forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
                 applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                 applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                 variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
@@ -96,6 +182,7 @@ class appleScript : NSObject{
         variables.metaDataDictionaryTestOne["Coordinates"] = tempCoordinates
         print("final dictionary", variables.metaDataDictionaryTestOne)
         
+
         
         // print("this is the dictionary of metadata", variables.metaDataDictionary)
     }
@@ -146,12 +233,15 @@ class appleScript : NSObject{
        return "Second factor error"
     }
     
-    func FirstApplicationInformation(softwareName: String, cate: String) -> String{
+    func FirstApplicationInformation(softwareName: String, cate: String, rank: String) -> String{
         for i in 0..<readNewCSVFileVariables.CateAndApplescriptList.count{
             if cate == readNewCSVFileVariables.CateAndApplescriptList[i][0] {
                 let initScriptCode = readNewCSVFileVariables.CateAndApplescriptList[i][1]
-                let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
-                let applescriptResult = runApplescript(applescript: tempScriptCode)
+                let changeNameScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                let changeRankNumberScriptCode = changeNameScriptCode.replacingOccurrences(of: "AlternativeRankNumber", with: rank)
+                //let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                
+                let applescriptResult = runApplescript(applescript: changeRankNumberScriptCode)
                 let result = runApplescript(applescript: applescriptResult)
                 return result
             }
@@ -160,13 +250,15 @@ class appleScript : NSObject{
         return "first factor is nil"
     }
     
-    func secondApplicationInformation(softwareName: String, cate: String) -> String{
+    func secondApplicationInformation(softwareName: String, cate: String, rank: String) -> String{
         for i in 0..<readNewCSVFileVariables.CateAndApplescriptList.count{
             if cate == readNewCSVFileVariables.CateAndApplescriptList[i][0] {
                 let initScriptCode = readNewCSVFileVariables.CateAndApplescriptList[i][2]
                 print("applescript code for second information, file name", initScriptCode)
-                let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
-                let applescriptResult = runApplescript(applescript: tempScriptCode)
+                let changeNameScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                let changeRankNumberScriptCode = changeNameScriptCode.replacingOccurrences(of: "AlternativeRankNumber", with: rank)
+                // let tempScriptCode = initScriptCode.replacingOccurrences(of: "AlternativeApplicationName", with: softwareName)
+                let applescriptResult = runApplescript(applescript: changeRankNumberScriptCode)
                 print("applescript for second inforamtion in lines, file name", applescriptResult)
                 let result = runApplescript(applescript: applescriptResult)
                 print("result for second inforamtion, file name", result)
@@ -268,5 +360,30 @@ class appleScript : NSObject{
         }
         else { return (output.stringValue?.description)!}
     }
+    
+    func transferIntegerToRank(target : Int ) -> String {
+        
+        switch target {
+        case 1:
+            return "first"
+        case 2:
+            return "second"
+        case 3:
+            return "third"
+        case 4:
+            return "forth"
+        case 5:
+            return "fifth"
+        case 6:
+            return "sixth"
+        case 7:
+            return "seventh"
+            
+        default:
+            return "empty"
+        }
+        
+    }
+    
     // end of the class
 }

@@ -82,6 +82,8 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
         // Do view setup here.
         
         
+        // ViewController().view.window?.close()
+        
         //code notification observer
         NotificationCenter.default.addObserver(self, selector: #selector(collectionViewController.updateNotificationRefresh), name: NSNotification.Name(rawValue: notificationValues.notificationKey), object: nil)
         
@@ -357,6 +359,10 @@ class collectionViewController: NSViewController, NSCollectionViewDelegate, NSCo
     }
     
     override func viewDidAppear() {
+        
+        view.window?.level = .floating
+        
+        
         self.view.window?.delegate = self
         self.playTimer.fire()
         // self.playTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.automaticallyRefresh), userInfo: nil, repeats: true)

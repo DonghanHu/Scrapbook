@@ -736,7 +736,7 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="collectionViewWindowOpen:" target="XfG-lQ-9wD" id="WZn-YZ-nil"/>
-                                    <segue destination="eGB-z8-xtp" kind="modal" id="qri-CF-7CE"/>
+                                    <segue destination="eGB-z8-xtp" kind="modal" id="uXv-gA-A6g"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjm-js-RAD">

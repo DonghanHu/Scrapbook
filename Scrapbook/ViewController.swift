@@ -63,17 +63,28 @@ class ViewController: NSViewController {
     @IBAction func CaptureScreenShotMethodTwo(_ sender: Any) {
         
         self.view.window?.close()
+        print("button 1 is clicked")
         wholeScreenCaptureHandler.wholeScreenCapture()
     }
     
     @IBAction func CaptureScreenshot(_ sender: Any) {
         self.view.window?.close()
         screenCaptureHandler.selectScreenCapture()
+        
+        
     }
+    
+
+    
     
     @IBAction func collectionViewWindowOpen(_ sender: Any) {
         // this function does not run
+        
+        // performSegue(withIdentifier: "collectionViewID", sender: (Any).self)
+        
         self.view.window?.close()
+        // presentAsModalWindow(collectionViewController() as NSViewController)
+        
         print("collectionview window is opened, and this window closed")
     }
     

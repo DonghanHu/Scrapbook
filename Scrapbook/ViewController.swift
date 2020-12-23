@@ -37,16 +37,31 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAllAvailableScrapbookList()
-        divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
-        photoNameListGenerate()
-        CaputerButton.title = "Capture Selected Screen (S)"
-        // print("photo path list:", photonumber.photoPathList)
-        // print("photo text list:", photonumber.inputRelatedMessage)
-
-        cancelButton.title = "Go Back"
-        // get the screen width and height
-        getScreenInfor()
+        //self.view.window?.close()
+        if (checkDetailedWiondowOpenOrNot.openOrNot == true){
+            self.view.window?.close()
+        }
+        else {
+            // checkDetailedWiondowOpenOrNot.openOrNot = true
+            getAllAvailableScrapbookList()
+            divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
+            photoNameListGenerate()
+            CaputerButton.title = "Capture Selected Screen (S)"
+            cancelButton.title = "Go Back"
+            // get the screen width and height
+            getScreenInfor()
+        }
+        
+//        getAllAvailableScrapbookList()
+//        divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
+//        photoNameListGenerate()
+//        CaputerButton.title = "Capture Selected Screen (S)"
+//        // print("photo path list:", photonumber.photoPathList)
+//        // print("photo text list:", photonumber.inputRelatedMessage)
+//
+//        cancelButton.title = "Go Back"
+//        // get the screen width and height
+//        getScreenInfor()
         //self.view.window?.makeKeyAndOrderFront(self)
         //self.view.window?.makeMain()
         
@@ -60,6 +75,15 @@ class ViewController: NSViewController {
 //        // Update the view, if already loaded.
 //        }
 //    }
+    
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        if (checkDetailedWiondowOpenOrNot.openOrNot == true){
+            self.view.window?.close()
+        }
+    }
+    
     @IBAction func CaptureScreenShotMethodTwo(_ sender: Any) {
         
         self.view.window?.close()

@@ -66,6 +66,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkDetailedWiondowOpenOrNot.openOrNot = true
+        
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
 //        screenshotDisplay.frame.size.width
@@ -277,16 +279,18 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         view.window?.level = .floating
         self.view.window?.delegate = self
         
+        
     }
     
     func windowWillClose(_ notification: Notification) {
-        print("hhhh")
-        if autosaveSet.autosaveFlag == true{
+        if autosaveSet.autosaveFlag == true || autosaveSet.deleteRecordingDetailedWindow == true{
             autosaveSet.autosaveFlag = false
+            autosaveSet.deleteRecordingDetailedWindow = false
         }
         else{
             autosaveFunctionWhenClose()
         }
+        
         
         
         // dont know the reason why autosaveFunctionClose() has to be exactly below this function
@@ -297,6 +301,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         // reset the newKeyCollections
         variables.newKeyCollections = [String]()
+        
+        checkDetailedWiondowOpenOrNot.openOrNot = false
+        
         
         
     }
@@ -575,7 +582,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 // reset the newKeyCollections
                 variables.newKeyCollections = [String]()
                 
-                
+                checkDetailedWiondowOpenOrNot.openOrNot = false
                 self.view.window?.close()
             }
             else {
@@ -623,6 +630,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             // reset the newKeyCollections
             variables.newKeyCollections = [String]()
+            checkDetailedWiondowOpenOrNot.openOrNot = false
+            
             
             self.view.window?.close()
         }
@@ -679,13 +688,23 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         dialogOK(question: "This recording has been deleted successfully.", text: "Click OK to continue.")
         checkboxInformationCaptureWindoe.clickstatus = 0
         
+        //check and code here
+        // clear the metadata
+        // auto save function conflicts with delete button
+//        let emptyDic = [String : Any]()
+//        variables.metaDataDictionaryTestOne = emptyDic
+        
+        
+        autosaveSet.deleteRecordingDetailedWindow = true
+        // if(autosaveSet.deleteRecordingDetailedWindow)
+        
+        
         
         
         
         // reset the newKeyCollections
         variables.newKeyCollections = [String]()
-        
-        
+        checkDetailedWiondowOpenOrNot.openOrNot = false
         
         self.view.window?.close()
     }
@@ -886,7 +905,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 
                 // reset the newKeyCollections
                 variables.newKeyCollections = [String]()
-                
+                checkDetailedWiondowOpenOrNot.openOrNot = false
                 
                 self.view.window?.close()
             }
@@ -937,7 +956,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             // reset the newKeyCollections
             variables.newKeyCollections = [String]()
-            
+            checkDetailedWiondowOpenOrNot.openOrNot = false
             
             
             self.view.window?.close()

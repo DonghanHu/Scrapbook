@@ -156,6 +156,7 @@ struct popoverWindow {
 
 struct autosaveSet {
     static var autosaveFlag = false
+    static var deleteRecordingDetailedWindow = false
 }
 
 struct collectionViewItemCount {
@@ -167,6 +168,10 @@ struct checkboxInformationCaptureWindoe {
     static var clickstatus = 0
     static var checkboxNameStackDetailedWindow = [""]
     static var clickstatusDetailedWindow = 0
+}
+
+struct checkDetailedWiondowOpenOrNot {
+    static var openOrNot = false
 }
 
 // @available(OSX 10.13, *)

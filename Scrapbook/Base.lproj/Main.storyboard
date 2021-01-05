@@ -713,20 +713,6 @@
                                     <action selector="CaptureScreenShotMethodTwo:" target="XfG-lQ-9wD" id="f4t-ca-PjP"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9sQ-xz-IhB">
-                                <rect key="frame" x="24" y="44" width="262" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Cancel Capture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y65-uc-Khj">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cancelButtonAction:" target="XfG-lQ-9wD" id="q9f-HA-iuX"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LeY-Yf-rmd">
                                 <rect key="frame" x="24" y="77" width="262" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -736,7 +722,7 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="collectionViewWindowOpen:" target="XfG-lQ-9wD" id="WZn-YZ-nil"/>
-                                    <segue destination="eGB-z8-xtp" kind="modal" id="uXv-gA-A6g"/>
+                                    <segue destination="eGB-z8-xtp" kind="modal" identifier="collectionwindow" id="uXv-gA-A6g"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjm-js-RAD">
@@ -748,6 +734,20 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="QuitFunc:" target="XfG-lQ-9wD" id="fWn-tD-PTY"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9sQ-xz-IhB">
+                                <rect key="frame" x="24" y="46" width="262" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel Capture" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y65-uc-Khj">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButtonAction:" target="XfG-lQ-9wD" id="q9f-HA-iuX"/>
                                 </connections>
                             </button>
                         </subviews>

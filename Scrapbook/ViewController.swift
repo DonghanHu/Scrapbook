@@ -30,8 +30,8 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var CaptureMethodTwoButton: NSButton!
     
-    
-
+    var eventMonitorViewConroller : EventMonitor?
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     
     override func viewDidLoad() {
@@ -66,6 +66,8 @@ class ViewController: NSViewController {
         //self.view.window?.makeMain()
         
         //print("rawvalue", self.view.window?.level.rawValue)
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -103,7 +105,7 @@ class ViewController: NSViewController {
     
     @IBAction func collectionViewWindowOpen(_ sender: Any) {
         // this function does not run
-        
+        performSegue(withIdentifier: "collectionViewID", sender: sender)
         // performSegue(withIdentifier: "collectionViewID", sender: (Any).self)
         
         self.view.window?.close()
@@ -232,7 +234,9 @@ class ViewController: NSViewController {
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
-         self.view.window?.close()
+        print("cancel button")
+        performSegue(withIdentifier: "collectionwindow", sender: sender)
+        self.view.window?.close()
     }
     
     

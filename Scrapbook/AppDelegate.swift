@@ -156,7 +156,7 @@ struct popoverWindow {
 
 struct autosaveSet {
     static var autosaveFlag = false
-    static var deleteRecordingDetailedWindow = false
+    static var deleteRecordingRecordingWindow = false
 }
 
 struct collectionViewItemCount {

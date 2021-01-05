@@ -141,17 +141,26 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // changed here
         let newcheckBoxCollection = variables.newKeyCollections
         
+        let newcheckBoxCollectionLength = newcheckBoxCollection.count
         
-        if (newcheckBoxCollection[0] == nil){
+        // no application has been caputred in this screenshot
+        if (newcheckBoxCollectionLength < 1){
+        // if (newcheckBoxCollection[0] == nil){
+            
+            // alert window
+            
             let firstApplicationName = "No Application Name"
             labelFirstInformation.stringValue = firstApplicationName
             captionLabelTwo.isHidden = false
             captionLabelThree.isHidden = false
             captionLabelTwo.stringValue = "First Information:"
             captionLabelThree.stringValue = "Scond Information:"
+            
+            dialogOK(question: "No application has been caputred in the current screenshot.", text: "Click OK to continue.")
         }
 
-        if (newcheckBoxCollection[0] != nil){
+        if (newcheckBoxCollectionLength >= 1){
+        // if (newcheckBoxCollection[0] != nil){
             let firstApplicationName = newcheckBoxCollection[0]
             labelFirstInformation.stringValue = firstApplicationName
             print("first application name in caputer view", firstApplicationName)
@@ -283,9 +292,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
     }
     
     func windowWillClose(_ notification: Notification) {
-        if autosaveSet.autosaveFlag == true || autosaveSet.deleteRecordingDetailedWindow == true{
+        if autosaveSet.autosaveFlag == true || autosaveSet.deleteRecordingRecordingWindow == true{
             autosaveSet.autosaveFlag = false
-            autosaveSet.deleteRecordingDetailedWindow = false
+            autosaveSet.deleteRecordingRecordingWindow = false
         }
         else{
             autosaveFunctionWhenClose()
@@ -695,7 +704,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
 //        variables.metaDataDictionaryTestOne = emptyDic
         
         
-        autosaveSet.deleteRecordingDetailedWindow = true
+        autosaveSet.deleteRecordingRecordingWindow = true
         // if(autosaveSet.deleteRecordingDetailedWindow)
         
         
@@ -859,6 +868,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 emptyCount = emptyCount + 1
             }
         }
+        
+        print(applicationNameTotal)
+        
         if (emptyCount == stackLen){
         // if (applicationNameTotal.count == 0){
             let result = dialogCheck(question: "No application has been selected to save.", text: "")
@@ -935,14 +947,40 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             let length = applicationNameTotal.count
             let keys: Array<String> = Array<String>(tempDictionary.keys)
             let keyLength = keys.count
-            for i in 0..<keyLength{
-                if applicationNameTotal.contains(keys[i]){
-                    
+            
+            var nameArrayWithoutEmpty = [String]()
+            var tempNameArray = applicationNameTotal
+//            for t in 0..<keyLength{
+//                if tempNameArray[t] == "Empty"{
+//                    tempNameArray.remove(at: t)
+//                }
+//            }
+            
+            nameArrayWithoutEmpty = tempNameArray
+            
+            
+            let delimiter = "#"
+            
+            for p in 0..<keyLength{
+                let tempAppName = keys[p].components(separatedBy: delimiter)[0]
+                if nameArrayWithoutEmpty.contains(tempAppName){
+                    // do nothing
                 }
-                else {
-                    tempDictionary.removeValue(forKey: keys[i])
+                else{
+                    tempDictionary.removeValue(forKey: keys[p])
                 }
             }
+            
+//            for i in 0..<keyLength{
+//                //if keys[i].contains(<#T##element: Character##Character#>)
+//                if applicationNameTotal.contains(keys[i]){
+//
+//                }
+//                else {
+//                    tempDictionary.removeValue(forKey: keys[i])
+//                }
+//            }
+            
             variables.metaDataDictionaryTestOne["Applications"] = tempDictionary
             
             writeAndReadMetaDataInformaionIntoJsonFileTest (metaData: variables.metaDataDictionaryTestOne)
@@ -1073,24 +1111,35 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             checkboxInformationCaptureWindoe.checkboxNameStack = variables.recordedApplicationNameStack
         }
         let length = checkboxInformationCaptureWindoe.checkboxNameStack.count
+        
+        let delimiter = "#"
+        let originAppNameArray = temp.components(separatedBy: delimiter)
+        let oroiginAppName = originAppNameArray[0]
+        
         if (sender.state == .off){
             for i in 0..<length{
-                if checkboxInformationCaptureWindoe.checkboxNameStack[i] == sender.title{
+                if checkboxInformationCaptureWindoe.checkboxNameStack[i] == oroiginAppName{
+                // if checkboxInformationCaptureWindoe.checkboxNameStack[i] == sender.title{
                     checkboxInformationCaptureWindoe.checkboxNameStack[i] = "Empty"
                     break
                 }
             }
         }else {
-                if !checkboxInformationCaptureWindoe.checkboxNameStack.contains(sender.title){
+                if !checkboxInformationCaptureWindoe.checkboxNameStack.contains(oroiginAppName){
+                // if !checkboxInformationCaptureWindoe.checkboxNameStack.contains(sender.title){
                     let len = variables.recordedApplicationNameStack.count
                     for j in 0..<len{
-                        if variables.recordedApplicationNameStack[j] == sender.title{
-                            checkboxInformationCaptureWindoe.checkboxNameStack[j] = sender.title
+                        if variables.recordedApplicationNameStack[j] == oroiginAppName{
+                        // if variables.recordedApplicationNameStack[j] == sender.title{
+                            
+                            checkboxInformationCaptureWindoe.checkboxNameStack[j] = oroiginAppName
+                            // checkboxInformationCaptureWindoe.checkboxNameStack[j] = sender.title
                         }
                     }
                     // checkboxInformationCaptureWindoe.checkboxNameStack.append(sender.title)
             }
         }
+        
         print("current name stack", checkboxInformationCaptureWindoe.checkboxNameStack)
         checkboxInformationCaptureWindoe.clickstatus = 1
         

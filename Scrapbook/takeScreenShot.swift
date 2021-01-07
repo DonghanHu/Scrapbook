@@ -424,7 +424,7 @@ class Screencapture : NSObject {
     
     func wholeScreenCapture(){
             
-        let secondsToDelay = 5.0
+        // let secondsToDelay = 5.0
 
         do {
             sleep(UInt32(0.8))

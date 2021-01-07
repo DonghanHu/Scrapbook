@@ -241,6 +241,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         takeTestImage()
         deleteTestImage()
         
+        
+        
     }
     
     func takeTestImage(){
@@ -298,6 +300,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func togglePopover(_ sender: Any?) {
+        print("clicked icon S")
+        // eventMonitor?.start()
       if popover.isShown {
         closePopover(sender: sender)
       } else {

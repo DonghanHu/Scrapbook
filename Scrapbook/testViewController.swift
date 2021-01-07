@@ -859,6 +859,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             // applicationNameTotal = variables.recordedApplicationNameStack
             // new one
             applicationNameTotal = variables.newRecordedApplicationNameStack
+            // applicationNameTotal should not have "#" and ranking numbers
+            // applicationNameTotal = checkboxInformationCaptureWindoe.checkboxNameStack
         }
         //
         let stackLen = applicationNameTotal.count
@@ -959,10 +961,20 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             nameArrayWithoutEmpty = tempNameArray
             
             
+            
             let delimiter = "#"
+//            print(nameArrayWithoutEmpty)
+//            print(nameArrayWithoutEmpty.contains("Acrobat Reader"))
+//            print(nameArrayWithoutEmpty.contains("Safari"))
+            
+            for m in 0..<nameArrayWithoutEmpty.count{
+                let tempName = nameArrayWithoutEmpty[m].components(separatedBy: delimiter)[0]
+                nameArrayWithoutEmpty[m] = tempName
+            }
             
             for p in 0..<keyLength{
                 let tempAppName = keys[p].components(separatedBy: delimiter)[0]
+                print(tempAppName)
                 if nameArrayWithoutEmpty.contains(tempAppName){
                     // do nothing
                 }
@@ -995,6 +1007,12 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             // reset the newKeyCollections
             variables.newKeyCollections = [String]()
             checkDetailedWiondowOpenOrNot.openOrNot = false
+            
+//
+//            let mousePosition = CGPoint(x: 500  , y:500) // your position here
+//
+//            let mouseEvent = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: mousePosition, mouseButton: .left)
+//            mouseEvent?.postToPid(33554)
             
             
             self.view.window?.close()

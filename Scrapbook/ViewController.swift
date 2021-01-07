@@ -34,6 +34,8 @@ class ViewController: NSViewController {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     
+    // typealias FinishedClose = () -> ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +44,6 @@ class ViewController: NSViewController {
             self.view.window?.close()
         }
         else {
-            // checkDetailedWiondowOpenOrNot.openOrNot = true
             getAllAvailableScrapbookList()
             divideIntoTwoArray(stringArray: diaryInformationCollection.photoNameList)
             photoNameListGenerate()
@@ -90,8 +91,15 @@ class ViewController: NSViewController {
         
         self.view.window?.close()
         print("button 1 is clicked")
+        
+        do {
+            sleep(UInt32(1.1))
+        }
+        
         wholeScreenCaptureHandler.wholeScreenCapture()
     }
+    
+    
     
     @IBAction func CaptureScreenshot(_ sender: Any) {
         self.view.window?.close()

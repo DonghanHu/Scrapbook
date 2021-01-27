@@ -52,6 +52,9 @@ struct variables {
     
     static var newKeyCollections                 = [String]()
     static var newRecordedApplicationNameStack   = [String]()
+    
+    static var newDisplayedApplicationNames      = [String]()
+    static var newDisplayedApplicationNamesDetailedWindow = [String]()
 }
 
 struct overviewWindowVariables {

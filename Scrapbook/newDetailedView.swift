@@ -357,7 +357,7 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
        }
        return "Others"
    }
-    // code here
+
     func readCSVtoGetApplescript(applicationCategory : String, applicationName : String, dic : Dictionary<String, [String]>) -> [String]{
         var applicationNameWithRank = applicationName
         let cutString = "#"
@@ -884,7 +884,6 @@ class newDetailedView: NSViewController , NSCollectionViewDelegate, NSCollection
         let keyLength = keys.count
         for i in 0..<keyLength{
             let applicationsNameWithRank = applicationArray[i]
-            // code here
             let applicationsName = applicationsNameWithRank
             let applicationsNameForCategory = dictionary[applicationsNameWithRank]![3]
             // till here
@@ -1233,6 +1232,23 @@ extension newDetailedView: NSTableViewDataSource {
     applicationNameStack = keys
     
     variables.detailedApplicationNameList = applicationNameStack
+    
+    
+    let delimiter = "#"
+    
+    for i in 0..<applicationNameStack.count{
+        let tempName = applicationNameStack[i]
+        let firstPart = tempName.components(separatedBy: delimiter)[0]
+        let secondPart = tempName.components(separatedBy: delimiter)[1]
+        if (secondPart == "1" || secondPart == "first"){
+            variables.newDisplayedApplicationNamesDetailedWindow.append(firstPart)
+        }
+        else{
+            variables.newDisplayedApplicationNamesDetailedWindow.append(tempName)
+        }
+    }
+    
+    
     
     let temp = variables.detailedApplicationNameList
     print("name list in detailed view table view", temp)

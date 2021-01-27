@@ -141,6 +141,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         // changed here
         let newcheckBoxCollection = variables.newKeyCollections
         
+        
+        
         let newcheckBoxCollectionLength = newcheckBoxCollection.count
         
         // no application has been caputred in this screenshot
@@ -310,6 +312,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         // reset the newKeyCollections
         variables.newKeyCollections = [String]()
+        variables.newDisplayedApplicationNames = [String]()
         
         checkDetailedWiondowOpenOrNot.openOrNot = false
         
@@ -590,6 +593,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 
                 // reset the newKeyCollections
                 variables.newKeyCollections = [String]()
+                variables.newDisplayedApplicationNames = [String]()
                 
                 checkDetailedWiondowOpenOrNot.openOrNot = false
                 self.view.window?.close()
@@ -639,6 +643,8 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             // reset the newKeyCollections
             variables.newKeyCollections = [String]()
+            variables.newDisplayedApplicationNames = [String]()
+            
             checkDetailedWiondowOpenOrNot.openOrNot = false
             
             
@@ -713,6 +719,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         
         // reset the newKeyCollections
         variables.newKeyCollections = [String]()
+        variables.newDisplayedApplicationNames = [String]()
+        
+        
         checkDetailedWiondowOpenOrNot.openOrNot = false
         
         self.view.window?.close()
@@ -791,8 +800,11 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             // new version
             variables.newRecordedApplicationNameStack = variables.newKeyCollections
+            
+            //variables.newRecordedApplicationNameStack =  variables.newDisplayedApplicationNames
+            
+            //variables.newRecordedApplicationNameStack, variables.newKeyCollections, variables.newKeyCollections have the same order for each element
             let applicationName = variables.newRecordedApplicationNameStack[tableView.selectedRow]
-            // till here
             
             labelFirstInformation.stringValue = applicationName
             // print("first application name in caputer view", applicationName)
@@ -847,8 +859,7 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
         var applicationNameTotal = [""]
         
         // check checkboxInformationCaptureWindoe.checkboxNameStack or variables.recordedApplicationNameStack
-        
-        // code here
+    
         
         if checkboxInformationCaptureWindoe.clickstatus == 1 {
             // checkbox clicked, use checkboxInformationCaptureWindoe.checkboxNameStack
@@ -919,6 +930,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
                 
                 // reset the newKeyCollections
                 variables.newKeyCollections = [String]()
+                variables.newDisplayedApplicationNames = [String]()
+                
+                
                 checkDetailedWiondowOpenOrNot.openOrNot = false
                 
                 self.view.window?.close()
@@ -1006,6 +1020,9 @@ class testViewController: NSViewController , NSCollectionViewDelegate, NSCollect
             
             // reset the newKeyCollections
             variables.newKeyCollections = [String]()
+            variables.newDisplayedApplicationNames = [String]()
+            
+            
             checkDetailedWiondowOpenOrNot.openOrNot = false
             
 //
@@ -1202,7 +1219,11 @@ extension testViewController: NSTableViewDelegate {
     dateFormatter.timeStyle = .long
     
     // display the rank
-    let item = variables.newRecordedApplicationNameStack[row]
+    // coded here for changed the displayed application names
+    let item = variables.newDisplayedApplicationNames[row]
+    // let item = variables.newRecordedApplicationNameStack[row]
+    
+    
     // do not display the rank
     // let item = variables.recordedApplicationNameStack[row]
     

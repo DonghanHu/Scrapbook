@@ -106,7 +106,7 @@ class softwareClassify : NSObject {
             let boundDictionaryFormat = applicationBounds as! NSDictionary
             print("software name is: ", applicationName)
             if (applicationName == "universalAccessAuthWarn"){
-                
+                // if the application is system preference, do nothing
             }
             else {
                 print("bounds in dictionary format", boundDictionaryFormat)

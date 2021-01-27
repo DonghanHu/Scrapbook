@@ -32,7 +32,7 @@ class appleScript : NSObject{
                 for j in 0..<variables.softwareNameArray.count{
                     if variables.softwareNameArray[j] == applicationNameStack[i]{
                         
-                        // code here
+                        
                         if (dictForRepeating[applicationNameStack[i]] != nil){
                             let oldCount = dictForRepeating[applicationNameStack[i]]!
                             let newCount = oldCount + 1
@@ -84,6 +84,9 @@ class appleScript : NSObject{
                         let ranking = transferIntegerToRank(target: updatedCount)
                         let number = String(updatedCount)
                         let forthInformationApplicationName = applicationName
+                        
+                        let originalApplicationName = applicationName
+                        
                         let fifthInformationRanking = ranking
                         let sixthInformationNumber = number
                         let newApplicationNameWithNumber = applicationName + "#" + plainTextRanking
@@ -91,12 +94,23 @@ class appleScript : NSObject{
                         
                         variables.newKeyCollections.append(newApplicationNameWithNumber)
                         
+                        var displayedApplicationName = ""
+                        if (number == "1" || ranking == "first"){
+                            displayedApplicationName = originalApplicationName
+                        }
+                        else{
+                            displayedApplicationName = originalApplicationName + "#" + number
+                        }
+                        
+                        variables.newDisplayedApplicationNames.append(displayedApplicationName)
+                        
+                        
                         
                         var applicationInformationDictionaryCopy = [String:[String]]()
                         // old one
                         // applicationInformationDictionary[applicationName] = [firstInformation, secondInformation, applicationThirdResult]
                         // new one
-                        applicationInformationDictionary[newApplicationNameWithNumber] = [firstInformation, secondInformation, applicationThirdResult, forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
+                        applicationInformationDictionary[newApplicationNameWithNumber] = [firstInformation, secondInformation, applicationThirdResult, forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber, displayedApplicationName]
                         
                         applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                         // changed here, commit the next line
@@ -164,8 +178,21 @@ class appleScript : NSObject{
                 let emptySecond = ""
                 var applicationInformationDictionary = [String:[String]]()
                 var applicationInformationDictionaryCopy = [String:[String]]()
-                 applicationInformationDictionary[newApplicationNameWithNumber] = [emptyFirst,emptySecond, "Others", forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
-//                applicationInformationDictionary[applicationNameStack[i]] = [emptyFirst,emptySecond, "Others", forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber]
+                
+                
+                // code here
+                var displayedApplicationName = ""
+                if (number == "1" || ranking == "first"){
+                    displayedApplicationName = originalApplicationName
+                }
+                else{
+                    displayedApplicationName = originalApplicationName + "#" + number
+                    
+                }
+                
+                variables.newDisplayedApplicationNames.append(displayedApplicationName)
+                
+                 applicationInformationDictionary[newApplicationNameWithNumber] = [emptyFirst,emptySecond, "Others", forthInformationApplicationName, fifthInformationRanking, sixthInformationNumber, displayedApplicationName]
                 applicationInformationDictionaryCopy = variables.metaDataDictionaryTestOne["Applications"] as! [String : [String]]
                 applicationInformationDictionaryCopy.merge(dict: applicationInformationDictionary)
                 variables.metaDataDictionaryTestOne["Applications"] = applicationInformationDictionaryCopy
